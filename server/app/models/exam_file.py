@@ -9,5 +9,6 @@ class ExamFile(Base):
     detail_url = Column(Text, unique=True, nullable=False)
     file_url = Column(Text, unique=True, nullable=False, index=True)
     file_name = Column(String(500))
+    exam_subject_code = Column(String(50))  # Subject code like "CS 201", "HRM 303"
     crawl_time = Column(DateTime, nullable=False)
     created_at = Column(DateTime, default=func.now())
