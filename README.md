@@ -20,3 +20,7 @@ Khi hệ thống phát hiện một danh sách thi mới phù hợp với thông
   - Hiển thị danh sách các tệp lịch thi đã được cào.
   - Hỗ trợ tìm kiếm và lọc dữ liệu theo thời gian hoặc số lượng tệp gần nhất.
   - Cho phép người dùng xem và tra cứu trực tiếp trên dữ liệu đã được hệ thống thu thập.
+
+Run:
+Client:/client npm run dev
+Server: server\venv\Scripts\python.exe -m uvicorn app.main:app --reload --app-dir server

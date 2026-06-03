@@ -1,16 +1,113 @@
-# React + Vite
+# DTU Exam Notifier - Frontend
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+React frontend for the DTU Exam Notifier system.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- Modern React 19 with Vite
+- Responsive design with Tailwind CSS
+- Dark mode support
+- React Query for API state management
+- Form validation with React Hook Form & Zod
+- Reusable UI components
+- Real-time toast notifications
 
-## React Compiler
+## Pages
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+1. **Home** - Landing page with hero section and features
+2. **Register** - Subscription form for email notifications
+3. **Search** - Search and filter exam schedules
+4. **Files** - Browse crawled Excel files
+5. **File Detail** - View details of a specific file
+6. **Dashboard** - Statistics and charts
 
-## Expanding the ESLint configuration
+## Tech Stack
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+- React 19
+- Vite
+- Tailwind CSS
+- React Router DOM
+- Axios
+- React Hook Form
+- Zod
+- Lucide React (icons)
+- Recharts (charts)
+- Sonner (toasts)
+
+## Setup
+
+1. Install dependencies:
+
+```bash
+npm install
+```
+
+2. Create `.env` file:
+
+```bash
+cp .env.example .env
+```
+
+3. Start development server:
+
+```bash
+npm run dev
+```
+
+## Environment Variables
+
+```env
+VITE_API_URL=http://localhost:8000/api
+```
+
+## API Endpoints
+
+- `GET /files` - Get list of crawled files
+- `GET /files/:id` - Get file details
+- `GET /exam-schedules` - Search exam schedules
+- `POST /subscriptions` - Create subscription
+- `GET /dashboard/stats` - Dashboard statistics
+
+## Project Structure
+
+```
+src/
+├── assets/
+├── components/
+│   ├── ui/          # Reusable UI components
+│   ├── layout/      # Layout components
+│   └── common/      # Common components
+├── pages/           # Page components
+├── services/        # API services
+├── hooks/           # Custom hooks
+├── routes/          # React Router config
+├── contexts/        # React contexts
+├── utils/           # Utility functions
+└── constants/       # Constants
+```
+
+## Development
+
+- Run development server: `npm run dev`
+- Build for production: `npm run build`
+- Lint code: `npm run lint`
+- Preview production build: `npm run preview`
+
+## Deployment
+
+Build the project:
+
+```bash
+npm run build
+```
+
+The built files will be in the `dist` directory.
+
+## API Integration
+
+The frontend expects the following backend endpoints:
+
+- `/api/files` - File management
+- `/api/exam-schedules` - Exam schedule search
+- `/api/subscriptions` - Subscription management
+- `/api/dashboard` - Dashboard statistics
