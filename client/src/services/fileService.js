@@ -1,11 +1,13 @@
 import apiClient from "./apiClient";
 
 export const fileService = {
-  async getFiles(params = {}) {
-    const response = await apiClient.get("/files", { params });
-    return response.data;
-  },
+  async getFiles(page = 1, pageSize = 10) {
+    const res = await apiClient.get(
+      `/files?page=${page}&page_size=${pageSize}`,
+    );
 
+    return res.data;
+  },
   async getFileDetail(fileId) {
     const response = await apiClient.get(`/files/${fileId}`);
     return response.data;

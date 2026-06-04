@@ -15,18 +15,25 @@ import { FileText, Download, RefreshCw } from "lucide-react";
 const Files = () => {
   const [files, setFiles] = useState([]);
   const [loading, setLoading] = useState(false);
+
+  const [page, setPage] = useState(1);
+  const [pageSize] = useState(10);
+  const [total, setTotal] = useState(0);
   const [crawling, setCrawling] = useState(false);
   const [crawlMessage, setCrawlMessage] = useState("");
 
   useEffect(() => {
     fetchFiles();
-  }, []);
+  }, [page]);
 
   async function fetchFiles() {
     setLoading(true);
+
     try {
-      const data = await fileService.getFiles();
+      const data = await fileService.getFiles(page, pageSize);
+
       setFiles(data?.items || []);
+      setTotal(data?.total || 0);
     } catch (err) {
       console.error("Error fetching files:", err);
     } finally {
@@ -78,7 +85,7 @@ const Files = () => {
       </div>
     );
   }
-
+  const totalPages = Math.ceil(total / pageSize);
   return (
     <div className="container mx-auto px-4 py-8">
       <div className="flex justify-between items-center mb-4">
@@ -160,6 +167,34 @@ const Files = () => {
               ))}
             </TableBody>
           </Table>
+          <div className="flex items-center justify-between px-4 py-4 border-t dark:border-gray-700">
+            <div className="text-sm text-gray-600 dark:text-gray-400">
+              Hiển thị {(page - 1) * pageSize + 1} -{" "}
+              {Math.min(page * pageSize, total)} trên {total} tệp
+            </div>
+
+            <div className="flex items-center gap-2">
+              <button
+                disabled={page === 1}
+                onClick={() => setPage((p) => p - 1)}
+                className="px-3 py-1 border rounded disabled:opacity-50"
+              >
+                Trước
+              </button>
+
+              <span className="px-2">
+                Trang {page} / {totalPages || 1}
+              </span>
+
+              <button
+                disabled={page >= totalPages}
+                onClick={() => setPage((p) => p + 1)}
+                className="px-3 py-1 border rounded disabled:opacity-50"
+              >
+                Sau
+              </button>
+            </div>
+          </div>
         </div>
       )}
     </div>

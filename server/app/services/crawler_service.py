@@ -37,8 +37,8 @@ class CrawlerService:
             # Step 1: Access and parse the exam list pages to get detail page links
             collected_links: list[tuple[str, str]] = []
             page = 1
-            max_pages = 5  # Reduced to ensure we get ~100 files
-            max_links = 100  # Limit to 100 files
+            max_pages = 7  # Reduced to ensure we get ~100 files
+            max_links = 105  # Limit to 100 files
             
             while page <= max_pages and len(collected_links) < max_links:
                 page_url = f"{self.exam_list_url}?page={page}&lang=VN"

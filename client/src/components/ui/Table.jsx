@@ -9,24 +9,7 @@ const Table = React.forwardRef(({ className, children, ...props }, ref) => {
         className={cn("w-full caption-bottom text-sm", className)}
         {...props}
       >
-        <thead className="[&_tr]:border-b">
-          <tr className="border-b border-gray-200 bg-gray-50/50 text-left dark:border-gray-800 dark:bg-gray-900/50">
-            <th className="h-12 px-4 align-middle font-medium text-gray-500 dark:text-gray-400">
-              <span className="sr-only">Expand</span>
-            </th>
-            {children?.props?.children?.props?.children?.map?.((th, i) => (
-              <th
-                key={i}
-                className="h-12 px-4 align-middle font-medium text-gray-500 dark:text-gray-400"
-              >
-                {th}
-              </th>
-            ))}
-          </tr>
-        </thead>
-        <tbody ref={ref} className="[&_tr:last-child]:border-0">
-          {children}
-        </tbody>
+        {children}
       </table>
     </div>
   );
@@ -37,7 +20,14 @@ Table.displayName = "Table";
 const TableHeader = React.forwardRef(
   ({ className, children, ...props }, ref) => {
     return (
-      <thead ref={ref} className={cn("[&_tr]:border-b", className)} {...props}>
+      <thead
+        ref={ref}
+        className={cn(
+          "sticky top-0 z-10 bg-white dark:bg-gray-800 [&_tr]:border-b",
+          className,
+        )}
+        {...props}
+      >
         {children}
       </thead>
     );
