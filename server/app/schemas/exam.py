@@ -6,10 +6,8 @@ T = TypeVar('T')
 
 class ExamFileResponse(BaseModel):
     id: int
-    title: str
-    detail_url: str
-    file_url: str
     file_name: str
+    download_link: str
     crawl_time: datetime
     created_at: datetime
 

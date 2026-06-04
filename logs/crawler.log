@@ -1,0 +1,406 @@
+2026-06-03 15:53:19 | INFO     | app.services.crawler_service:crawl_exam_files:28 - Starting exam file crawl...
+2026-06-03 15:53:27 | INFO     | app.services.crawler_service:crawl_exam_files:59 - Found new file: https://pdaotao.duytan.edu.vn/uploads/Exam/DS Tổng quan Hành vi Tổ chức trong Du lịch OB 253 B-D-F_2.xlsx
+2026-06-03 15:53:30 | INFO     | app.services.crawler_service:_download_file:123 - File downloaded to: E:\Project\dtu-exam-crawler-notifier\server\storage\excel\DS Tổng quan Hành vi Tổ chức trong Du lịch OB 253 B-D-F_2.xlsx
+2026-06-03 15:53:32 | SUCCESS  | app.services.crawler_service:crawl_exam_files:78 - Successfully saved and downloaded: DS Tổng quan Hành vi Tổ chức trong Du lịch OB 253 B-D-F_2.xlsx
+2026-06-03 15:53:33 | INFO     | app.services.crawler_service:crawl_exam_files:59 - Found new file: https://pdaotao.duytan.edu.vn/uploads/Exam/DS Quản trị Nhân lực trong Du lịch HRM 303 B-D-F_1.xlsx
+2026-06-03 15:53:35 | INFO     | app.services.crawler_service:_download_file:123 - File downloaded to: E:\Project\dtu-exam-crawler-notifier\server\storage\excel\DS Quản trị Nhân lực trong Du lịch HRM 303 B-D-F_1.xlsx
+2026-06-03 15:53:36 | SUCCESS  | app.services.crawler_service:crawl_exam_files:78 - Successfully saved and downloaded: DS Quản trị Nhân lực trong Du lịch HRM 303 B-D-F_1.xlsx
+2026-06-03 15:53:37 | INFO     | app.services.crawler_service:crawl_exam_files:59 - Found new file: https://pdaotao.duytan.edu.vn/uploads/Exam/DS Chủ nghĩa Xã hội Khoa học POS 351 L-P-T.xlsx
+2026-06-03 15:53:39 | INFO     | app.services.crawler_service:_download_file:123 - File downloaded to: E:\Project\dtu-exam-crawler-notifier\server\storage\excel\DS Chủ nghĩa Xã hội Khoa học POS 351 L-P-T.xlsx
+2026-06-03 15:53:40 | SUCCESS  | app.services.crawler_service:crawl_exam_files:78 - Successfully saved and downloaded: DS Chủ nghĩa Xã hội Khoa học POS 351 L-P-T.xlsx
+2026-06-03 15:53:42 | INFO     | app.services.crawler_service:crawl_exam_files:59 - Found new file: https://pdaotao.duytan.edu.vn/uploads/Exam/CS 201 (HL-HX-JD-JJ-LF).xlsx
+2026-06-03 15:53:43 | INFO     | app.services.crawler_service:_download_file:123 - File downloaded to: E:\Project\dtu-exam-crawler-notifier\server\storage\excel\CS 201 (HL-HX-JD-JJ-LF).xlsx
+2026-06-03 15:53:44 | SUCCESS  | app.services.crawler_service:crawl_exam_files:78 - Successfully saved and downloaded: CS 201 (HL-HX-JD-JJ-LF).xlsx
+2026-06-03 15:53:45 | INFO     | app.services.crawler_service:crawl_exam_files:59 - Found new file: https://pdaotao.duytan.edu.vn/uploads/Exam/Giới Thiệu về Khoa Học Máy Tính CS 100 (B-D).xlsx
+2026-06-03 15:53:46 | INFO     | app.services.crawler_service:_download_file:123 - File downloaded to: E:\Project\dtu-exam-crawler-notifier\server\storage\excel\Giới Thiệu về Khoa Học Máy Tính CS 100 (B-D).xlsx
+2026-06-03 15:53:47 | SUCCESS  | app.services.crawler_service:crawl_exam_files:78 - Successfully saved and downloaded: Giới Thiệu về Khoa Học Máy Tính CS 100 (B-D).xlsx
+2026-06-03 15:53:48 | INFO     | app.services.crawler_service:crawl_exam_files:59 - Found new file: https://pdaotao.duytan.edu.vn/uploads/Exam/Lập Trình Ứng Dụng cho các Thiết Bị Di Động CR 424 (B-D-F).xlsx
+2026-06-03 15:53:48 | INFO     | app.services.crawler_service:_download_file:123 - File downloaded to: E:\Project\dtu-exam-crawler-notifier\server\storage\excel\Lập Trình Ứng Dụng cho các Thiết Bị Di Động CR 424 (B-D-F).xlsx
+2026-06-03 15:53:50 | SUCCESS  | app.services.crawler_service:crawl_exam_files:78 - Successfully saved and downloaded: Lập Trình Ứng Dụng cho các Thiết Bị Di Động CR 424 (B-D-F).xlsx
+2026-06-03 15:53:51 | INFO     | app.services.crawler_service:crawl_exam_files:59 - Found new file: https://pdaotao.duytan.edu.vn/uploads/Exam/Kỹ Thuật Thương Mại Điện Tử IS 385 (BB-BL-BP-BX-N-V).xlsx
+2026-06-03 15:53:51 | INFO     | app.services.crawler_service:_download_file:123 - File downloaded to: E:\Project\dtu-exam-crawler-notifier\server\storage\excel\Kỹ Thuật Thương Mại Điện Tử IS 385 (BB-BL-BP-BX-N-V).xlsx
+2026-06-03 15:53:53 | SUCCESS  | app.services.crawler_service:crawl_exam_files:78 - Successfully saved and downloaded: Kỹ Thuật Thương Mại Điện Tử IS 385 (BB-BL-BP-BX-N-V).xlsx
+2026-06-03 15:53:54 | INFO     | app.services.crawler_service:crawl_exam_files:59 - Found new file: https://pdaotao.duytan.edu.vn/uploads/Exam/Toán Rời Rạc & Ứng Dụng MTH 254 (BB-J-L-R-T-V-X-Z).xlsx
+2026-06-03 15:53:54 | INFO     | app.services.crawler_service:_download_file:123 - File downloaded to: E:\Project\dtu-exam-crawler-notifier\server\storage\excel\Toán Rời Rạc & Ứng Dụng MTH 254 (BB-J-L-R-T-V-X-Z).xlsx
+2026-06-03 15:53:56 | SUCCESS  | app.services.crawler_service:crawl_exam_files:78 - Successfully saved and downloaded: Toán Rời Rạc & Ứng Dụng MTH 254 (BB-J-L-R-T-V-X-Z).xlsx
+2026-06-03 15:53:56 | INFO     | app.services.crawler_service:crawl_exam_files:59 - Found new file: https://pdaotao.duytan.edu.vn/uploads/Exam/Hệ Thống Thông Tin Kế Toán IS 252 (D)_1.xlsx
+2026-06-03 15:53:57 | INFO     | app.services.crawler_service:_download_file:123 - File downloaded to: E:\Project\dtu-exam-crawler-notifier\server\storage\excel\Hệ Thống Thông Tin Kế Toán IS 252 (D)_1.xlsx
+2026-06-03 15:53:58 | SUCCESS  | app.services.crawler_service:crawl_exam_files:78 - Successfully saved and downloaded: Hệ Thống Thông Tin Kế Toán IS 252 (D)_1.xlsx
+2026-06-03 15:53:59 | INFO     | app.services.crawler_service:crawl_exam_files:59 - Found new file: https://pdaotao.duytan.edu.vn/uploads/Exam/Lập Trình Cơ Sở CS 211 (BF-BL-H-J-N-P-T).xlsx
+2026-06-03 15:54:00 | INFO     | app.services.crawler_service:_download_file:123 - File downloaded to: E:\Project\dtu-exam-crawler-notifier\server\storage\excel\Lập Trình Cơ Sở CS 211 (BF-BL-H-J-N-P-T).xlsx
+2026-06-03 15:54:01 | SUCCESS  | app.services.crawler_service:crawl_exam_files:78 - Successfully saved and downloaded: Lập Trình Cơ Sở CS 211 (BF-BL-H-J-N-P-T).xlsx
+2026-06-03 15:54:02 | INFO     | app.services.crawler_service:crawl_exam_files:59 - Found new file: https://pdaotao.duytan.edu.vn/uploads/Exam/Công Cụ & Phương Pháp Thiết Kế - Quản Lý (Phần Mềm) CS 434 (D).xlsx
+2026-06-03 15:54:03 | INFO     | app.services.crawler_service:_download_file:123 - File downloaded to: E:\Project\dtu-exam-crawler-notifier\server\storage\excel\Công Cụ & Phương Pháp Thiết Kế - Quản Lý (Phần Mềm) CS 434 (D).xlsx
+2026-06-03 15:54:04 | SUCCESS  | app.services.crawler_service:crawl_exam_files:78 - Successfully saved and downloaded: Công Cụ & Phương Pháp Thiết Kế - Quản Lý (Phần Mềm) CS 434 (D).xlsx
+2026-06-03 15:54:05 | INFO     | app.services.crawler_service:crawl_exam_files:59 - Found new file: https://pdaotao.duytan.edu.vn/uploads/Exam/JAP 281 (B-D-F-H).xlsx (THI LẠI).xlsx
+2026-06-03 15:54:05 | INFO     | app.services.crawler_service:_download_file:123 - File downloaded to: E:\Project\dtu-exam-crawler-notifier\server\storage\excel\JAP 281 (B-D-F-H).xlsx (THI LẠI).xlsx
+2026-06-03 15:54:07 | SUCCESS  | app.services.crawler_service:crawl_exam_files:78 - Successfully saved and downloaded: JAP 281 (B-D-F-H).xlsx (THI LẠI).xlsx
+2026-06-03 15:54:07 | WARNING  | app.services.crawler_service:crawl_exam_files:51 - No Excel file found for: Đọc 2 - KOR 206 (B-D-F-H-J-L) 
+                                     
+                                                    (08:19 29/05/2026)
+2026-06-03 15:54:08 | WARNING  | app.services.crawler_service:crawl_exam_files:51 - No Excel file found for: Nhật Ngữ Cao Cấp 1 - JAP 301 (B) 
+                                     
+                                                    (08:19 29/05/2026)
+2026-06-03 15:54:08 | WARNING  | app.services.crawler_service:crawl_exam_files:51 - No Excel file found for: Đọc 2 - JAP 306 (B) 
+                                     
+                                                    (08:17 29/05/2026)
+2026-06-03 15:54:08 | INFO     | app.services.crawler_service:crawl_exam_files:90 - Crawl finished. Found 12 new files.
+2026-06-03 15:55:19 | INFO     | app.services.crawler_service:crawl_exam_files:28 - Starting exam file crawl...
+2026-06-03 15:55:25 | INFO     | app.services.crawler_service:crawl_exam_files:56 - Skipping existing file: https://pdaotao.duytan.edu.vn/uploads/Exam/DS Tổng quan Hành vi Tổ chức trong Du lịch OB 253 B-D-F_2.xlsx
+2026-06-03 15:55:26 | INFO     | app.services.crawler_service:crawl_exam_files:56 - Skipping existing file: https://pdaotao.duytan.edu.vn/uploads/Exam/DS Quản trị Nhân lực trong Du lịch HRM 303 B-D-F_1.xlsx
+2026-06-03 15:55:28 | INFO     | app.services.crawler_service:crawl_exam_files:56 - Skipping existing file: https://pdaotao.duytan.edu.vn/uploads/Exam/DS Chủ nghĩa Xã hội Khoa học POS 351 L-P-T.xlsx
+2026-06-03 15:55:29 | INFO     | app.services.crawler_service:crawl_exam_files:56 - Skipping existing file: https://pdaotao.duytan.edu.vn/uploads/Exam/CS 201 (HL-HX-JD-JJ-LF).xlsx
+2026-06-03 15:55:30 | INFO     | app.services.crawler_service:crawl_exam_files:56 - Skipping existing file: https://pdaotao.duytan.edu.vn/uploads/Exam/Giới Thiệu về Khoa Học Máy Tính CS 100 (B-D).xlsx
+2026-06-03 15:55:31 | INFO     | app.services.crawler_service:crawl_exam_files:56 - Skipping existing file: https://pdaotao.duytan.edu.vn/uploads/Exam/Lập Trình Ứng Dụng cho các Thiết Bị Di Động CR 424 (B-D-F).xlsx
+2026-06-03 15:55:31 | INFO     | app.services.crawler_service:crawl_exam_files:56 - Skipping existing file: https://pdaotao.duytan.edu.vn/uploads/Exam/Kỹ Thuật Thương Mại Điện Tử IS 385 (BB-BL-BP-BX-N-V).xlsx
+2026-06-03 15:55:32 | INFO     | app.services.crawler_service:crawl_exam_files:56 - Skipping existing file: https://pdaotao.duytan.edu.vn/uploads/Exam/Toán Rời Rạc & Ứng Dụng MTH 254 (BB-J-L-R-T-V-X-Z).xlsx
+2026-06-03 15:55:33 | INFO     | app.services.crawler_service:crawl_exam_files:56 - Skipping existing file: https://pdaotao.duytan.edu.vn/uploads/Exam/Hệ Thống Thông Tin Kế Toán IS 252 (D)_1.xlsx
+2026-06-03 15:55:34 | INFO     | app.services.crawler_service:crawl_exam_files:56 - Skipping existing file: https://pdaotao.duytan.edu.vn/uploads/Exam/Lập Trình Cơ Sở CS 211 (BF-BL-H-J-N-P-T).xlsx
+2026-06-03 15:55:35 | INFO     | app.services.crawler_service:crawl_exam_files:56 - Skipping existing file: https://pdaotao.duytan.edu.vn/uploads/Exam/Công Cụ & Phương Pháp Thiết Kế - Quản Lý (Phần Mềm) CS 434 (D).xlsx
+2026-06-03 15:55:36 | INFO     | app.services.crawler_service:crawl_exam_files:56 - Skipping existing file: https://pdaotao.duytan.edu.vn/uploads/Exam/JAP 281 (B-D-F-H).xlsx (THI LẠI).xlsx
+2026-06-03 15:55:36 | WARNING  | app.services.crawler_service:crawl_exam_files:51 - No Excel file found for: Đọc 2 - KOR 206 (B-D-F-H-J-L) 
+                                     
+                                                    (08:19 29/05/2026)
+2026-06-03 15:55:37 | WARNING  | app.services.crawler_service:crawl_exam_files:51 - No Excel file found for: Nhật Ngữ Cao Cấp 1 - JAP 301 (B) 
+                                     
+                                                    (08:19 29/05/2026)
+2026-06-03 15:55:37 | WARNING  | app.services.crawler_service:crawl_exam_files:51 - No Excel file found for: Đọc 2 - JAP 306 (B) 
+                                     
+                                                    (08:17 29/05/2026)
+2026-06-03 15:55:37 | INFO     | app.services.crawler_service:crawl_exam_files:90 - Crawl finished. Found 0 new files.
+2026-06-03 15:56:44 | INFO     | app.services.crawler_service:crawl_exam_files:28 - Starting exam file crawl...
+2026-06-03 15:56:51 | INFO     | app.services.crawler_service:crawl_exam_files:56 - Skipping existing file: https://pdaotao.duytan.edu.vn/uploads/Exam/DS Tổng quan Hành vi Tổ chức trong Du lịch OB 253 B-D-F_2.xlsx
+2026-06-03 15:56:52 | INFO     | app.services.crawler_service:crawl_exam_files:56 - Skipping existing file: https://pdaotao.duytan.edu.vn/uploads/Exam/DS Quản trị Nhân lực trong Du lịch HRM 303 B-D-F_1.xlsx
+2026-06-03 15:56:53 | INFO     | app.services.crawler_service:crawl_exam_files:56 - Skipping existing file: https://pdaotao.duytan.edu.vn/uploads/Exam/DS Chủ nghĩa Xã hội Khoa học POS 351 L-P-T.xlsx
+2026-06-03 15:56:54 | INFO     | app.services.crawler_service:crawl_exam_files:56 - Skipping existing file: https://pdaotao.duytan.edu.vn/uploads/Exam/CS 201 (HL-HX-JD-JJ-LF).xlsx
+2026-06-03 15:56:55 | INFO     | app.services.crawler_service:crawl_exam_files:56 - Skipping existing file: https://pdaotao.duytan.edu.vn/uploads/Exam/Giới Thiệu về Khoa Học Máy Tính CS 100 (B-D).xlsx
+2026-06-03 15:56:56 | INFO     | app.services.crawler_service:crawl_exam_files:56 - Skipping existing file: https://pdaotao.duytan.edu.vn/uploads/Exam/Lập Trình Ứng Dụng cho các Thiết Bị Di Động CR 424 (B-D-F).xlsx
+2026-06-03 15:56:56 | INFO     | app.services.crawler_service:crawl_exam_files:56 - Skipping existing file: https://pdaotao.duytan.edu.vn/uploads/Exam/Kỹ Thuật Thương Mại Điện Tử IS 385 (BB-BL-BP-BX-N-V).xlsx
+2026-06-03 15:56:57 | INFO     | app.services.crawler_service:crawl_exam_files:56 - Skipping existing file: https://pdaotao.duytan.edu.vn/uploads/Exam/Toán Rời Rạc & Ứng Dụng MTH 254 (BB-J-L-R-T-V-X-Z).xlsx
+2026-06-03 15:56:58 | INFO     | app.services.crawler_service:crawl_exam_files:56 - Skipping existing file: https://pdaotao.duytan.edu.vn/uploads/Exam/Hệ Thống Thông Tin Kế Toán IS 252 (D)_1.xlsx
+2026-06-03 15:56:59 | INFO     | app.services.crawler_service:crawl_exam_files:56 - Skipping existing file: https://pdaotao.duytan.edu.vn/uploads/Exam/Lập Trình Cơ Sở CS 211 (BF-BL-H-J-N-P-T).xlsx
+2026-06-03 15:57:00 | INFO     | app.services.crawler_service:crawl_exam_files:56 - Skipping existing file: https://pdaotao.duytan.edu.vn/uploads/Exam/Công Cụ & Phương Pháp Thiết Kế - Quản Lý (Phần Mềm) CS 434 (D).xlsx
+2026-06-03 15:57:01 | INFO     | app.services.crawler_service:crawl_exam_files:56 - Skipping existing file: https://pdaotao.duytan.edu.vn/uploads/Exam/JAP 281 (B-D-F-H).xlsx (THI LẠI).xlsx
+2026-06-03 15:57:01 | WARNING  | app.services.crawler_service:crawl_exam_files:51 - No Excel file found for: Đọc 2 - KOR 206 (B-D-F-H-J-L) 
+                                     
+                                                    (08:19 29/05/2026)
+2026-06-03 15:57:02 | WARNING  | app.services.crawler_service:crawl_exam_files:51 - No Excel file found for: Nhật Ngữ Cao Cấp 1 - JAP 301 (B) 
+                                     
+                                                    (08:19 29/05/2026)
+2026-06-03 15:57:02 | WARNING  | app.services.crawler_service:crawl_exam_files:51 - No Excel file found for: Đọc 2 - JAP 306 (B) 
+                                     
+                                                    (08:17 29/05/2026)
+2026-06-03 15:57:02 | INFO     | app.services.crawler_service:crawl_exam_files:90 - Crawl finished. Found 0 new files.
+2026-06-03 16:53:02 | INFO     | app.services.crawler_service:crawl_exam_files:28 - Starting exam file crawl...
+2026-06-03 16:53:04 | INFO     | app.services.crawler_service:crawl_exam_files:56 - Skipping existing file: https://pdaotao.duytan.edu.vn/uploads/Exam/DS Tổng quan Hành vi Tổ chức trong Du lịch OB 253 B-D-F_2.xlsx
+2026-06-03 16:53:05 | INFO     | app.services.crawler_service:crawl_exam_files:56 - Skipping existing file: https://pdaotao.duytan.edu.vn/uploads/Exam/DS Quản trị Nhân lực trong Du lịch HRM 303 B-D-F_1.xlsx
+2026-06-03 16:53:06 | INFO     | app.services.crawler_service:crawl_exam_files:56 - Skipping existing file: https://pdaotao.duytan.edu.vn/uploads/Exam/DS Chủ nghĩa Xã hội Khoa học POS 351 L-P-T.xlsx
+2026-06-03 16:53:07 | INFO     | app.services.crawler_service:crawl_exam_files:56 - Skipping existing file: https://pdaotao.duytan.edu.vn/uploads/Exam/CS 201 (HL-HX-JD-JJ-LF).xlsx
+2026-06-03 16:53:07 | INFO     | app.services.crawler_service:crawl_exam_files:56 - Skipping existing file: https://pdaotao.duytan.edu.vn/uploads/Exam/Giới Thiệu về Khoa Học Máy Tính CS 100 (B-D).xlsx
+2026-06-03 16:53:08 | INFO     | app.services.crawler_service:crawl_exam_files:56 - Skipping existing file: https://pdaotao.duytan.edu.vn/uploads/Exam/Lập Trình Ứng Dụng cho các Thiết Bị Di Động CR 424 (B-D-F).xlsx
+2026-06-03 16:53:09 | INFO     | app.services.crawler_service:crawl_exam_files:56 - Skipping existing file: https://pdaotao.duytan.edu.vn/uploads/Exam/Kỹ Thuật Thương Mại Điện Tử IS 385 (BB-BL-BP-BX-N-V).xlsx
+2026-06-03 16:53:10 | INFO     | app.services.crawler_service:crawl_exam_files:56 - Skipping existing file: https://pdaotao.duytan.edu.vn/uploads/Exam/Toán Rời Rạc & Ứng Dụng MTH 254 (BB-J-L-R-T-V-X-Z).xlsx
+2026-06-03 16:53:11 | INFO     | app.services.crawler_service:crawl_exam_files:56 - Skipping existing file: https://pdaotao.duytan.edu.vn/uploads/Exam/Hệ Thống Thông Tin Kế Toán IS 252 (D)_1.xlsx
+2026-06-03 16:53:12 | INFO     | app.services.crawler_service:crawl_exam_files:56 - Skipping existing file: https://pdaotao.duytan.edu.vn/uploads/Exam/Lập Trình Cơ Sở CS 211 (BF-BL-H-J-N-P-T).xlsx
+2026-06-03 16:53:12 | INFO     | app.services.crawler_service:crawl_exam_files:56 - Skipping existing file: https://pdaotao.duytan.edu.vn/uploads/Exam/Công Cụ & Phương Pháp Thiết Kế - Quản Lý (Phần Mềm) CS 434 (D).xlsx
+2026-06-03 16:53:13 | INFO     | app.services.crawler_service:crawl_exam_files:56 - Skipping existing file: https://pdaotao.duytan.edu.vn/uploads/Exam/JAP 281 (B-D-F-H).xlsx (THI LẠI).xlsx
+2026-06-03 16:53:14 | WARNING  | app.services.crawler_service:crawl_exam_files:51 - No Excel file found for: Đọc 2 - KOR 206 (B-D-F-H-J-L) 
+                                     
+                                                    (08:19 29/05/2026)
+2026-06-03 16:53:14 | WARNING  | app.services.crawler_service:crawl_exam_files:51 - No Excel file found for: Nhật Ngữ Cao Cấp 1 - JAP 301 (B) 
+                                     
+                                                    (08:19 29/05/2026)
+2026-06-03 16:53:15 | WARNING  | app.services.crawler_service:crawl_exam_files:51 - No Excel file found for: Đọc 2 - JAP 306 (B) 
+                                     
+                                                    (08:17 29/05/2026)
+2026-06-03 16:53:15 | INFO     | app.services.crawler_service:crawl_exam_files:90 - Crawl finished. Found 0 new files.
+2026-06-03 20:25:57 | INFO     | app.services.crawler_service:crawl_exam_files:41 - Starting exam file crawl...
+2026-06-03 20:26:00 | INFO     | app.services.crawler_service:crawl_exam_files:69 - Skipping existing file: https://pdaotao.duytan.edu.vn/uploads/Exam/DS Tổng quan Hành vi Tổ chức trong Du lịch OB 253 B-D-F_2.xlsx
+2026-06-03 20:26:00 | INFO     | app.services.crawler_service:crawl_exam_files:69 - Skipping existing file: https://pdaotao.duytan.edu.vn/uploads/Exam/DS Quản trị Nhân lực trong Du lịch HRM 303 B-D-F_1.xlsx
+2026-06-03 20:26:01 | INFO     | app.services.crawler_service:crawl_exam_files:69 - Skipping existing file: https://pdaotao.duytan.edu.vn/uploads/Exam/DS Chủ nghĩa Xã hội Khoa học POS 351 L-P-T.xlsx
+2026-06-03 20:26:02 | INFO     | app.services.crawler_service:crawl_exam_files:69 - Skipping existing file: https://pdaotao.duytan.edu.vn/uploads/Exam/CS 201 (HL-HX-JD-JJ-LF).xlsx
+2026-06-03 20:26:03 | INFO     | app.services.crawler_service:crawl_exam_files:69 - Skipping existing file: https://pdaotao.duytan.edu.vn/uploads/Exam/Giới Thiệu về Khoa Học Máy Tính CS 100 (B-D).xlsx
+2026-06-03 20:26:03 | INFO     | app.services.crawler_service:crawl_exam_files:69 - Skipping existing file: https://pdaotao.duytan.edu.vn/uploads/Exam/Lập Trình Ứng Dụng cho các Thiết Bị Di Động CR 424 (B-D-F).xlsx
+2026-06-03 20:26:04 | INFO     | app.services.crawler_service:crawl_exam_files:69 - Skipping existing file: https://pdaotao.duytan.edu.vn/uploads/Exam/Kỹ Thuật Thương Mại Điện Tử IS 385 (BB-BL-BP-BX-N-V).xlsx
+2026-06-03 20:26:05 | INFO     | app.services.crawler_service:crawl_exam_files:69 - Skipping existing file: https://pdaotao.duytan.edu.vn/uploads/Exam/Toán Rời Rạc & Ứng Dụng MTH 254 (BB-J-L-R-T-V-X-Z).xlsx
+2026-06-03 20:26:06 | INFO     | app.services.crawler_service:crawl_exam_files:69 - Skipping existing file: https://pdaotao.duytan.edu.vn/uploads/Exam/Hệ Thống Thông Tin Kế Toán IS 252 (D)_1.xlsx
+2026-06-03 20:26:07 | INFO     | app.services.crawler_service:crawl_exam_files:69 - Skipping existing file: https://pdaotao.duytan.edu.vn/uploads/Exam/Lập Trình Cơ Sở CS 211 (BF-BL-H-J-N-P-T).xlsx
+2026-06-03 20:26:08 | INFO     | app.services.crawler_service:crawl_exam_files:69 - Skipping existing file: https://pdaotao.duytan.edu.vn/uploads/Exam/Công Cụ & Phương Pháp Thiết Kế - Quản Lý (Phần Mềm) CS 434 (D).xlsx
+2026-06-03 20:26:09 | INFO     | app.services.crawler_service:crawl_exam_files:69 - Skipping existing file: https://pdaotao.duytan.edu.vn/uploads/Exam/JAP 281 (B-D-F-H).xlsx (THI LẠI).xlsx
+2026-06-03 20:26:09 | WARNING  | app.services.crawler_service:crawl_exam_files:64 - No Excel file found for: Đọc 2 - KOR 206 (B-D-F-H-J-L) 
+                                     
+                                                    (08:19 29/05/2026)
+2026-06-03 20:26:10 | WARNING  | app.services.crawler_service:crawl_exam_files:64 - No Excel file found for: Nhật Ngữ Cao Cấp 1 - JAP 301 (B) 
+                                     
+                                                    (08:19 29/05/2026)
+2026-06-03 20:26:10 | WARNING  | app.services.crawler_service:crawl_exam_files:64 - No Excel file found for: Đọc 2 - JAP 306 (B) 
+                                     
+                                                    (08:17 29/05/2026)
+2026-06-03 20:26:10 | INFO     | app.services.crawler_service:crawl_exam_files:107 - Crawl finished. Found 0 new files.
+2026-06-03 22:41:34 | INFO     | app.services.crawler_service:crawl_exam_files:28 - Starting exam file crawl...
+2026-06-03 22:41:35 | INFO     | app.services.crawler_service:crawl_exam_files:35 - Deleted 31 existing exam files before crawling.
+2026-06-03 22:41:35 | INFO     | app.services.crawler_service:crawl_exam_files:46 - Fetching exam list page: https://pdaotao.duytan.edu.vn/EXAM_LIST/?page=1&lang=VN
+2026-06-03 22:41:36 | INFO     | app.services.crawler_service:crawl_exam_files:46 - Fetching exam list page: https://pdaotao.duytan.edu.vn/EXAM_LIST/?page=2&lang=VN
+2026-06-03 22:41:38 | INFO     | app.services.crawler_service:crawl_exam_files:46 - Fetching exam list page: https://pdaotao.duytan.edu.vn/EXAM_LIST/?page=3&lang=VN
+2026-06-03 22:41:39 | INFO     | app.services.crawler_service:crawl_exam_files:46 - Fetching exam list page: https://pdaotao.duytan.edu.vn/EXAM_LIST/?page=4&lang=VN
+2026-06-03 22:41:40 | INFO     | app.services.crawler_service:crawl_exam_files:46 - Fetching exam list page: https://pdaotao.duytan.edu.vn/EXAM_LIST/?page=5&lang=VN
+2026-06-03 22:41:41 | INFO     | app.services.crawler_service:crawl_exam_files:46 - Fetching exam list page: https://pdaotao.duytan.edu.vn/EXAM_LIST/?page=6&lang=VN
+2026-06-03 22:41:42 | INFO     | app.services.crawler_service:crawl_exam_files:46 - Fetching exam list page: https://pdaotao.duytan.edu.vn/EXAM_LIST/?page=7&lang=VN
+2026-06-03 22:41:44 | INFO     | app.services.crawler_service:crawl_exam_files:46 - Fetching exam list page: https://pdaotao.duytan.edu.vn/EXAM_LIST/?page=8&lang=VN
+2026-06-03 22:41:45 | INFO     | app.services.crawler_service:crawl_exam_files:46 - Fetching exam list page: https://pdaotao.duytan.edu.vn/EXAM_LIST/?page=9&lang=VN
+2026-06-03 22:41:47 | INFO     | app.services.crawler_service:crawl_exam_files:46 - Fetching exam list page: https://pdaotao.duytan.edu.vn/EXAM_LIST/?page=10&lang=VN
+2026-06-03 22:41:48 | INFO     | app.services.crawler_service:crawl_exam_files:80 - Found 150 detail links to process.
+2026-06-03 22:42:07 | WARNING  | app.services.crawler_service:crawl_exam_files:91 - No Excel file found for: Đọc 2 - KOR 206 (B-D-F-H-J-L) (08:19 29/05/2026)
+2026-06-03 22:42:08 | WARNING  | app.services.crawler_service:crawl_exam_files:91 - No Excel file found for: Nhật Ngữ Cao Cấp 1 - JAP 301 (B) (08:19 29/05/2026)
+2026-06-03 22:42:09 | WARNING  | app.services.crawler_service:crawl_exam_files:91 - No Excel file found for: Đọc 2 - JAP 306 (B) (08:17 29/05/2026)
+2026-06-03 22:42:10 | WARNING  | app.services.crawler_service:crawl_exam_files:91 - No Excel file found for: Hàn Ngữ Sơ Cấp 1 - KOR 101 (B-H) (08:16 29/05/2026)
+2026-06-03 22:42:11 | WARNING  | app.services.crawler_service:crawl_exam_files:91 - No Excel file found for: Hàn Ngữ Sơ Cấp 2 - KOR 102 (B) (08:15 29/05/2026)
+2026-06-03 22:42:12 | WARNING  | app.services.crawler_service:crawl_exam_files:91 - No Excel file found for: Thị Trường Chứng Khoán - FIN 383 (B) (08:15 29/05/2026)
+2026-06-03 22:42:13 | WARNING  | app.services.crawler_service:crawl_exam_files:91 - No Excel file found for: Luật Dân Sự 2 - LAW 308 (B) (08:14 29/05/2026)
+2026-06-03 22:42:14 | WARNING  | app.services.crawler_service:crawl_exam_files:91 - No Excel file found for: Nghiệp Vụ Ngân Hàng Thương Mại - BNK 404 (B) (08:14 29/05/2026)
+2026-06-03 22:42:15 | WARNING  | app.services.crawler_service:crawl_exam_files:91 - No Excel file found for: Tài Chính Công - FIN 380 (B) (08:13 29/05/2026)
+2026-06-03 22:42:16 | WARNING  | app.services.crawler_service:crawl_exam_files:91 - No Excel file found for: ECO 152 - Căn Bản Kinh Tế Vĩ Mô (07:28 29/05/2026)
+2026-06-03 22:42:18 | WARNING  | app.services.crawler_service:crawl_exam_files:91 - No Excel file found for: COM 384 - Nghệ Thuật Đàm Phán (07:28 29/05/2026)
+2026-06-03 22:42:19 | WARNING  | app.services.crawler_service:crawl_exam_files:91 - No Excel file found for: MKT 383 - Sáng Tạo và Quảng Cáo (07:27 29/05/2026)
+2026-06-03 22:42:21 | WARNING  | app.services.crawler_service:crawl_exam_files:91 - No Excel file found for: MKT 404 - Hành Vi Tiêu Dùng (07:27 29/05/2026)
+2026-06-03 22:42:26 | INFO     | app.services.crawler_service:crawl_exam_files:28 - Starting exam file crawl...
+2026-06-03 22:42:26 | INFO     | app.services.crawler_service:crawl_exam_files:46 - Fetching exam list page: https://pdaotao.duytan.edu.vn/EXAM_LIST/?page=1&lang=VN
+2026-06-03 22:42:26 | WARNING  | app.services.crawler_service:crawl_exam_files:91 - No Excel file found for: LAW 362 - Thuế Nhà Nước (07:26 29/05/2026)
+2026-06-03 22:42:28 | INFO     | app.services.crawler_service:crawl_exam_files:46 - Fetching exam list page: https://pdaotao.duytan.edu.vn/EXAM_LIST/?page=2&lang=VN
+2026-06-03 22:42:29 | INFO     | app.services.crawler_service:crawl_exam_files:46 - Fetching exam list page: https://pdaotao.duytan.edu.vn/EXAM_LIST/?page=3&lang=VN
+2026-06-03 22:42:30 | INFO     | app.services.crawler_service:crawl_exam_files:46 - Fetching exam list page: https://pdaotao.duytan.edu.vn/EXAM_LIST/?page=4&lang=VN
+2026-06-03 22:42:32 | INFO     | app.services.crawler_service:crawl_exam_files:46 - Fetching exam list page: https://pdaotao.duytan.edu.vn/EXAM_LIST/?page=5&lang=VN
+2026-06-03 22:42:34 | INFO     | app.services.crawler_service:crawl_exam_files:46 - Fetching exam list page: https://pdaotao.duytan.edu.vn/EXAM_LIST/?page=6&lang=VN
+2026-06-03 22:42:35 | INFO     | app.services.crawler_service:crawl_exam_files:46 - Fetching exam list page: https://pdaotao.duytan.edu.vn/EXAM_LIST/?page=7&lang=VN
+2026-06-03 22:42:37 | INFO     | app.services.crawler_service:crawl_exam_files:46 - Fetching exam list page: https://pdaotao.duytan.edu.vn/EXAM_LIST/?page=8&lang=VN
+2026-06-03 22:42:38 | INFO     | app.services.crawler_service:crawl_exam_files:46 - Fetching exam list page: https://pdaotao.duytan.edu.vn/EXAM_LIST/?page=9&lang=VN
+2026-06-03 22:42:40 | INFO     | app.services.crawler_service:crawl_exam_files:46 - Fetching exam list page: https://pdaotao.duytan.edu.vn/EXAM_LIST/?page=10&lang=VN
+2026-06-03 22:42:41 | INFO     | app.services.crawler_service:crawl_exam_files:80 - Found 150 detail links to process.
+2026-06-03 22:43:06 | WARNING  | app.services.crawler_service:crawl_exam_files:91 - No Excel file found for: Đọc 2 - KOR 206 (B-D-F-H-J-L) (08:19 29/05/2026)
+2026-06-03 22:43:08 | WARNING  | app.services.crawler_service:crawl_exam_files:91 - No Excel file found for: Nhật Ngữ Cao Cấp 1 - JAP 301 (B) (08:19 29/05/2026)
+2026-06-03 22:43:09 | WARNING  | app.services.crawler_service:crawl_exam_files:91 - No Excel file found for: Tranh Tài Giải Pháp PBL - INR 296 (B-D) (08:34 28/05/2026)
+2026-06-03 22:43:10 | WARNING  | app.services.crawler_service:crawl_exam_files:91 - No Excel file found for: Đọc 2 - JAP 306 (B) (08:17 29/05/2026)
+2026-06-03 22:43:10 | WARNING  | app.services.crawler_service:crawl_exam_files:91 - No Excel file found for: Các Vấn Đề Toàn Cầu - INR 450 (B) (08:33 28/05/2026)
+2026-06-03 22:43:11 | WARNING  | app.services.crawler_service:crawl_exam_files:91 - No Excel file found for: Hàn Ngữ Sơ Cấp 1 - KOR 101 (B-H) (08:16 29/05/2026)
+2026-06-03 22:43:11 | WARNING  | app.services.crawler_service:crawl_exam_files:91 - No Excel file found for: Sản Xuất Chương Trình Truyền Thông - COM 342 (B) (08:32 28/05/2026)
+2026-06-03 22:43:13 | WARNING  | app.services.crawler_service:crawl_exam_files:91 - No Excel file found for: Văn Học Việt Nam từ 1945 đến nay - LIT 412 (B-D-F-H-J) (08:31 28/05/2026)
+2026-06-03 22:43:13 | WARNING  | app.services.crawler_service:crawl_exam_files:91 - No Excel file found for: Hàn Ngữ Sơ Cấp 2 - KOR 102 (B) (08:15 29/05/2026)
+2026-06-03 22:43:14 | WARNING  | app.services.crawler_service:crawl_exam_files:91 - No Excel file found for: Cơ Sở Văn Hóa Việt Nam - CUL 251 (B-D-F-H-J-L) (08:30 28/05/2026)
+2026-06-03 22:43:15 | WARNING  | app.services.crawler_service:crawl_exam_files:91 - No Excel file found for: Thị Trường Chứng Khoán - FIN 383 (B) (08:15 29/05/2026)
+2026-06-03 22:43:15 | WARNING  | app.services.crawler_service:crawl_exam_files:91 - No Excel file found for: Lịch Sử Văn Minh Thế Giới 2 - HIS 222 (DIS-L-N) (08:28 28/05/2026)
+2026-06-03 22:43:16 | WARNING  | app.services.crawler_service:crawl_exam_files:91 - No Excel file found for: Luật Dân Sự 2 - LAW 308 (B) (08:14 29/05/2026)
+2026-06-03 22:43:17 | WARNING  | app.services.crawler_service:crawl_exam_files:91 - No Excel file found for: Nghiệp Vụ Ngân Hàng Thương Mại - BNK 404 (B) (08:14 29/05/2026)
+2026-06-03 22:43:19 | WARNING  | app.services.crawler_service:crawl_exam_files:91 - No Excel file found for: Tài Chính Công - FIN 380 (B) (08:13 29/05/2026)
+2026-06-03 22:43:19 | WARNING  | app.services.crawler_service:crawl_exam_files:91 - No Excel file found for: ACC 301 - Kế Toán Quản Trị 1 (07:45 28/05/2026)
+2026-06-03 22:43:20 | WARNING  | app.services.crawler_service:crawl_exam_files:91 - No Excel file found for: HRM 400 - Văn Hoá Công Ty & Quản Trị Sự Thay Đổi (07:45 28/05/2026)
+2026-06-03 22:43:20 | WARNING  | app.services.crawler_service:crawl_exam_files:91 - No Excel file found for: ECO 152 - Căn Bản Kinh Tế Vĩ Mô (07:28 29/05/2026)
+2026-06-03 22:43:22 | WARNING  | app.services.crawler_service:crawl_exam_files:91 - No Excel file found for: MKT 403 - Điều Nghiên Tiếp Thị (07:44 28/05/2026)
+2026-06-03 22:43:22 | WARNING  | app.services.crawler_service:crawl_exam_files:91 - No Excel file found for: COM 384 - Nghệ Thuật Đàm Phán (07:28 29/05/2026)
+2026-06-03 22:43:23 | WARNING  | app.services.crawler_service:crawl_exam_files:91 - No Excel file found for: Quản Trị Tài Chính 1 - FIN 301 (BIS) - Đề riêng (07:28 28/05/2026)
+2026-06-03 22:43:24 | WARNING  | app.services.crawler_service:crawl_exam_files:91 - No Excel file found for: MKT 383 - Sáng Tạo và Quảng Cáo (07:27 29/05/2026)
+2026-06-03 22:43:24 | WARNING  | app.services.crawler_service:crawl_exam_files:91 - No Excel file found for: Quản Trị Tài Chính 1 - FIN 301 (B-D-F-H-J-N-R) (07:27 28/05/2026)
+2026-06-03 22:43:25 | WARNING  | app.services.crawler_service:crawl_exam_files:91 - No Excel file found for: Nói 2 - KOR 209 (B-D-F) (07:27 28/05/2026)
+2026-06-03 22:43:27 | WARNING  | app.services.crawler_service:crawl_exam_files:91 - No Excel file found for: Nói 4 - KOR 359 (B-X-J) (07:26 28/05/2026)
+2026-06-03 22:43:27 | WARNING  | app.services.crawler_service:crawl_exam_files:91 - No Excel file found for: MKT 404 - Hành Vi Tiêu Dùng (07:27 29/05/2026)
+2026-06-03 22:43:28 | WARNING  | app.services.crawler_service:crawl_exam_files:91 - No Excel file found for: Ngữ Âm Tiếng Hàn - KOR 161 (D-F) (07:26 28/05/2026)
+2026-06-03 22:43:29 | WARNING  | app.services.crawler_service:crawl_exam_files:91 - No Excel file found for: Ngữ Pháp Tiếng Hàn - KOR 163 (B-D-N) (07:25 28/05/2026)
+2026-06-03 22:43:33 | WARNING  | app.services.crawler_service:crawl_exam_files:91 - No Excel file found for: LAW 362 - Thuế Nhà Nước (07:26 29/05/2026)
+2026-06-03 22:43:46 | WARNING  | app.services.crawler_service:crawl_exam_files:91 - No Excel file found for: Nhận Dạng Thương Hiệu - COM 385 (B-D-F) (07:49 27/05/2026)
+2026-06-03 22:43:47 | WARNING  | app.services.crawler_service:crawl_exam_files:91 - No Excel file found for: Đại Cương Tâm Lý Học - PSY 151 (D-F-H-N-P-R-V-X-Z) (07:48 27/05/2026)
+2026-06-03 22:43:49 | WARNING  | app.services.crawler_service:crawl_exam_files:91 - No Excel file found for: Văn Hóa Việt Nam trong Bối Cảnh Đông Nam Á - CUL 317 (B) (07:46 27/05/2026)
+2026-06-03 22:43:50 | WARNING  | app.services.crawler_service:crawl_exam_files:91 - No Excel file found for: Địa Lý Kinh Tế Xã Hội Thế Giới - GEO 372 (B) (07:45 27/05/2026)
+2026-06-03 22:43:52 | WARNING  | app.services.crawler_service:crawl_exam_files:91 - No Excel file found for: Kỹ Năng Viết Bài PR - COM 224 (B) (07:44 27/05/2026)
+2026-06-03 22:44:47 | WARNING  | app.services.crawler_service:crawl_exam_files:91 - No Excel file found for: Tranh Tài Giải Pháp PBL - INR 296 (B-D) (08:34 28/05/2026)
+2026-06-03 22:44:51 | WARNING  | app.services.crawler_service:crawl_exam_files:91 - No Excel file found for: Các Vấn Đề Toàn Cầu - INR 450 (B) (08:33 28/05/2026)
+2026-06-03 22:44:55 | WARNING  | app.services.crawler_service:crawl_exam_files:91 - No Excel file found for: Sản Xuất Chương Trình Truyền Thông - COM 342 (B) (08:32 28/05/2026)
+2026-06-03 22:44:56 | WARNING  | app.services.crawler_service:crawl_exam_files:91 - No Excel file found for: MGT 406 - Khởi Sự Doanh Nghiệp (07:09 27/05/2026)
+2026-06-03 22:44:59 | WARNING  | app.services.crawler_service:crawl_exam_files:91 - No Excel file found for: Văn Học Việt Nam từ 1945 đến nay - LIT 412 (B-D-F-H-J) (08:31 28/05/2026)
+2026-06-03 22:45:03 | WARNING  | app.services.crawler_service:crawl_exam_files:91 - No Excel file found for: Cơ Sở Văn Hóa Việt Nam - CUL 251 (B-D-F-H-J-L) (08:30 28/05/2026)
+2026-06-03 22:45:06 | WARNING  | app.services.crawler_service:crawl_exam_files:91 - No Excel file found for: Luật Dân Sự 3 - LAW 358 (B-D) (16:42 26/05/2026)
+2026-06-03 22:45:06 | WARNING  | app.services.crawler_service:crawl_exam_files:91 - No Excel file found for: Lịch Sử Văn Minh Thế Giới 2 - HIS 222 (DIS-L-N) (08:28 28/05/2026)
+2026-06-03 22:45:07 | WARNING  | app.services.crawler_service:crawl_exam_files:91 - No Excel file found for: Cơ Sở Luật Kinh Tế - LAW 403 (D-F-H-J) (16:42 26/05/2026)
+2026-06-03 22:45:14 | WARNING  | app.services.crawler_service:crawl_exam_files:91 - No Excel file found for: ACC 301 - Kế Toán Quản Trị 1 (07:45 28/05/2026)
+2026-06-03 22:45:16 | WARNING  | app.services.crawler_service:crawl_exam_files:91 - No Excel file found for: HRM 400 - Văn Hoá Công Ty & Quản Trị Sự Thay Đổi (07:45 28/05/2026)
+2026-06-03 22:45:20 | WARNING  | app.services.crawler_service:crawl_exam_files:91 - No Excel file found for: MKT 403 - Điều Nghiên Tiếp Thị (07:44 28/05/2026)
+2026-06-03 22:45:24 | WARNING  | app.services.crawler_service:crawl_exam_files:91 - No Excel file found for: Quản Trị Tài Chính 1 - FIN 301 (BIS) - Đề riêng (07:28 28/05/2026)
+2026-06-03 22:45:27 | WARNING  | app.services.crawler_service:crawl_exam_files:91 - No Excel file found for: Quản Trị Tài Chính 1 - FIN 301 (B-D-F-H-J-N-R) (07:27 28/05/2026)
+2026-06-03 22:45:29 | WARNING  | app.services.crawler_service:crawl_exam_files:91 - No Excel file found for: Nói 2 - KOR 209 (B-D-F) (07:27 28/05/2026)
+2026-06-03 22:45:30 | WARNING  | app.services.crawler_service:crawl_exam_files:91 - No Excel file found for: Nói 4 - KOR 359 (B-X-J) (07:26 28/05/2026)
+2026-06-03 22:45:33 | WARNING  | app.services.crawler_service:crawl_exam_files:91 - No Excel file found for: Ngữ Âm Tiếng Hàn - KOR 161 (D-F) (07:26 28/05/2026)
+2026-06-03 22:45:35 | WARNING  | app.services.crawler_service:crawl_exam_files:91 - No Excel file found for: Ngữ Pháp Tiếng Hàn - KOR 163 (B-D-N) (07:25 28/05/2026)
+2026-06-03 22:46:05 | WARNING  | app.services.crawler_service:crawl_exam_files:91 - No Excel file found for: ACC 202 - Nguyên Lý Kế Toán 2 (13:08 26/05/2026)
+2026-06-03 22:46:07 | WARNING  | app.services.crawler_service:crawl_exam_files:91 - No Excel file found for: Nhận Dạng Thương Hiệu - COM 385 (B-D-F) (07:49 27/05/2026)
+2026-06-03 22:46:07 | WARNING  | app.services.crawler_service:crawl_exam_files:91 - No Excel file found for: MKT 364 - Quảng Cáo & Chiêu Thị (13:08 26/05/2026)
+2026-06-03 22:46:10 | WARNING  | app.services.crawler_service:crawl_exam_files:91 - No Excel file found for: Đại Cương Tâm Lý Học - PSY 151 (D-F-H-N-P-R-V-X-Z) (07:48 27/05/2026)
+2026-06-03 22:46:10 | WARNING  | app.services.crawler_service:crawl_exam_files:91 - No Excel file found for: MKT 425 - Digital Marketing (13:07 26/05/2026)
+2026-06-03 22:46:13 | WARNING  | app.services.crawler_service:crawl_exam_files:91 - No Excel file found for: Văn Hóa Việt Nam trong Bối Cảnh Đông Nam Á - CUL 317 (B) (07:46 27/05/2026)
+2026-06-03 22:46:14 | WARNING  | app.services.crawler_service:crawl_exam_files:91 - No Excel file found for: MKT 251 - Tiếp Thị Căn Bản (13:07 26/05/2026)
+2026-06-03 22:46:16 | WARNING  | app.services.crawler_service:crawl_exam_files:91 - No Excel file found for: Địa Lý Kinh Tế Xã Hội Thế Giới - GEO 372 (B) (07:45 27/05/2026)
+2026-06-04 11:53:54 | INFO     | app.services.crawler_service:crawl_exam_files:28 - Starting exam file crawl...
+2026-06-04 11:53:55 | INFO     | app.services.crawler_service:crawl_exam_files:35 - Deleted 0 existing exam files before crawling.
+2026-06-04 11:53:55 | INFO     | app.services.crawler_service:crawl_exam_files:46 - Fetching exam list page: https://pdaotao.duytan.edu.vn/EXAM_LIST/?page=1&lang=VN
+2026-06-04 11:53:58 | INFO     | app.services.crawler_service:crawl_exam_files:46 - Fetching exam list page: https://pdaotao.duytan.edu.vn/EXAM_LIST/?page=2&lang=VN
+2026-06-04 11:53:58 | INFO     | app.services.crawler_service:crawl_exam_files:46 - Fetching exam list page: https://pdaotao.duytan.edu.vn/EXAM_LIST/?page=3&lang=VN
+2026-06-04 11:53:58 | INFO     | app.services.crawler_service:crawl_exam_files:46 - Fetching exam list page: https://pdaotao.duytan.edu.vn/EXAM_LIST/?page=4&lang=VN
+2026-06-04 11:53:59 | INFO     | app.services.crawler_service:crawl_exam_files:46 - Fetching exam list page: https://pdaotao.duytan.edu.vn/EXAM_LIST/?page=5&lang=VN
+2026-06-04 11:53:59 | INFO     | app.services.crawler_service:crawl_exam_files:46 - Fetching exam list page: https://pdaotao.duytan.edu.vn/EXAM_LIST/?page=6&lang=VN
+2026-06-04 11:54:00 | INFO     | app.services.crawler_service:crawl_exam_files:46 - Fetching exam list page: https://pdaotao.duytan.edu.vn/EXAM_LIST/?page=7&lang=VN
+2026-06-04 11:54:00 | INFO     | app.services.crawler_service:crawl_exam_files:46 - Fetching exam list page: https://pdaotao.duytan.edu.vn/EXAM_LIST/?page=8&lang=VN
+2026-06-04 11:54:01 | INFO     | app.services.crawler_service:crawl_exam_files:46 - Fetching exam list page: https://pdaotao.duytan.edu.vn/EXAM_LIST/?page=9&lang=VN
+2026-06-04 11:54:01 | INFO     | app.services.crawler_service:crawl_exam_files:46 - Fetching exam list page: https://pdaotao.duytan.edu.vn/EXAM_LIST/?page=10&lang=VN
+2026-06-04 11:54:02 | INFO     | app.services.crawler_service:crawl_exam_files:80 - Found 150 detail links to process.
+2026-06-04 11:54:12 | WARNING  | app.services.crawler_service:crawl_exam_files:91 - No Excel file found for: Đọc 2 - KOR 206 (B-D-F-H-J-L) (08:19 29/05/2026)
+2026-06-04 11:54:13 | WARNING  | app.services.crawler_service:crawl_exam_files:91 - No Excel file found for: Nhật Ngữ Cao Cấp 1 - JAP 301 (B) (08:19 29/05/2026)
+2026-06-04 11:54:13 | WARNING  | app.services.crawler_service:crawl_exam_files:91 - No Excel file found for: Đọc 2 - JAP 306 (B) (08:17 29/05/2026)
+2026-06-04 11:54:14 | WARNING  | app.services.crawler_service:crawl_exam_files:91 - No Excel file found for: Hàn Ngữ Sơ Cấp 1 - KOR 101 (B-H) (08:16 29/05/2026)
+2026-06-04 11:54:14 | WARNING  | app.services.crawler_service:crawl_exam_files:91 - No Excel file found for: Hàn Ngữ Sơ Cấp 2 - KOR 102 (B) (08:15 29/05/2026)
+2026-06-04 11:54:15 | WARNING  | app.services.crawler_service:crawl_exam_files:91 - No Excel file found for: Thị Trường Chứng Khoán - FIN 383 (B) (08:15 29/05/2026)
+2026-06-04 11:54:15 | WARNING  | app.services.crawler_service:crawl_exam_files:91 - No Excel file found for: Luật Dân Sự 2 - LAW 308 (B) (08:14 29/05/2026)
+2026-06-04 11:54:16 | WARNING  | app.services.crawler_service:crawl_exam_files:91 - No Excel file found for: Nghiệp Vụ Ngân Hàng Thương Mại - BNK 404 (B) (08:14 29/05/2026)
+2026-06-04 11:54:16 | WARNING  | app.services.crawler_service:crawl_exam_files:91 - No Excel file found for: Tài Chính Công - FIN 380 (B) (08:13 29/05/2026)
+2026-06-04 11:54:17 | WARNING  | app.services.crawler_service:crawl_exam_files:91 - No Excel file found for: ECO 152 - Căn Bản Kinh Tế Vĩ Mô (07:28 29/05/2026)
+2026-06-04 11:54:17 | WARNING  | app.services.crawler_service:crawl_exam_files:91 - No Excel file found for: COM 384 - Nghệ Thuật Đàm Phán (07:28 29/05/2026)
+2026-06-04 11:54:18 | WARNING  | app.services.crawler_service:crawl_exam_files:91 - No Excel file found for: MKT 383 - Sáng Tạo và Quảng Cáo (07:27 29/05/2026)
+2026-06-04 11:54:19 | WARNING  | app.services.crawler_service:crawl_exam_files:91 - No Excel file found for: MKT 404 - Hành Vi Tiêu Dùng (07:27 29/05/2026)
+2026-06-04 11:54:22 | WARNING  | app.services.crawler_service:crawl_exam_files:91 - No Excel file found for: LAW 362 - Thuế Nhà Nước (07:26 29/05/2026)
+2026-06-04 11:54:42 | WARNING  | app.services.crawler_service:crawl_exam_files:91 - No Excel file found for: Tranh Tài Giải Pháp PBL - INR 296 (B-D) (08:34 28/05/2026)
+2026-06-04 11:54:42 | WARNING  | app.services.crawler_service:crawl_exam_files:91 - No Excel file found for: Các Vấn Đề Toàn Cầu - INR 450 (B) (08:33 28/05/2026)
+2026-06-04 11:54:43 | WARNING  | app.services.crawler_service:crawl_exam_files:91 - No Excel file found for: Sản Xuất Chương Trình Truyền Thông - COM 342 (B) (08:32 28/05/2026)
+2026-06-04 11:54:43 | WARNING  | app.services.crawler_service:crawl_exam_files:91 - No Excel file found for: Văn Học Việt Nam từ 1945 đến nay - LIT 412 (B-D-F-H-J) (08:31 28/05/2026)
+2026-06-04 11:54:43 | WARNING  | app.services.crawler_service:crawl_exam_files:91 - No Excel file found for: Cơ Sở Văn Hóa Việt Nam - CUL 251 (B-D-F-H-J-L) (08:30 28/05/2026)
+2026-06-04 11:54:44 | WARNING  | app.services.crawler_service:crawl_exam_files:91 - No Excel file found for: Lịch Sử Văn Minh Thế Giới 2 - HIS 222 (DIS-L-N) (08:28 28/05/2026)
+2026-06-04 11:54:46 | WARNING  | app.services.crawler_service:crawl_exam_files:91 - No Excel file found for: ACC 301 - Kế Toán Quản Trị 1 (07:45 28/05/2026)
+2026-06-04 11:54:46 | WARNING  | app.services.crawler_service:crawl_exam_files:91 - No Excel file found for: HRM 400 - Văn Hoá Công Ty & Quản Trị Sự Thay Đổi (07:45 28/05/2026)
+2026-06-04 11:54:47 | WARNING  | app.services.crawler_service:crawl_exam_files:91 - No Excel file found for: MKT 403 - Điều Nghiên Tiếp Thị (07:44 28/05/2026)
+2026-06-04 11:54:47 | WARNING  | app.services.crawler_service:crawl_exam_files:91 - No Excel file found for: Quản Trị Tài Chính 1 - FIN 301 (BIS) - Đề riêng (07:28 28/05/2026)
+2026-06-04 11:54:48 | WARNING  | app.services.crawler_service:crawl_exam_files:91 - No Excel file found for: Quản Trị Tài Chính 1 - FIN 301 (B-D-F-H-J-N-R) (07:27 28/05/2026)
+2026-06-04 11:54:48 | WARNING  | app.services.crawler_service:crawl_exam_files:91 - No Excel file found for: Nói 2 - KOR 209 (B-D-F) (07:27 28/05/2026)
+2026-06-04 11:54:49 | WARNING  | app.services.crawler_service:crawl_exam_files:91 - No Excel file found for: Nói 4 - KOR 359 (B-X-J) (07:26 28/05/2026)
+2026-06-04 11:54:49 | WARNING  | app.services.crawler_service:crawl_exam_files:91 - No Excel file found for: Ngữ Âm Tiếng Hàn - KOR 161 (D-F) (07:26 28/05/2026)
+2026-06-04 11:54:49 | WARNING  | app.services.crawler_service:crawl_exam_files:91 - No Excel file found for: Ngữ Pháp Tiếng Hàn - KOR 163 (B-D-N) (07:25 28/05/2026)
+2026-06-04 11:54:57 | WARNING  | app.services.crawler_service:crawl_exam_files:91 - No Excel file found for: Nhận Dạng Thương Hiệu - COM 385 (B-D-F) (07:49 27/05/2026)
+2026-06-04 11:54:57 | WARNING  | app.services.crawler_service:crawl_exam_files:91 - No Excel file found for: Đại Cương Tâm Lý Học - PSY 151 (D-F-H-N-P-R-V-X-Z) (07:48 27/05/2026)
+2026-06-04 11:54:58 | WARNING  | app.services.crawler_service:crawl_exam_files:91 - No Excel file found for: Văn Hóa Việt Nam trong Bối Cảnh Đông Nam Á - CUL 317 (B) (07:46 27/05/2026)
+2026-06-04 11:54:58 | WARNING  | app.services.crawler_service:crawl_exam_files:91 - No Excel file found for: Địa Lý Kinh Tế Xã Hội Thế Giới - GEO 372 (B) (07:45 27/05/2026)
+2026-06-04 11:54:59 | WARNING  | app.services.crawler_service:crawl_exam_files:91 - No Excel file found for: Kỹ Năng Viết Bài PR - COM 224 (B) (07:44 27/05/2026)
+2026-06-04 11:55:20 | WARNING  | app.services.crawler_service:crawl_exam_files:91 - No Excel file found for: MGT 406 - Khởi Sự Doanh Nghiệp (07:09 27/05/2026)
+2026-06-04 11:55:22 | WARNING  | app.services.crawler_service:crawl_exam_files:91 - No Excel file found for: Luật Dân Sự 3 - LAW 358 (B-D) (16:42 26/05/2026)
+2026-06-04 11:55:22 | WARNING  | app.services.crawler_service:crawl_exam_files:91 - No Excel file found for: Cơ Sở Luật Kinh Tế - LAW 403 (D-F-H-J) (16:42 26/05/2026)
+2026-06-04 11:55:41 | WARNING  | app.services.crawler_service:crawl_exam_files:91 - No Excel file found for: ACC 202 - Nguyên Lý Kế Toán 2 (13:08 26/05/2026)
+2026-06-04 11:55:41 | WARNING  | app.services.crawler_service:crawl_exam_files:91 - No Excel file found for: MKT 364 - Quảng Cáo & Chiêu Thị (13:08 26/05/2026)
+2026-06-04 11:55:42 | WARNING  | app.services.crawler_service:crawl_exam_files:91 - No Excel file found for: MKT 425 - Digital Marketing (13:07 26/05/2026)
+2026-06-04 11:55:42 | WARNING  | app.services.crawler_service:crawl_exam_files:91 - No Excel file found for: MKT 251 - Tiếp Thị Căn Bản (13:07 26/05/2026)
+2026-06-04 12:06:59 | INFO     | app.services.crawler_service:crawl_exam_files:28 - Starting exam file crawl...
+2026-06-04 12:07:00 | INFO     | app.services.crawler_service:crawl_exam_files:35 - Deleted 0 existing exam files before crawling.
+2026-06-04 12:07:00 | INFO     | app.services.crawler_service:crawl_exam_files:45 - Fetching exam list page: https://pdaotao.duytan.edu.vn/EXAM_LIST/?page=1&lang=VN
+2026-06-04 12:07:00 | INFO     | app.services.crawler_service:crawl_exam_files:45 - Fetching exam list page: https://pdaotao.duytan.edu.vn/EXAM_LIST/?page=2&lang=VN
+2026-06-04 12:07:01 | INFO     | app.services.crawler_service:crawl_exam_files:45 - Fetching exam list page: https://pdaotao.duytan.edu.vn/EXAM_LIST/?page=3&lang=VN
+2026-06-04 12:07:01 | INFO     | app.services.crawler_service:crawl_exam_files:45 - Fetching exam list page: https://pdaotao.duytan.edu.vn/EXAM_LIST/?page=4&lang=VN
+2026-06-04 12:07:02 | INFO     | app.services.crawler_service:crawl_exam_files:45 - Fetching exam list page: https://pdaotao.duytan.edu.vn/EXAM_LIST/?page=5&lang=VN
+2026-06-04 12:07:04 | INFO     | app.services.crawler_service:crawl_exam_files:82 - Found 75 detail links to process.
+2026-06-04 12:07:05 | INFO     | app.services.crawler_service:crawl_exam_files:101 - Found new file: Tổng quan Hành vi Tổ chức trong Du lịch OB 253 (B-D-F) (17:18 29/05/2026)
+2026-06-04 12:07:12 | WARNING  | app.services.crawler_service:crawl_exam_files:93 - No Excel file found for: Đọc 2 - KOR 206 (B-D-F-H-J-L) (08:19 29/05/2026)
+2026-06-04 12:07:13 | WARNING  | app.services.crawler_service:crawl_exam_files:93 - No Excel file found for: Nhật Ngữ Cao Cấp 1 - JAP 301 (B) (08:19 29/05/2026)
+2026-06-04 12:07:13 | WARNING  | app.services.crawler_service:crawl_exam_files:93 - No Excel file found for: Đọc 2 - JAP 306 (B) (08:17 29/05/2026)
+2026-06-04 12:07:14 | WARNING  | app.services.crawler_service:crawl_exam_files:93 - No Excel file found for: Hàn Ngữ Sơ Cấp 1 - KOR 101 (B-H) (08:16 29/05/2026)
+2026-06-04 12:07:14 | WARNING  | app.services.crawler_service:crawl_exam_files:93 - No Excel file found for: Hàn Ngữ Sơ Cấp 2 - KOR 102 (B) (08:15 29/05/2026)
+2026-06-04 12:07:15 | WARNING  | app.services.crawler_service:crawl_exam_files:93 - No Excel file found for: Thị Trường Chứng Khoán - FIN 383 (B) (08:15 29/05/2026)
+2026-06-04 12:07:16 | WARNING  | app.services.crawler_service:crawl_exam_files:93 - No Excel file found for: Luật Dân Sự 2 - LAW 308 (B) (08:14 29/05/2026)
+2026-06-04 12:07:16 | WARNING  | app.services.crawler_service:crawl_exam_files:93 - No Excel file found for: Nghiệp Vụ Ngân Hàng Thương Mại - BNK 404 (B) (08:14 29/05/2026)
+2026-06-04 12:07:17 | WARNING  | app.services.crawler_service:crawl_exam_files:93 - No Excel file found for: Tài Chính Công - FIN 380 (B) (08:13 29/05/2026)
+2026-06-04 12:07:17 | WARNING  | app.services.crawler_service:crawl_exam_files:93 - No Excel file found for: ECO 152 - Căn Bản Kinh Tế Vĩ Mô (07:28 29/05/2026)
+2026-06-04 12:07:18 | WARNING  | app.services.crawler_service:crawl_exam_files:93 - No Excel file found for: COM 384 - Nghệ Thuật Đàm Phán (07:28 29/05/2026)
+2026-06-04 12:07:18 | WARNING  | app.services.crawler_service:crawl_exam_files:93 - No Excel file found for: MKT 383 - Sáng Tạo và Quảng Cáo (07:27 29/05/2026)
+2026-06-04 12:07:20 | WARNING  | app.services.crawler_service:crawl_exam_files:93 - No Excel file found for: MKT 404 - Hành Vi Tiêu Dùng (07:27 29/05/2026)
+2026-06-04 12:07:22 | WARNING  | app.services.crawler_service:crawl_exam_files:93 - No Excel file found for: LAW 362 - Thuế Nhà Nước (07:26 29/05/2026)
+2026-06-04 12:07:37 | WARNING  | app.services.crawler_service:crawl_exam_files:93 - No Excel file found for: Tranh Tài Giải Pháp PBL - INR 296 (B-D) (08:34 28/05/2026)
+2026-06-04 12:07:38 | WARNING  | app.services.crawler_service:crawl_exam_files:93 - No Excel file found for: Các Vấn Đề Toàn Cầu - INR 450 (B) (08:33 28/05/2026)
+2026-06-04 12:07:38 | WARNING  | app.services.crawler_service:crawl_exam_files:93 - No Excel file found for: Sản Xuất Chương Trình Truyền Thông - COM 342 (B) (08:32 28/05/2026)
+2026-06-04 12:07:39 | WARNING  | app.services.crawler_service:crawl_exam_files:93 - No Excel file found for: Văn Học Việt Nam từ 1945 đến nay - LIT 412 (B-D-F-H-J) (08:31 28/05/2026)
+2026-06-04 12:07:39 | WARNING  | app.services.crawler_service:crawl_exam_files:93 - No Excel file found for: Cơ Sở Văn Hóa Việt Nam - CUL 251 (B-D-F-H-J-L) (08:30 28/05/2026)
+2026-06-04 12:07:40 | WARNING  | app.services.crawler_service:crawl_exam_files:93 - No Excel file found for: Lịch Sử Văn Minh Thế Giới 2 - HIS 222 (DIS-L-N) (08:28 28/05/2026)
+2026-06-04 12:07:42 | WARNING  | app.services.crawler_service:crawl_exam_files:93 - No Excel file found for: ACC 301 - Kế Toán Quản Trị 1 (07:45 28/05/2026)
+2026-06-04 12:07:42 | WARNING  | app.services.crawler_service:crawl_exam_files:93 - No Excel file found for: HRM 400 - Văn Hoá Công Ty & Quản Trị Sự Thay Đổi (07:45 28/05/2026)
+2026-06-04 12:07:43 | WARNING  | app.services.crawler_service:crawl_exam_files:93 - No Excel file found for: MKT 403 - Điều Nghiên Tiếp Thị (07:44 28/05/2026)
+2026-06-04 12:07:43 | WARNING  | app.services.crawler_service:crawl_exam_files:93 - No Excel file found for: Quản Trị Tài Chính 1 - FIN 301 (BIS) - Đề riêng (07:28 28/05/2026)
+2026-06-04 12:07:44 | WARNING  | app.services.crawler_service:crawl_exam_files:93 - No Excel file found for: Quản Trị Tài Chính 1 - FIN 301 (B-D-F-H-J-N-R) (07:27 28/05/2026)
+2026-06-04 12:07:44 | WARNING  | app.services.crawler_service:crawl_exam_files:93 - No Excel file found for: Nói 2 - KOR 209 (B-D-F) (07:27 28/05/2026)
+2026-06-04 12:07:45 | WARNING  | app.services.crawler_service:crawl_exam_files:93 - No Excel file found for: Nói 4 - KOR 359 (B-X-J) (07:26 28/05/2026)
+2026-06-04 12:07:45 | WARNING  | app.services.crawler_service:crawl_exam_files:93 - No Excel file found for: Ngữ Âm Tiếng Hàn - KOR 161 (D-F) (07:26 28/05/2026)
+2026-06-04 12:07:46 | WARNING  | app.services.crawler_service:crawl_exam_files:93 - No Excel file found for: Ngữ Pháp Tiếng Hàn - KOR 163 (B-D-N) (07:25 28/05/2026)
+2026-06-04 12:28:18 | INFO     | app.services.crawler_service:crawl_exam_files:28 - Starting exam file crawl...
+2026-06-04 12:28:21 | INFO     | app.services.crawler_service:crawl_exam_files:35 - Deleted 0 existing exam files before crawling.
+2026-06-04 12:28:21 | INFO     | app.services.crawler_service:crawl_exam_files:45 - Fetching exam list page: https://pdaotao.duytan.edu.vn/EXAM_LIST/?page=1&lang=VN
+2026-06-04 12:28:21 | INFO     | app.services.crawler_service:crawl_exam_files:45 - Fetching exam list page: https://pdaotao.duytan.edu.vn/EXAM_LIST/?page=2&lang=VN
+2026-06-04 12:28:22 | INFO     | app.services.crawler_service:crawl_exam_files:45 - Fetching exam list page: https://pdaotao.duytan.edu.vn/EXAM_LIST/?page=3&lang=VN
+2026-06-04 12:28:22 | INFO     | app.services.crawler_service:crawl_exam_files:45 - Fetching exam list page: https://pdaotao.duytan.edu.vn/EXAM_LIST/?page=4&lang=VN
+2026-06-04 12:28:23 | INFO     | app.services.crawler_service:crawl_exam_files:45 - Fetching exam list page: https://pdaotao.duytan.edu.vn/EXAM_LIST/?page=5&lang=VN
+2026-06-04 12:28:23 | INFO     | app.services.crawler_service:crawl_exam_files:82 - Found 75 detail links to process.
+2026-06-04 12:28:24 | INFO     | app.services.crawler_service:crawl_exam_files:101 - Found new file: Tổng quan Hành vi Tổ chức trong Du lịch OB 253 (B-D-F) (17:18 29/05/2026)
+2026-06-04 12:28:30 | WARNING  | app.services.crawler_service:crawl_exam_files:93 - No Excel file found for: Đọc 2 - KOR 206 (B-D-F-H-J-L) (08:19 29/05/2026)
+2026-06-04 12:28:31 | WARNING  | app.services.crawler_service:crawl_exam_files:93 - No Excel file found for: Nhật Ngữ Cao Cấp 1 - JAP 301 (B) (08:19 29/05/2026)
+2026-06-04 12:28:32 | WARNING  | app.services.crawler_service:crawl_exam_files:93 - No Excel file found for: Đọc 2 - JAP 306 (B) (08:17 29/05/2026)
+2026-06-04 12:28:32 | WARNING  | app.services.crawler_service:crawl_exam_files:93 - No Excel file found for: Hàn Ngữ Sơ Cấp 1 - KOR 101 (B-H) (08:16 29/05/2026)
+2026-06-04 12:28:33 | WARNING  | app.services.crawler_service:crawl_exam_files:93 - No Excel file found for: Hàn Ngữ Sơ Cấp 2 - KOR 102 (B) (08:15 29/05/2026)
+2026-06-04 12:28:33 | WARNING  | app.services.crawler_service:crawl_exam_files:93 - No Excel file found for: Thị Trường Chứng Khoán - FIN 383 (B) (08:15 29/05/2026)
+2026-06-04 12:28:34 | WARNING  | app.services.crawler_service:crawl_exam_files:93 - No Excel file found for: Luật Dân Sự 2 - LAW 308 (B) (08:14 29/05/2026)
+2026-06-04 12:28:34 | WARNING  | app.services.crawler_service:crawl_exam_files:93 - No Excel file found for: Nghiệp Vụ Ngân Hàng Thương Mại - BNK 404 (B) (08:14 29/05/2026)
+2026-06-04 12:28:35 | WARNING  | app.services.crawler_service:crawl_exam_files:93 - No Excel file found for: Tài Chính Công - FIN 380 (B) (08:13 29/05/2026)
+2026-06-04 12:28:35 | WARNING  | app.services.crawler_service:crawl_exam_files:93 - No Excel file found for: ECO 152 - Căn Bản Kinh Tế Vĩ Mô (07:28 29/05/2026)
+2026-06-04 12:28:36 | WARNING  | app.services.crawler_service:crawl_exam_files:93 - No Excel file found for: COM 384 - Nghệ Thuật Đàm Phán (07:28 29/05/2026)
+2026-06-04 12:28:36 | WARNING  | app.services.crawler_service:crawl_exam_files:93 - No Excel file found for: MKT 383 - Sáng Tạo và Quảng Cáo (07:27 29/05/2026)
+2026-06-04 12:28:37 | WARNING  | app.services.crawler_service:crawl_exam_files:93 - No Excel file found for: MKT 404 - Hành Vi Tiêu Dùng (07:27 29/05/2026)
+2026-06-04 12:28:39 | WARNING  | app.services.crawler_service:crawl_exam_files:93 - No Excel file found for: LAW 362 - Thuế Nhà Nước (07:26 29/05/2026)
+2026-06-04 12:29:01 | WARNING  | app.services.crawler_service:crawl_exam_files:93 - No Excel file found for: Tranh Tài Giải Pháp PBL - INR 296 (B-D) (08:34 28/05/2026)
+2026-06-04 12:29:01 | WARNING  | app.services.crawler_service:crawl_exam_files:93 - No Excel file found for: Các Vấn Đề Toàn Cầu - INR 450 (B) (08:33 28/05/2026)
+2026-06-04 12:29:02 | WARNING  | app.services.crawler_service:crawl_exam_files:93 - No Excel file found for: Sản Xuất Chương Trình Truyền Thông - COM 342 (B) (08:32 28/05/2026)
+2026-06-04 12:29:02 | WARNING  | app.services.crawler_service:crawl_exam_files:93 - No Excel file found for: Văn Học Việt Nam từ 1945 đến nay - LIT 412 (B-D-F-H-J) (08:31 28/05/2026)
+2026-06-04 12:29:03 | WARNING  | app.services.crawler_service:crawl_exam_files:93 - No Excel file found for: Cơ Sở Văn Hóa Việt Nam - CUL 251 (B-D-F-H-J-L) (08:30 28/05/2026)
+2026-06-04 12:29:03 | WARNING  | app.services.crawler_service:crawl_exam_files:93 - No Excel file found for: Lịch Sử Văn Minh Thế Giới 2 - HIS 222 (DIS-L-N) (08:28 28/05/2026)
+2026-06-04 12:29:05 | WARNING  | app.services.crawler_service:crawl_exam_files:93 - No Excel file found for: ACC 301 - Kế Toán Quản Trị 1 (07:45 28/05/2026)
+2026-06-04 12:29:05 | WARNING  | app.services.crawler_service:crawl_exam_files:93 - No Excel file found for: HRM 400 - Văn Hoá Công Ty & Quản Trị Sự Thay Đổi (07:45 28/05/2026)
+2026-06-04 12:29:06 | WARNING  | app.services.crawler_service:crawl_exam_files:93 - No Excel file found for: MKT 403 - Điều Nghiên Tiếp Thị (07:44 28/05/2026)
+2026-06-04 12:29:07 | WARNING  | app.services.crawler_service:crawl_exam_files:93 - No Excel file found for: Quản Trị Tài Chính 1 - FIN 301 (BIS) - Đề riêng (07:28 28/05/2026)
+2026-06-04 12:29:07 | WARNING  | app.services.crawler_service:crawl_exam_files:93 - No Excel file found for: Quản Trị Tài Chính 1 - FIN 301 (B-D-F-H-J-N-R) (07:27 28/05/2026)
+2026-06-04 12:29:08 | WARNING  | app.services.crawler_service:crawl_exam_files:93 - No Excel file found for: Nói 2 - KOR 209 (B-D-F) (07:27 28/05/2026)
+2026-06-04 12:29:08 | WARNING  | app.services.crawler_service:crawl_exam_files:93 - No Excel file found for: Nói 4 - KOR 359 (B-X-J) (07:26 28/05/2026)
+2026-06-04 12:29:09 | WARNING  | app.services.crawler_service:crawl_exam_files:93 - No Excel file found for: Ngữ Âm Tiếng Hàn - KOR 161 (D-F) (07:26 28/05/2026)
+2026-06-04 12:29:09 | WARNING  | app.services.crawler_service:crawl_exam_files:93 - No Excel file found for: Ngữ Pháp Tiếng Hàn - KOR 163 (B-D-N) (07:25 28/05/2026)
+2026-06-04 13:04:56 | INFO     | app.services.crawler_service:crawl_exam_files:28 - Starting exam file crawl...
+2026-06-04 13:04:57 | INFO     | app.services.crawler_service:crawl_exam_files:35 - Deleted 0 existing exam files before crawling.
+2026-06-04 13:04:57 | INFO     | app.services.crawler_service:crawl_exam_files:45 - Fetching exam list page: https://pdaotao.duytan.edu.vn/EXAM_LIST/?page=1&lang=VN
+2026-06-04 13:04:57 | INFO     | app.services.crawler_service:crawl_exam_files:45 - Fetching exam list page: https://pdaotao.duytan.edu.vn/EXAM_LIST/?page=2&lang=VN
+2026-06-04 13:04:58 | INFO     | app.services.crawler_service:crawl_exam_files:45 - Fetching exam list page: https://pdaotao.duytan.edu.vn/EXAM_LIST/?page=3&lang=VN
+2026-06-04 13:04:59 | INFO     | app.services.crawler_service:crawl_exam_files:45 - Fetching exam list page: https://pdaotao.duytan.edu.vn/EXAM_LIST/?page=4&lang=VN
+2026-06-04 13:04:59 | INFO     | app.services.crawler_service:crawl_exam_files:45 - Fetching exam list page: https://pdaotao.duytan.edu.vn/EXAM_LIST/?page=5&lang=VN
+2026-06-04 13:05:00 | INFO     | app.services.crawler_service:crawl_exam_files:82 - Found 75 detail links to process.
+2026-06-04 13:05:01 | INFO     | app.services.crawler_service:crawl_exam_files:101 - Found new file: Tổng quan Hành vi Tổ chức trong Du lịch OB 253 (B-D-F) (17:18 29/05/2026)
+2026-06-04 13:05:07 | WARNING  | app.services.crawler_service:crawl_exam_files:93 - No Excel file found for: Đọc 2 - KOR 206 (B-D-F-H-J-L) (08:19 29/05/2026)
+2026-06-04 13:05:07 | WARNING  | app.services.crawler_service:crawl_exam_files:93 - No Excel file found for: Nhật Ngữ Cao Cấp 1 - JAP 301 (B) (08:19 29/05/2026)
+2026-06-04 13:05:08 | WARNING  | app.services.crawler_service:crawl_exam_files:93 - No Excel file found for: Đọc 2 - JAP 306 (B) (08:17 29/05/2026)
+2026-06-04 13:05:08 | WARNING  | app.services.crawler_service:crawl_exam_files:93 - No Excel file found for: Hàn Ngữ Sơ Cấp 1 - KOR 101 (B-H) (08:16 29/05/2026)
+2026-06-04 13:05:09 | WARNING  | app.services.crawler_service:crawl_exam_files:93 - No Excel file found for: Hàn Ngữ Sơ Cấp 2 - KOR 102 (B) (08:15 29/05/2026)
+2026-06-04 13:05:09 | WARNING  | app.services.crawler_service:crawl_exam_files:93 - No Excel file found for: Thị Trường Chứng Khoán - FIN 383 (B) (08:15 29/05/2026)
+2026-06-04 13:05:10 | WARNING  | app.services.crawler_service:crawl_exam_files:93 - No Excel file found for: Luật Dân Sự 2 - LAW 308 (B) (08:14 29/05/2026)
+2026-06-04 13:05:10 | WARNING  | app.services.crawler_service:crawl_exam_files:93 - No Excel file found for: Nghiệp Vụ Ngân Hàng Thương Mại - BNK 404 (B) (08:14 29/05/2026)
+2026-06-04 13:05:11 | WARNING  | app.services.crawler_service:crawl_exam_files:93 - No Excel file found for: Tài Chính Công - FIN 380 (B) (08:13 29/05/2026)
+2026-06-04 13:05:11 | WARNING  | app.services.crawler_service:crawl_exam_files:93 - No Excel file found for: ECO 152 - Căn Bản Kinh Tế Vĩ Mô (07:28 29/05/2026)
+2026-06-04 13:05:12 | WARNING  | app.services.crawler_service:crawl_exam_files:93 - No Excel file found for: COM 384 - Nghệ Thuật Đàm Phán (07:28 29/05/2026)
+2026-06-04 13:05:12 | WARNING  | app.services.crawler_service:crawl_exam_files:93 - No Excel file found for: MKT 383 - Sáng Tạo và Quảng Cáo (07:27 29/05/2026)
+2026-06-04 13:05:13 | WARNING  | app.services.crawler_service:crawl_exam_files:93 - No Excel file found for: MKT 404 - Hành Vi Tiêu Dùng (07:27 29/05/2026)
+2026-06-04 13:05:16 | WARNING  | app.services.crawler_service:crawl_exam_files:93 - No Excel file found for: LAW 362 - Thuế Nhà Nước (07:26 29/05/2026)
+2026-06-04 13:05:29 | WARNING  | app.services.crawler_service:crawl_exam_files:93 - No Excel file found for: Tranh Tài Giải Pháp PBL - INR 296 (B-D) (08:34 28/05/2026)
+2026-06-04 13:05:30 | WARNING  | app.services.crawler_service:crawl_exam_files:93 - No Excel file found for: Các Vấn Đề Toàn Cầu - INR 450 (B) (08:33 28/05/2026)
+2026-06-04 13:05:30 | WARNING  | app.services.crawler_service:crawl_exam_files:93 - No Excel file found for: Sản Xuất Chương Trình Truyền Thông - COM 342 (B) (08:32 28/05/2026)
+2026-06-04 13:05:31 | WARNING  | app.services.crawler_service:crawl_exam_files:93 - No Excel file found for: Văn Học Việt Nam từ 1945 đến nay - LIT 412 (B-D-F-H-J) (08:31 28/05/2026)
+2026-06-04 13:05:31 | WARNING  | app.services.crawler_service:crawl_exam_files:93 - No Excel file found for: Cơ Sở Văn Hóa Việt Nam - CUL 251 (B-D-F-H-J-L) (08:30 28/05/2026)
+2026-06-04 13:05:32 | WARNING  | app.services.crawler_service:crawl_exam_files:93 - No Excel file found for: Lịch Sử Văn Minh Thế Giới 2 - HIS 222 (DIS-L-N) (08:28 28/05/2026)
+2026-06-04 13:05:33 | WARNING  | app.services.crawler_service:crawl_exam_files:93 - No Excel file found for: ACC 301 - Kế Toán Quản Trị 1 (07:45 28/05/2026)
+2026-06-04 13:05:34 | WARNING  | app.services.crawler_service:crawl_exam_files:93 - No Excel file found for: HRM 400 - Văn Hoá Công Ty & Quản Trị Sự Thay Đổi (07:45 28/05/2026)
+2026-06-04 13:05:35 | WARNING  | app.services.crawler_service:crawl_exam_files:93 - No Excel file found for: MKT 403 - Điều Nghiên Tiếp Thị (07:44 28/05/2026)
+2026-06-04 13:05:35 | WARNING  | app.services.crawler_service:crawl_exam_files:93 - No Excel file found for: Quản Trị Tài Chính 1 - FIN 301 (BIS) - Đề riêng (07:28 28/05/2026)
+2026-06-04 13:05:36 | WARNING  | app.services.crawler_service:crawl_exam_files:93 - No Excel file found for: Quản Trị Tài Chính 1 - FIN 301 (B-D-F-H-J-N-R) (07:27 28/05/2026)
+2026-06-04 13:05:36 | WARNING  | app.services.crawler_service:crawl_exam_files:93 - No Excel file found for: Nói 2 - KOR 209 (B-D-F) (07:27 28/05/2026)
+2026-06-04 13:05:37 | WARNING  | app.services.crawler_service:crawl_exam_files:93 - No Excel file found for: Nói 4 - KOR 359 (B-X-J) (07:26 28/05/2026)
+2026-06-04 13:05:37 | WARNING  | app.services.crawler_service:crawl_exam_files:93 - No Excel file found for: Ngữ Âm Tiếng Hàn - KOR 161 (D-F) (07:26 28/05/2026)
+2026-06-04 13:05:38 | WARNING  | app.services.crawler_service:crawl_exam_files:93 - No Excel file found for: Ngữ Pháp Tiếng Hàn - KOR 163 (B-D-N) (07:25 28/05/2026)

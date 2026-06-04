@@ -17,4 +17,11 @@ export const fileService = {
     });
     return response;
   },
+
+  async crawlFiles(crawlLatestOnly = false) {
+    const response = await apiClient.post("/files/crawl", null, {
+      params: { crawl_latest_only: crawlLatestOnly },
+    });
+    return response.data;
+  },
 };
