@@ -146,7 +146,7 @@ class CrawlerService:
         file_link = None
         for a in soup.find_all("a", href=True):
             href = a.get("href", "")
-            if "uploads" in href.lower() and re.search(r"\.(xls|xlsx|xlsm|zip)$", href, re.IGNORECASE):
+            if "uploads" in href.lower() and re.search(r"\.(xls|xlsx|xlsm|pdf|zip)$", href, re.IGNORECASE):
                 file_link = a
                 break
         
