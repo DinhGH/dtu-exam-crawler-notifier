@@ -1,6 +1,22 @@
 import { cn } from "../../utils/cn";
 import { ChevronLeft, ChevronRight } from "lucide-react";
-import { Button } from "./Button";
+
+const PaginationButton = ({ page, currentPage, onClick }) => {
+  const isActive = currentPage === page;
+  return (
+    <button
+      onClick={() => onClick(page)}
+      className={cn(
+        "h-9 px-4 rounded-md text-sm font-medium transition-colors",
+        isActive
+          ? "bg-blue-600 text-white hover:bg-blue-700"
+          : "border border-gray-300 bg-white text-gray-700 hover:bg-gray-50",
+      )}
+    >
+      {page}
+    </button>
+  );
+};
 
 const Pagination = ({
   className,
@@ -21,41 +37,36 @@ const Pagination = ({
       aria-label="Pagination"
       {...props}
     >
-      <Button
-        variant="outline"
-        size="sm"
+      <button
         onClick={() => onPageChange(currentPage - 1)}
         disabled={currentPage === 1}
+        className={cn(
+          "h-9 px-4 rounded-md border border-gray-300 bg-white text-gray-700 hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed",
+        )}
       >
         <ChevronLeft className="h-4 w-4" />
         <span className="sr-only">Previous</span>
-      </Button>
+      </button>
 
       {pages.map((page) => (
-        <Button
+        <PaginationButton
           key={page}
-          variant={currentPage === page ? "default" : "outline"}
-          size="sm"
-          onClick={() => onPageChange(page)}
-          className={
-            currentPage === page
-              ? "bg-blue-600 text-white hover:bg-blue-700"
-              : ""
-          }
-        >
-          {page}
-        </Button>
+          page={page}
+          currentPage={currentPage}
+          onClick={onPageChange}
+        />
       ))}
 
-      <Button
-        variant="outline"
-        size="sm"
+      <button
         onClick={() => onPageChange(currentPage + 1)}
         disabled={currentPage === totalPages}
+        className={cn(
+          "h-9 px-4 rounded-md border border-gray-300 bg-white text-gray-700 hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed",
+        )}
       >
         <ChevronRight className="h-4 w-4" />
         <span className="sr-only">Next</span>
-      </Button>
+      </button>
     </nav>
   );
 };

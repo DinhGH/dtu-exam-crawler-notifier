@@ -17,7 +17,7 @@ const Files = () => {
   const [loading, setLoading] = useState(false);
 
   const [page, setPage] = useState(1);
-  const [pageSize] = useState(10);
+  const [pageSize] = useState(15);
   const [total, setTotal] = useState(0);
   const [crawling, setCrawling] = useState(false);
   const [crawlMessage, setCrawlMessage] = useState("");
@@ -89,9 +89,7 @@ const Files = () => {
   return (
     <div className="container mx-auto px-4 py-8">
       <div className="flex justify-between items-center mb-4">
-        <h1 className="text-3xl font-bold text-gray-900 dark:text-gray-100">
-          Danh sách tệp
-        </h1>
+        <h1 className="text-3xl font-bold text-gray-900">Danh sách tệp</h1>
         <button
           onClick={handleCrawlLatest}
           disabled={crawling}
@@ -128,7 +126,7 @@ const Files = () => {
           />
         </div>
       ) : (
-        <div className="bg-white dark:bg-gray-800 rounded-lg shadow overflow-hidden">
+        <div className="bg-white rounded-lg shadow overflow-hidden">
           <Table>
             <TableHeader>
               <TableRow>
@@ -142,9 +140,9 @@ const Files = () => {
                 <TableRow key={f.id || i} hover>
                   <TableCell>
                     <div className="flex items-center gap-2">
-                      <FileText className="h-5 w-5 text-blue-600 dark:text-blue-400" />
-                      <div className="font-medium text-gray-900 dark:text-gray-100 max-w-2xl truncate">
-                        <span className="font-medium text-gray-900 dark:text-gray-100">
+                      <FileText className="h-5 w-5 text-blue-600" />
+                      <div className="font-medium text-gray-900 max-w-2xl truncate">
+                        <span className="font-medium text-gray-900">
                           {f.file_name}
                         </span>
                       </div>
@@ -167,8 +165,8 @@ const Files = () => {
               ))}
             </TableBody>
           </Table>
-          <div className="flex items-center justify-between px-4 py-4 border-t dark:border-gray-700">
-            <div className="text-sm text-gray-600 dark:text-gray-400">
+          <div className="flex items-center justify-between px-4 py-4 border-t">
+            <div className="text-sm text-gray-600">
               Hiển thị {(page - 1) * pageSize + 1} -{" "}
               {Math.min(page * pageSize, total)} trên {total} tệp
             </div>
@@ -177,7 +175,7 @@ const Files = () => {
               <button
                 disabled={page === 1}
                 onClick={() => setPage((p) => p - 1)}
-                className="px-3 py-1 border rounded disabled:opacity-50"
+                className="px-3 py-1 border rounded disabled:opacity-50 hover:bg-gray-50"
               >
                 Trước
               </button>
@@ -189,7 +187,7 @@ const Files = () => {
               <button
                 disabled={page >= totalPages}
                 onClick={() => setPage((p) => p + 1)}
-                className="px-3 py-1 border rounded disabled:opacity-50"
+                className="px-3 py-1 border rounded disabled:opacity-50 hover:bg-gray-50"
               >
                 Sau
               </button>

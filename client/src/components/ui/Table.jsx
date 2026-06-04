@@ -23,7 +23,7 @@ const TableHeader = React.forwardRef(
       <thead
         ref={ref}
         className={cn(
-          "sticky top-0 z-10 bg-white dark:bg-gray-800 [&_tr]:border-b",
+          "sticky top-0 z-10 bg-gray-50 [&_tr]:border-b",
           className,
         )}
         {...props}
@@ -56,7 +56,7 @@ const TableRow = React.forwardRef(
       <tr
         ref={ref}
         className={cn(
-          "border-b border-gray-200 transition-colors hover:bg-gray-50/50 data-[state=selected]:bg-gray-50 dark:border-gray-800 dark:hover:bg-gray-800/50",
+          "border-b border-gray-200 transition-colors hover:bg-gray-50/50 data-[state=selected]:bg-gray-50",
           hover && "cursor-pointer",
           className,
         )}
@@ -75,7 +75,7 @@ const TableHead = React.forwardRef(({ className, children, ...props }, ref) => {
     <th
       ref={ref}
       className={cn(
-        "h-12 px-4 text-left align-middle font-medium text-gray-500 dark:text-gray-400",
+        "h-12 px-4 text-left align-middle font-medium text-gray-600",
         className,
       )}
       {...props}
@@ -91,10 +91,7 @@ const TableCell = React.forwardRef(({ className, children, ...props }, ref) => {
   return (
     <td
       ref={ref}
-      className={cn(
-        "p-4 align-middle text-gray-700 dark:text-gray-300",
-        className,
-      )}
+      className={cn("p-4 align-middle text-gray-700", className)}
       {...props}
     >
       {children}
@@ -109,10 +106,7 @@ const TableCaption = React.forwardRef(
     return (
       <caption
         ref={ref}
-        className={cn(
-          "mt-4 text-sm text-gray-500 dark:text-gray-400",
-          className,
-        )}
+        className={cn("mt-4 text-sm text-gray-500", className)}
         {...props}
       >
         {children}

@@ -18,14 +18,14 @@ router = APIRouter()
 def get_exam_files(
     db: Session = Depends(get_db),
     page: int = Query(1, ge=1),
-    page_size: int = Query(10, ge=1, le=100),
+    page_size: int = Query(15, ge=1, le=105),
 ):
     """
     Retrieve a paginated list of crawled exam files.
     """
     log.info(f"Fetching exam files: page={page}, page_size={page_size}")
     
-    query = db.query(ExamFile).order_by(ExamFile.crawl_time.desc())
+    query = db.query(ExamFile).order_by(ExamFile.crawl_time.asc())
     
     total = query.count()
     items = query.offset((page - 1) * page_size).limit(page_size).all()

@@ -20,7 +20,7 @@ function App() {
     <ThemeProvider>
       <QueryClientProvider client={queryClient}>
         <BrowserRouter>
-          <div className="min-h-screen bg-gray-50 dark:bg-gray-900 transition-colors duration-200">
+          <div className="min-h-screen bg-gray-50 transition-colors duration-200">
             <Navbar />
             <main className="flex-grow">
               <Router />

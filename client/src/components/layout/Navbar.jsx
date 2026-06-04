@@ -10,19 +10,16 @@ const Navbar = () => {
   const location = useLocation();
 
   const navLinks = [
-    { name: "Trang chủ", path: "/" },
     { name: "Đăng ký theo dõi", path: "/register" },
-    { name: "Tra cứu", path: "/search" },
     { name: "Danh sách tệp", path: "/files" },
-    { name: "Dashboard", path: "/dashboard" },
   ];
 
   return (
-    <header className="sticky top-0 z-40 w-full border-b border-gray-200 bg-white/80 backdrop-blur dark:border-gray-800 dark:bg-gray-900/80">
+    <header className="sticky top-0 z-40 w-full border-b border-gray-200 bg-white/95 backdrop-blur">
       <div className="container mx-auto flex h-16 items-center justify-between px-4">
         <Link
           to="/"
-          className="flex items-center space-x-2 font-bold text-blue-600 dark:text-blue-400"
+          className="flex items-center space-x-2 font-bold text-blue-600"
         >
           <span>DTU Exam Notifier</span>
         </Link>
@@ -33,10 +30,10 @@ const Navbar = () => {
             <Link
               key={link.path}
               to={link.path}
-              className={`text-sm font-medium transition-colors hover:text-blue-600 dark:text-gray-300 ${
+              className={`text-sm font-medium transition-colors hover:text-blue-600 ${
                 location.pathname === link.path
-                  ? "text-blue-600 dark:text-blue-400"
-                  : "text-gray-600 dark:text-gray-400"
+                  ? "text-blue-600"
+                  : "text-gray-700 hover:text-gray-900"
               }`}
             >
               {link.name}
@@ -49,9 +46,9 @@ const Navbar = () => {
             className="rounded-full"
           >
             {theme === "dark" ? (
-              <Sun className="h-5 w-5" />
+              <Sun className="h-5 w-5 text-yellow-500" />
             ) : (
-              <Moon className="h-5 w-5" />
+              <Moon className="h-5 w-5 text-indigo-600" />
             )}
           </Button>
         </nav>
@@ -65,9 +62,9 @@ const Navbar = () => {
             className="rounded-full"
           >
             {theme === "dark" ? (
-              <Sun className="h-5 w-5" />
+              <Sun className="h-5 w-5 text-yellow-500" />
             ) : (
-              <Moon className="h-5 w-5" />
+              <Moon className="h-5 w-5 text-indigo-600" />
             )}
           </Button>
           <Button
@@ -76,9 +73,9 @@ const Navbar = () => {
             onClick={() => setIsMenuOpen(!isMenuOpen)}
           >
             {isMenuOpen ? (
-              <X className="h-5 w-5" />
+              <X className="h-5 w-5 text-gray-700" />
             ) : (
-              <Menu className="h-5 w-5" />
+              <Menu className="h-5 w-5 text-gray-700" />
             )}
           </Button>
         </div>
@@ -86,7 +83,7 @@ const Navbar = () => {
 
       {/* Mobile Navigation */}
       {isMenuOpen && (
-        <div className="md:hidden border-t border-gray-200 bg-white dark:border-gray-800 dark:bg-gray-900">
+        <div className="md:hidden border-t border-gray-200 bg-white">
           <nav className="flex flex-col p-4 space-y-2">
             {navLinks.map((link) => (
               <Link
@@ -94,8 +91,8 @@ const Navbar = () => {
                 to={link.path}
                 className={`px-3 py-2 rounded-md text-base font-medium ${
                   location.pathname === link.path
-                    ? "bg-blue-50 text-blue-600 dark:bg-gray-800 dark:text-blue-400"
-                    : "text-gray-600 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-800"
+                    ? "bg-blue-50 text-blue-600"
+                    : "text-gray-700 hover:bg-gray-50"
                 }`}
                 onClick={() => setIsMenuOpen(false)}
               >

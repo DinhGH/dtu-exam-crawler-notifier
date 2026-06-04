@@ -15,7 +15,7 @@ def search_exam_schedules(
     subject_code: str = Query(None, description="Search by subject code"),
     subject_name: str = Query(None, description="Search by subject name"),
     page: int = Query(1, ge=1),
-    page_size: int = Query(10, ge=1, le=100),
+    page_size: int = Query(15, ge=1, le=105),
 ):
     """
     Search for exam schedules with pagination.

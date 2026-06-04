@@ -5,12 +5,9 @@ import { Loader2 } from "lucide-react";
 const buttonVariants = {
   variant: {
     default: "bg-blue-600 text-white hover:bg-blue-700",
-    secondary:
-      "bg-gray-100 text-gray-900 hover:bg-gray-200 dark:bg-gray-800 dark:text-gray-100 dark:hover:bg-gray-700",
-    outline:
-      "border border-gray-300 bg-white hover:bg-gray-50 text-gray-900 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-100 dark:hover:bg-gray-800",
-    ghost:
-      "hover:bg-gray-100 hover:text-gray-900 dark:hover:bg-gray-800 dark:text-gray-300",
+    secondary: "bg-gray-100 text-gray-900 hover:bg-gray-200",
+    outline: "border border-gray-300 bg-white hover:bg-gray-50 text-gray-900",
+    ghost: "hover:bg-gray-100 hover:text-gray-900",
     danger: "bg-red-600 text-white hover:bg-red-700",
   },
   size: {
