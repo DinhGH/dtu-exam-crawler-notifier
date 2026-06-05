@@ -116,7 +116,8 @@ class SubscriptionService:
             raw_matrix = df_raw.values.tolist()
             
             # Khởi tạo các biến trạng thái lưu tạm dữ liệu phòng và thời gian
-            current_room = ""
+            current_room_number = ""
+            current_location = ""
             current_time = ""
             
             # Đọc thông tin môn học cố định (thường ở dòng 2 hoặc 3 đầu file)
@@ -153,28 +154,64 @@ class SubscriptionService:
 
                 # CHUYỂN ĐỔI NGỮ CẢNH: Tìm thấy dòng chứa cấu trúc Phòng thi / Thời gian
                 if 'thời gian:' in row_combined or 'thoi gian:' in row_combined:
+                    # Process time info first
                     for cell_val in clean_cells:
                         val_lower = cell_val.lower()
                         if not val_lower:
                             continue
                         
-                        # Ô chứa địa điểm phòng thi (Ví dụ: 304/1 - K7/25 Quang Trung)
-                        if 'quang trung' in val_lower or 'phòng' in val_lower or ('/' in cell_val and 'h' not in val_lower):
-                            if 'phòng:' not in cell_val:  # Bỏ qua ô nhãn "Phòng:" thuần túy
-                                current_room = cell_val
-                        
                         # Ô chứa thời gian thi chuẩn (Có định dạng giờ 'h' và ngày thi '/')
-                        if 'h' in val_lower and '/' in cell_val:
-                            current_time = cell_val
+                        # Time format: "Thời gian:  15h30 - 31/05/2026                Phòng:"
+                        # We need to extract just the time portion
+                        if 'h' in val_lower and '/' in val_lower:
+                            # Extract time portion from the string
+                            # Example: "Thời gian:  15h30 - 31/05/2026                Phòng:"
+                            # We want to get "15h30 - 31/05/2026"
+                            if 'thời gian:' in val_lower:
+                                # Split by "Thời gian:" and take the second part
+                                parts = cell_val.split('Thời gian:', 1)
+                                if len(parts) > 1:
+                                    time_part = parts[1].strip()
+                                    # Now remove the "Phòng:" part if it exists
+                                    if 'Phòng:' in time_part:
+                                        time_part = time_part.split('Phòng:', 1)[0].strip()
+                                    elif 'phòng:' in time_part:
+                                        time_part = time_part.split('phòng:', 1)[0].strip()
+                                    current_time = time_part
+                                else:
+                                    current_time = cell_val
+                            else:
+                                current_time = cell_val
+                    
+                    # Process room/location info - Column G (index 6) = Room, Column H (index 7) = Location
+                    if len(clean_cells) > 7:
+                        room_val = clean_cells[6].strip()
+                        location_val = clean_cells[7].strip()
+                        
+                        log.debug(f"DEBUG: Room val='{room_val}', Location val='{location_val}'")
+                        
+                        # Room number is from column G (e.g., "304/1", "403")
+                        if room_val and '/' in room_val:
+                            current_room_number = room_val
+                        
+                        # Location is from column H - always extract it (remove leading dash if present)
+                        # Examples: "- K7/25 Quang Trung", "-K7/25 Quang Trung", "K7/25 Quang Trung"
+                        if location_val:
+                            if location_val.startswith('- '):
+                                location_val = location_val[2:].strip()
+                            elif location_val.startswith('-'):
+                                location_val = location_val[1:].strip()
+                            current_location = location_val
+                    
                     continue  # Trích xuất xong dòng cấu trúc ngữ cảnh thì chuyển ngay sang dòng tiếp theo
 
                 # SO KHỚP TÊN SINH VIÊN: Sử dụng index cột cố định theo form danh sách thi Duy Tân
-                # Định vị: Cột 0 (STT), Cột 1 (Mã SV), Cột 2 (Họ và), Cột 3 (Tên)
-                if len(clean_cells) >= 4:
-                    ho_val = clean_cells[2]
-                    ten_val = clean_cells[3]
+                # Định vị: Cột 0 (STT), Cột 1 (STT duplicates), Cột 2 (Mã SV), Cột 3 (Họ và), Cột 4 (Tên)
+                if len(clean_cells) >= 5:
+                    ho_val = clean_cells[3]
+                    ten_val = clean_cells[4]
                     stt_val = clean_cells[0]     # Số thứ tự thí sinh trong phòng đó
-                    student_id = clean_cells[1]  # Mã sinh viên
+                    student_id = clean_cells[2]  # Mã sinh viên (cột 2)
 
                     # Loại bỏ các dòng tiêu đề lặp lại (STT, HỌ VÀ, TÊN) hoặc dòng rác cuối bảng
                     if not ho_val or not ten_val or 'họ' in ho_val.lower() or 'tên' in ten_val.lower():
@@ -198,9 +235,9 @@ class SubscriptionService:
                             'student_no': stt_val,
                             'student_name': full_name_in_file,
                             'student_id': student_id,
-                            'class_name': class_name,
                             'exam_date_time': current_time if current_time else "Xem trong file",
-                            'exam_room_location': current_room if current_room else "Xem trong file",
+                            'exam_room': current_room_number if current_room_number else "Xem trong file",
+                            'exam_location': current_location if current_location else "Xem trong file",
                             'subject_meta': subject_info
                         })
                         
@@ -328,12 +365,12 @@ class SubscriptionService:
                         <table class="info-table">
                             <thead>
                                 <tr>
-                                    <th style="width: 6%;">STT Phòng</th>
-                                    <th style="width: 22%;">Họ và Tên</th>
-                                    <th style="width: 14%;">Mã SV</th>
-                                    <th style="width: 13%;">Lớp SH</th>
+                                    <th style="width: 8%;">STT Phòng</th>
+                                    <th style="width: 25%;">Họ và Tên</th>
+                                    <th style="width: 16%;">Mã SV</th>
                                     <th style="width: 25%;">Thời Gian Thi</th>
-                                    <th style="width: 20%;">Phòng / Địa Điểm</th>
+                                    <th style="width: 17%;">Phòng</th>
+                                    <th style="width: 19%;">Địa Điểm</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -346,9 +383,9 @@ class SubscriptionService:
                                     <td style="text-align: center; font-weight: bold;">{info.get('student_no', '')}</td>
                                     <td class="highlight">{info.get('student_name', '')}</td>
                                     <td>{info.get('student_id', '')}</td>
-                                    <td>{info.get('class_name', '')}</td>
                                     <td>{info.get('exam_date_time', 'Xem chi tiết ở file đính kèm')}</td>
-                                    <td><b>{info.get('exam_room_location', 'Xem chi tiết ở file đính kèm')}</b></td>
+                                    <td><b>{info.get('exam_room', 'Xem chi tiết ở file đính kèm')}</b></td>
+                                    <td>{info.get('exam_location', 'Xem chi tiết ở file đính kèm')}</td>
                                 </tr>
                     """
                 html += """
