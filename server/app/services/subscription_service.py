@@ -320,34 +320,311 @@ class SubscriptionService:
         <head>
             <meta charset="utf-8">
             <style>
-                body {{ font-family: Arial, sans-serif; line-height: 1.6; color: #333; }}
-                .container {{ max-width: 850px; margin: 0 auto; padding: 20px; }}
-                .header {{ background: linear-gradient(135deg, #e53e3e 0%, #b7791f 100%); color: white; padding: 25px; border-radius: 10px 10px 0 0; text-align: center; }}
-                .header h1 {{ margin: 0; font-size: 26px; font-weight: bold; }}
-                .content {{ background: #f9f9f9; padding: 25px; border: 1px solid #e3e3e3; border-top: none; border-radius: 0 0 10px 10px; }}
-                .section {{ margin-bottom: 25px; }}
-                .section h2 {{ color: #b7791f; border-bottom: 2px solid #e2e8f0; padding-bottom: 8px; font-size: 20px; }}
-                .info-table {{ width: 100%; border-collapse: collapse; margin-top: 15px; background: white; }}
-                .info-table th, .info-table td {{ border: 1px solid #cbd5e0; padding: 12px; text-align: left; font-size: 14px; }}
-                .info-table th {{ background-color: #718096; color: white; font-weight: bold; }}
-                .info-table tr:nth-child(even) {{ background-color: #f7fafc; }}
-                .file-info {{ background: white; padding: 20px; border-radius: 6px; margin-bottom: 20px; border-left: 4px solid #e53e3e; box-shadow: 0 2px 4px rgba(0,0,0,0.04); }}
-                .file-info h3 {{ margin-top: 0; color: #2d3748; font-size: 16px; border-bottom: 1px dashed #e2e8f0; padding-bottom: 5px; }}
-                .footer {{ text-align: center; padding: 20px; color: #718096; font-size: 13px; border-top: 1px solid #e2e8f0; margin-top: 30px; }}
-                .no-exam-info {{ color: #e53e3e; font-style: italic; font-weight: 500; }}
-                .highlight {{ font-weight: bold; color: #e53e3e; }}
+                @import url('https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@300;400;500;600;700&display=swap');
+
+                * {{ box-sizing: border-box; margin: 0; padding: 0; }}
+
+                body {{
+                    font-family: 'Be Vietnam Pro', Arial, sans-serif;
+                    background-color: #f0f0f0;
+                    color: #1a1a1a;
+                    line-height: 1.65;
+                    -webkit-font-smoothing: antialiased;
+                }}
+
+                .wrapper {{
+                    background-color: #f0f0f0;
+                    padding: 36px 16px;
+                }}
+
+                .container {{
+                    max-width: 680px;
+                    margin: 0 auto;
+                    background: #ffffff;
+                    border-radius: 4px;
+                    overflow: hidden;
+                    box-shadow: 0 2px 12px rgba(0,0,0,0.10);
+                }}
+
+                /* ── HEADER ── */
+                .header {{
+                    background-color: #111111;
+                    padding: 32px 36px;
+                    display: flex;
+                    align-items: center;
+                    gap: 16px;
+                }}
+
+                .header-logo {{
+                    width: 44px;
+                    height: 44px;
+                    background: #ffffff;
+                    border-radius: 50%;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    flex-shrink: 0;
+                    font-size: 20px;
+                    line-height: 1;
+                }}
+
+                .header-text {{}}
+
+                .header-eyebrow {{
+                    font-size: 10px;
+                    font-weight: 600;
+                    letter-spacing: 2.5px;
+                    text-transform: uppercase;
+                    color: #999999;
+                    margin-bottom: 4px;
+                }}
+
+                .header h1 {{
+                    font-size: 18px;
+                    font-weight: 700;
+                    color: #ffffff;
+                    letter-spacing: -0.2px;
+                    line-height: 1.2;
+                }}
+
+                /* ── BODY ── */
+                .body {{
+                    padding: 36px;
+                }}
+
+                .greeting {{
+                    margin-bottom: 28px;
+                    padding-bottom: 24px;
+                    border-bottom: 1px solid #ebebeb;
+                }}
+
+                .greeting-name {{
+                    font-size: 20px;
+                    font-weight: 700;
+                    color: #111111;
+                    margin-bottom: 8px;
+                }}
+
+                .greeting p {{
+                    font-size: 14px;
+                    color: #555555;
+                    line-height: 1.7;
+                }}
+
+                /* ── FILE CARD ── */
+                .file-card {{
+                    background: #fafafa;
+                    border: 1px solid #e8e8e8;
+                    border-radius: 4px;
+                    margin-bottom: 20px;
+                    overflow: hidden;
+                }}
+
+                .file-card-header {{
+                    background: #f4f4f4;
+                    border-bottom: 1px solid #e8e8e8;
+                    padding: 12px 18px;
+                    display: flex;
+                    align-items: center;
+                    gap: 8px;
+                }}
+
+                .file-icon {{
+                    font-size: 14px;
+                    line-height: 1;
+                }}
+
+                .file-label {{
+                    font-size: 11px;
+                    font-weight: 600;
+                    text-transform: uppercase;
+                    letter-spacing: 1.5px;
+                    color: #888888;
+                    margin-right: 6px;
+                }}
+
+                .file-name {{
+                    font-size: 13px;
+                    font-weight: 600;
+                    color: #222222;
+                    word-break: break-all;
+                }}
+
+                .file-card-body {{
+                    padding: 16px 18px;
+                }}
+
+                /* ── TABLE ── */
+                .info-table {{
+                    width: 100%;
+                    border-collapse: collapse;
+                    font-size: 13px;
+                }}
+
+                .info-table thead tr {{
+                    background-color: #111111;
+                }}
+
+                .info-table th {{
+                    padding: 10px 12px;
+                    text-align: left;
+                    color: #ffffff;
+                    font-size: 11px;
+                    font-weight: 600;
+                    letter-spacing: 1px;
+                    text-transform: uppercase;
+                    white-space: nowrap;
+                }}
+
+                .info-table td {{
+                    padding: 11px 12px;
+                    color: #333333;
+                    border-bottom: 1px solid #efefef;
+                    vertical-align: top;
+                    line-height: 1.5;
+                }}
+
+                .info-table tbody tr:last-child td {{
+                    border-bottom: none;
+                }}
+
+                .info-table tbody tr:hover td {{
+                    background-color: #f7f7f7;
+                }}
+
+                .cell-name {{
+                    font-weight: 700;
+                    color: #111111;
+                }}
+
+                .cell-id {{
+                    font-family: 'Courier New', monospace;
+                    font-size: 12px;
+                    color: #444444;
+                    font-weight: 600;
+                }}
+
+                .cell-room {{
+                    font-weight: 700;
+                    color: #111111;
+                }}
+
+                /* ── EMPTY STATE ── */
+                .empty-state {{
+                    padding: 18px 0 4px;
+                    display: flex;
+                    align-items: flex-start;
+                    gap: 10px;
+                }}
+
+                .empty-icon {{
+                    font-size: 16px;
+                    margin-top: 1px;
+                    flex-shrink: 0;
+                }}
+
+                .empty-text {{
+                    font-size: 13px;
+                    color: #777777;
+                    font-style: italic;
+                    line-height: 1.6;
+                }}
+
+                /* ── NOTICE BOX ── */
+                .notice {{
+                    background: #f9f9f9;
+                    border: 1px solid #e8e8e8;
+                    border-left: 3px solid #111111;
+                    border-radius: 4px;
+                    padding: 20px 22px;
+                    margin-top: 28px;
+                }}
+
+                .notice-title {{
+                    font-size: 12px;
+                    font-weight: 700;
+                    text-transform: uppercase;
+                    letter-spacing: 1.5px;
+                    color: #111111;
+                    margin-bottom: 12px;
+                }}
+
+                .notice ul {{
+                    padding-left: 18px;
+                    list-style: none;
+                }}
+
+                .notice ul li {{
+                    font-size: 13px;
+                    color: #555555;
+                    margin-bottom: 8px;
+                    position: relative;
+                    padding-left: 14px;
+                    line-height: 1.6;
+                }}
+
+                .notice ul li::before {{
+                    content: '—';
+                    position: absolute;
+                    left: 0;
+                    color: #aaaaaa;
+                    font-size: 11px;
+                    top: 1px;
+                }}
+
+                .notice ul li:last-child {{
+                    margin-bottom: 0;
+                }}
+
+                .notice ul li b {{
+                    color: #111111;
+                    font-weight: 700;
+                }}
+
+                /* ── FOOTER ── */
+                .footer {{
+                    background: #f7f7f7;
+                    border-top: 1px solid #ebebeb;
+                    padding: 20px 36px;
+                    text-align: center;
+                }}
+
+                .footer p {{
+                    font-size: 11.5px;
+                    color: #aaaaaa;
+                    line-height: 1.8;
+                }}
+
+                .footer .timestamp {{
+                    font-size: 11px;
+                    color: #cccccc;
+                    margin-top: 4px;
+                    font-family: 'Courier New', monospace;
+                }}
             </style>
         </head>
         <body>
+            <div class="wrapper">
             <div class="container">
+
+                <!-- HEADER -->
                 <div class="header">
-                    <h1>HỆ THỐNG THÔNG BÁO LỊCH THI ĐẠI HỌC DUY TÂN</h1>
-                </div>
-                <div class="content">
-                    <div class="section">
-                        <h2>Xin chào {user_full_name}!</h2>
-                        <p>Hệ thống đã quét thành công file dữ liệu công bố mới nhất. Dưới đây là chi tiết phòng thi và lịch thi được tìm thấy theo thông tin đăng ký của bạn:</p>
+                    <div class="header-logo">🎓</div>
+                    <div class="header-text">
+                        <div class="header-eyebrow">Hệ thống thông báo tự động</div>
+                        <h1>Lịch Thi — Đại Học Duy Tân</h1>
                     </div>
+                </div>
+
+                <!-- BODY -->
+                <div class="body">
+
+                    <div class="greeting">
+                        <div class="greeting-name">Xin chào, {user_full_name}!</div>
+                        <p>Hệ thống đã quét thành công file dữ liệu công bố mới nhất.<br>
+                        Dưới đây là thông tin phòng thi &amp; lịch thi tìm thấy theo đăng ký của bạn.</p>
+                    </div>
+
         """
 
         # Thêm thông tin lịch thi dựa trên từng file trùng khớp
@@ -356,8 +633,13 @@ class SubscriptionService:
             file_name = file_data.get('file_name', 'Danh sách thi')
 
             html += f"""
-                    <div class="file-info">
-                        <h3>📄 <b>Tên File gốc:</b> {file_name}</h3>
+                    <div class="file-card">
+                        <div class="file-card-header">
+                            <span class="file-icon">📄</span>
+                            <span class="file-label">File gốc</span>
+                            <span class="file-name">{file_name}</span>
+                        </div>
+                        <div class="file-card-body">
             """
 
             if exam_info:
@@ -365,27 +647,24 @@ class SubscriptionService:
                         <table class="info-table">
                             <thead>
                                 <tr>
-                                    <th style="width: 8%;">STT Phòng</th>
-                                    <th style="width: 25%;">Họ và Tên</th>
-                                    <th style="width: 16%;">Mã SV</th>
-                                    <th style="width: 25%;">Thời Gian Thi</th>
-                                    <th style="width: 17%;">Phòng</th>
-                                    <th style="width: 19%;">Địa Điểm</th>
+                                    <th style="width:26%;">Họ và Tên</th>
+                                    <th style="width:16%;">Mã SV</th>
+                                    <th style="width:26%;">Thời Gian Thi</th>
+                                    <th style="width:14%;">Phòng</th>
+                                    <th style="width:18%;">Địa Điểm</th>
                                 </tr>
                             </thead>
                             <tbody>
                 """
 
                 for info in exam_info:
-                    # ĐÃ SỬA: Map chính xác các Key từ hàm Scanner mới sang bảng HTML
                     html += f"""
                                 <tr>
-                                    <td style="text-align: center; font-weight: bold;">{info.get('student_no', '')}</td>
-                                    <td class="highlight">{info.get('student_name', '')}</td>
-                                    <td>{info.get('student_id', '')}</td>
-                                    <td>{info.get('exam_date_time', 'Xem chi tiết ở file đính kèm')}</td>
-                                    <td><b>{info.get('exam_room', 'Xem chi tiết ở file đính kèm')}</b></td>
-                                    <td>{info.get('exam_location', 'Xem chi tiết ở file đính kèm')}</td>
+                                    <td class="cell-name">{info.get('student_name', '')}</td>
+                                    <td class="cell-id">{info.get('student_id', '')}</td>
+                                    <td>{info.get('exam_date_time', 'Xem file đính kèm')}</td>
+                                    <td class="cell-room">{info.get('exam_room', 'Xem file đính kèm')}</td>
+                                    <td>{info.get('exam_location', 'Xem file đính kèm')}</td>
                                 </tr>
                     """
                 html += """
@@ -394,30 +673,39 @@ class SubscriptionService:
                 """
             else:
                 html += """
-                        <p class="no-exam-info">⚠️ Không tìm thấy thông tin số báo danh hoặc phòng thi của bạn trong file này (Có thể bạn nằm ở danh sách phòng thi thuộc file khác).</p>
+                        <div class="empty-state">
+                            <span class="empty-icon">⚠️</span>
+                            <span class="empty-text">Không tìm thấy thông tin số báo danh hoặc phòng thi của bạn trong file này. Có thể bạn nằm ở danh sách phòng thi thuộc file khác.</span>
+                        </div>
                 """
 
             html += """
+                        </div>
                     </div>
             """
 
         html += f"""
-                    <div class="section">
-                        <h2>💡 Lưu ý quan trọng cho thí sinh</h2>
-                        <ul style="padding-left: 20px; color: #4a5568;">
-                            <li>Vui lòng kiểm tra kỹ <b>Mã Sinh Viên</b> và đối chiếu với file Excel đính kèm để đảm bảo tính chính xác tuyệt đối.</li>
-                            <li>Khi đi thi, bắt buộc phải mang theo <b>Thẻ sinh viên</b> hoặc giấy tờ tùy thân có dán ảnh hợp lệ.</li>
-                            <li>Hãy có mặt tại địa điểm thi trước giờ thi tối thiểu <b>15 phút</b> để hoàn tất thủ tục vào phòng.</li>
+                    <!-- NOTICE -->
+                    <div class="notice">
+                        <div class="notice-title">💡 Lưu ý quan trọng</div>
+                        <ul>
+                            <li>Kiểm tra kỹ <b>Mã Sinh Viên</b> và đối chiếu với file Excel đính kèm để đảm bảo tính chính xác.</li>
+                            <li>Bắt buộc mang theo <b>Thẻ sinh viên</b> hoặc giấy tờ tùy thân có dán ảnh hợp lệ.</li>
+                            <li>Có mặt tại địa điểm thi trước giờ thi tối thiểu <b>15 phút</b> để hoàn tất thủ tục vào phòng.</li>
                         </ul>
                     </div>
 
-                    <div class="footer">
-                        <p>Đây là email tự động được xử lý bởi SubscriptionService.</p>
-                        <p>Vui lòng không phản hồi lại email này. Chúc bạn hoàn thành kỳ thi thật tốt!</p>
-                        <p><b>Thời gian cập nhật:</b> {datetime.now().strftime('%d/%m/%Y %H:%M:%S')}</p>
-                    </div>
+                </div><!-- /body -->
+
+                <!-- FOOTER -->
+                <div class="footer">
+                    <p>Email tự động từ DTU Exam Notifier — Vui lòng không phản hồi.</p>
+                    <p>Chúc bạn hoàn thành kỳ thi thật tốt! 🎓</p>
+                    <p class="timestamp">Cập nhật lúc: {datetime.now().strftime('%d/%m/%Y %H:%M:%S')}</p>
                 </div>
-            </div>
+
+            </div><!-- /container -->
+            </div><!-- /wrapper -->
         </body>
         </html>
         """

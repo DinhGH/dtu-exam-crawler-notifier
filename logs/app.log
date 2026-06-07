@@ -4222,3 +4222,140 @@ DETAIL:  Failing row contains (6, 27, null, , sent, 2026-06-05 22:59:06.577523, 
 2026-06-05 23:01:22 | INFO     | app.main:lifespan:17 - Shutting down...
 2026-06-05 23:01:22 | INFO     | app.scheduler.scheduler:stop_scheduler:30 - Stopping scheduler...
 2026-06-05 23:01:22 | INFO     | app.scheduler.scheduler:stop_scheduler:32 - Scheduler stopped.
+2026-06-05 23:01:25 | INFO     | app.main:lifespan:11 - Starting up...
+2026-06-05 23:01:25 | INFO     | app.main:lifespan:12 - Creating database tables if they don't exist...
+2026-06-05 23:01:31 | INFO     | app.main:lifespan:14 - Tables created successfully (if not already present).
+2026-06-05 23:01:31 | INFO     | app.scheduler.scheduler:start_scheduler:11 - Starting scheduler...
+2026-06-05 23:01:31 | INFO     | app.scheduler.scheduler:start_scheduler:21 - Scheduler started successfully.
+2026-06-05 23:02:22 | INFO     | app.api.routes.subscriptions:create_subscription:27 - New subscription request: huynhdinh2k52707@gmail.com, subject_code=ob 253
+2026-06-05 23:02:24 | INFO     | app.services.subscription_service:subscribe_and_notify:495 - New subscription created: huynhdinh2k52707@gmail.com
+2026-06-05 23:02:27 | INFO     | app.services.subscription_service:_create_email_message:303 - Attached file với đuôi chuẩn: Tổng quan Hành vi Tổ chức trong Du lịch OB 253 (B-D-F) (17_18 29-05-2026).xlsx
+2026-06-05 23:02:41 | INFO     | app.services.subscription_service:_send_email:451 - Email sent successfully to huynhdinh2k52707@gmail.com
+2026-06-05 23:02:42 | ERROR    | app.services.subscription_service:_log_email:470 - Failed to log email: (psycopg2.errors.NotNullViolation) null value in column "exam_schedule_id" of relation "email_logs" violates not-null constraint
+DETAIL:  Failing row contains (7, 28, null, , sent, 2026-06-05 23:02:41.885277, 2026-06-05 16:02:42.243652).
+
+[SQL: INSERT INTO email_logs (subscription_id, exam_schedule_id, email, status, sent_at, created_at) VALUES (%(subscription_id)s, %(exam_schedule_id)s, %(email)s, %(status)s, %(sent_at)s, now()) RETURNING email_logs.id, email_logs.created_at]
+[parameters: {'subscription_id': 28, 'exam_schedule_id': None, 'email': '', 'status': 'sent', 'sent_at': datetime.datetime(2026, 6, 5, 23, 2, 41, 885277)}]
+(Background on this error at: https://sqlalche.me/e/20/gkpj)
+2026-06-06 08:17:11 | INFO     | app.main:lifespan:11 - Starting up...
+2026-06-06 08:17:11 | INFO     | app.main:lifespan:12 - Creating database tables if they don't exist...
+2026-06-06 08:17:18 | INFO     | app.main:lifespan:14 - Tables created successfully (if not already present).
+2026-06-06 08:17:18 | INFO     | app.scheduler.scheduler:start_scheduler:11 - Starting scheduler...
+2026-06-06 08:17:18 | INFO     | app.scheduler.scheduler:start_scheduler:21 - Scheduler started successfully.
+2026-06-06 08:22:57 | INFO     | app.api.routes.subscriptions:create_subscription:27 - New subscription request: huynhdinh2k52707@gmail.com, subject_code=TOU 361
+2026-06-06 08:22:58 | INFO     | app.services.subscription_service:subscribe_and_notify:495 - New subscription created: huynhdinh2k52707@gmail.com
+2026-06-06 08:23:00 | INFO     | app.services.subscription_service:_download_excel_file:77 - Downloaded Excel file: Thiết kế & Điều hành Tour Du lịch TOU 361 (B-D-F-H-J) (18:50 28/05/2026) as Thiết kế & Điều hành Tour Du lịch TOU 361 (B-D-F-H-J) (18_50 28-05-2026)
+2026-06-06 08:23:07 | INFO     | app.services.subscription_service:_create_email_message:303 - Attached file với đuôi chuẩn: Thiết kế & Điều hành Tour Du lịch TOU 361 (B-D-F-H-J) (18_50 28-05-2026).xlsx
+2026-06-06 08:23:20 | INFO     | app.services.subscription_service:_send_email:451 - Email sent successfully to huynhdinh2k52707@gmail.com
+2026-06-06 08:23:21 | ERROR    | app.services.subscription_service:_log_email:470 - Failed to log email: (psycopg2.errors.NotNullViolation) null value in column "exam_schedule_id" of relation "email_logs" violates not-null constraint
+DETAIL:  Failing row contains (8, 29, null, , sent, 2026-06-06 08:23:21.018302, 2026-06-06 01:23:20.574241).
+
+[SQL: INSERT INTO email_logs (subscription_id, exam_schedule_id, email, status, sent_at, created_at) VALUES (%(subscription_id)s, %(exam_schedule_id)s, %(email)s, %(status)s, %(sent_at)s, now()) RETURNING email_logs.id, email_logs.created_at]
+[parameters: {'subscription_id': 29, 'exam_schedule_id': None, 'email': '', 'status': 'sent', 'sent_at': datetime.datetime(2026, 6, 6, 8, 23, 21, 18302)}]
+(Background on this error at: https://sqlalche.me/e/20/gkpj)
+2026-06-06 08:30:09 | INFO     | app.main:lifespan:17 - Shutting down...
+2026-06-06 08:30:09 | INFO     | app.scheduler.scheduler:stop_scheduler:30 - Stopping scheduler...
+2026-06-06 08:30:09 | INFO     | app.scheduler.scheduler:stop_scheduler:32 - Scheduler stopped.
+2026-06-06 08:30:19 | INFO     | app.main:lifespan:11 - Starting up...
+2026-06-06 08:30:19 | INFO     | app.main:lifespan:12 - Creating database tables if they don't exist...
+2026-06-06 08:30:25 | INFO     | app.main:lifespan:14 - Tables created successfully (if not already present).
+2026-06-06 08:30:25 | INFO     | app.scheduler.scheduler:start_scheduler:11 - Starting scheduler...
+2026-06-06 08:30:25 | INFO     | app.scheduler.scheduler:start_scheduler:21 - Scheduler started successfully.
+2026-06-06 08:31:05 | INFO     | app.main:lifespan:17 - Shutting down...
+2026-06-06 08:31:05 | INFO     | app.scheduler.scheduler:stop_scheduler:30 - Stopping scheduler...
+2026-06-06 08:31:05 | INFO     | app.scheduler.scheduler:stop_scheduler:32 - Scheduler stopped.
+2026-06-06 08:31:08 | INFO     | app.main:lifespan:11 - Starting up...
+2026-06-06 08:31:08 | INFO     | app.main:lifespan:12 - Creating database tables if they don't exist...
+2026-06-06 08:31:13 | INFO     | app.main:lifespan:14 - Tables created successfully (if not already present).
+2026-06-06 08:31:13 | INFO     | app.scheduler.scheduler:start_scheduler:11 - Starting scheduler...
+2026-06-06 08:31:13 | INFO     | app.scheduler.scheduler:start_scheduler:21 - Scheduler started successfully.
+2026-06-06 08:34:23 | INFO     | app.api.routes.subscriptions:create_subscription:27 - New subscription request: huynhdinh2k52707@gmail.com, subject_code=TOU 361
+2026-06-06 08:34:24 | INFO     | app.services.subscription_service:subscribe_and_notify:495 - New subscription created: huynhdinh2k52707@gmail.com
+2026-06-06 08:34:28 | INFO     | app.services.subscription_service:_create_email_message:303 - Attached file với đuôi chuẩn: Thiết kế & Điều hành Tour Du lịch TOU 361 (B-D-F-H-J) (18_50 28-05-2026).xlsx
+2026-06-06 08:34:41 | INFO     | app.services.subscription_service:_send_email:451 - Email sent successfully to huynhdinh2k52707@gmail.com
+2026-06-06 08:34:42 | ERROR    | app.services.subscription_service:_log_email:470 - Failed to log email: (psycopg2.errors.NotNullViolation) null value in column "exam_schedule_id" of relation "email_logs" violates not-null constraint
+DETAIL:  Failing row contains (9, 30, null, , sent, 2026-06-06 08:34:42.12344, 2026-06-06 01:34:41.657975).
+
+[SQL: INSERT INTO email_logs (subscription_id, exam_schedule_id, email, status, sent_at, created_at) VALUES (%(subscription_id)s, %(exam_schedule_id)s, %(email)s, %(status)s, %(sent_at)s, now()) RETURNING email_logs.id, email_logs.created_at]
+[parameters: {'subscription_id': 30, 'exam_schedule_id': None, 'email': '', 'status': 'sent', 'sent_at': datetime.datetime(2026, 6, 6, 8, 34, 42, 123440)}]
+(Background on this error at: https://sqlalche.me/e/20/gkpj)
+2026-06-06 08:39:54 | INFO     | app.main:lifespan:17 - Shutting down...
+2026-06-06 08:39:54 | INFO     | app.scheduler.scheduler:stop_scheduler:30 - Stopping scheduler...
+2026-06-06 08:39:54 | INFO     | app.scheduler.scheduler:stop_scheduler:32 - Scheduler stopped.
+2026-06-06 08:39:57 | INFO     | app.main:lifespan:11 - Starting up...
+2026-06-06 08:39:57 | INFO     | app.main:lifespan:12 - Creating database tables if they don't exist...
+2026-06-06 08:40:03 | INFO     | app.main:lifespan:14 - Tables created successfully (if not already present).
+2026-06-06 08:40:03 | INFO     | app.scheduler.scheduler:start_scheduler:11 - Starting scheduler...
+2026-06-06 08:40:03 | INFO     | app.scheduler.scheduler:start_scheduler:21 - Scheduler started successfully.
+2026-06-06 08:40:30 | INFO     | app.api.routes.subscriptions:create_subscription:27 - New subscription request: huynhdinh2k52707@gmail.com, subject_code=TOU 361
+2026-06-06 08:40:31 | INFO     | app.services.subscription_service:subscribe_and_notify:540 - New subscription created: huynhdinh2k52707@gmail.com
+2026-06-06 08:40:35 | INFO     | app.services.subscription_service:_create_email_message:303 - Attached file với đuôi chuẩn: Thiết kế & Điều hành Tour Du lịch TOU 361 (B-D-F-H-J) (18_50 28-05-2026).xlsx
+2026-06-06 08:40:48 | INFO     | app.services.subscription_service:_send_email:496 - Email sent successfully to huynhdinh2k52707@gmail.com
+2026-06-06 08:40:49 | ERROR    | app.services.subscription_service:_log_email:515 - Failed to log email: (psycopg2.errors.NotNullViolation) null value in column "exam_schedule_id" of relation "email_logs" violates not-null constraint
+DETAIL:  Failing row contains (10, 31, null, , sent, 2026-06-06 08:40:48.730426, 2026-06-06 01:40:48.289747).
+
+[SQL: INSERT INTO email_logs (subscription_id, exam_schedule_id, email, status, sent_at, created_at) VALUES (%(subscription_id)s, %(exam_schedule_id)s, %(email)s, %(status)s, %(sent_at)s, now()) RETURNING email_logs.id, email_logs.created_at]
+[parameters: {'subscription_id': 31, 'exam_schedule_id': None, 'email': '', 'status': 'sent', 'sent_at': datetime.datetime(2026, 6, 6, 8, 40, 48, 730426)}]
+(Background on this error at: https://sqlalche.me/e/20/gkpj)
+2026-06-06 08:42:16 | INFO     | app.main:lifespan:17 - Shutting down...
+2026-06-06 08:42:16 | INFO     | app.scheduler.scheduler:stop_scheduler:30 - Stopping scheduler...
+2026-06-06 08:42:16 | INFO     | app.scheduler.scheduler:stop_scheduler:32 - Scheduler stopped.
+2026-06-06 08:42:19 | INFO     | app.main:lifespan:11 - Starting up...
+2026-06-06 08:42:19 | INFO     | app.main:lifespan:12 - Creating database tables if they don't exist...
+2026-06-06 08:42:24 | INFO     | app.main:lifespan:14 - Tables created successfully (if not already present).
+2026-06-06 08:42:24 | INFO     | app.scheduler.scheduler:start_scheduler:11 - Starting scheduler...
+2026-06-06 08:42:24 | INFO     | app.scheduler.scheduler:start_scheduler:21 - Scheduler started successfully.
+2026-06-06 08:45:34 | INFO     | app.api.routes.subscriptions:create_subscription:27 - New subscription request: huynhdinh2k52707@gmail.com, subject_code=TOU 361
+2026-06-06 08:45:35 | INFO     | app.services.subscription_service:subscribe_and_notify:493 - New subscription created: huynhdinh2k52707@gmail.com
+2026-06-06 08:45:38 | INFO     | app.services.subscription_service:_create_email_message:303 - Attached file với đuôi chuẩn: Thiết kế & Điều hành Tour Du lịch TOU 361 (B-D-F-H-J) (18_50 28-05-2026).xlsx
+2026-06-06 08:45:52 | INFO     | app.services.subscription_service:_send_email:449 - Email sent successfully to huynhdinh2k52707@gmail.com
+2026-06-06 08:45:53 | ERROR    | app.services.subscription_service:_log_email:468 - Failed to log email: (psycopg2.errors.NotNullViolation) null value in column "exam_schedule_id" of relation "email_logs" violates not-null constraint
+DETAIL:  Failing row contains (11, 32, null, , sent, 2026-06-06 08:45:52.638366, 2026-06-06 01:45:52.224739).
+
+[SQL: INSERT INTO email_logs (subscription_id, exam_schedule_id, email, status, sent_at, created_at) VALUES (%(subscription_id)s, %(exam_schedule_id)s, %(email)s, %(status)s, %(sent_at)s, now()) RETURNING email_logs.id, email_logs.created_at]
+[parameters: {'subscription_id': 32, 'exam_schedule_id': None, 'email': '', 'status': 'sent', 'sent_at': datetime.datetime(2026, 6, 6, 8, 45, 52, 638366)}]
+(Background on this error at: https://sqlalche.me/e/20/gkpj)
+2026-06-06 08:52:58 | INFO     | app.main:lifespan:17 - Shutting down...
+2026-06-06 08:52:58 | INFO     | app.scheduler.scheduler:stop_scheduler:30 - Stopping scheduler...
+2026-06-06 08:52:58 | INFO     | app.scheduler.scheduler:stop_scheduler:32 - Scheduler stopped.
+2026-06-06 08:53:01 | INFO     | app.main:lifespan:11 - Starting up...
+2026-06-06 08:53:01 | INFO     | app.main:lifespan:12 - Creating database tables if they don't exist...
+2026-06-06 08:53:06 | INFO     | app.main:lifespan:14 - Tables created successfully (if not already present).
+2026-06-06 08:53:06 | INFO     | app.scheduler.scheduler:start_scheduler:11 - Starting scheduler...
+2026-06-06 08:53:06 | INFO     | app.scheduler.scheduler:start_scheduler:21 - Scheduler started successfully.
+2026-06-06 08:53:17 | INFO     | app.api.routes.subscriptions:create_subscription:27 - New subscription request: huynhdinh2k52707@gmail.com, subject_code=TOU 361
+2026-06-06 08:53:19 | INFO     | app.services.subscription_service:subscribe_and_notify:783 - New subscription created: huynhdinh2k52707@gmail.com
+2026-06-06 08:53:22 | INFO     | app.services.subscription_service:_create_email_message:303 - Attached file với đuôi chuẩn: Thiết kế & Điều hành Tour Du lịch TOU 361 (B-D-F-H-J) (18_50 28-05-2026).xlsx
+2026-06-06 08:53:36 | INFO     | app.services.subscription_service:_send_email:739 - Email sent successfully to huynhdinh2k52707@gmail.com
+2026-06-06 08:53:37 | ERROR    | app.services.subscription_service:_log_email:758 - Failed to log email: (psycopg2.errors.NotNullViolation) null value in column "exam_schedule_id" of relation "email_logs" violates not-null constraint
+DETAIL:  Failing row contains (12, 33, null, , sent, 2026-06-06 08:53:36.542419, 2026-06-06 01:53:36.128192).
+
+[SQL: INSERT INTO email_logs (subscription_id, exam_schedule_id, email, status, sent_at, created_at) VALUES (%(subscription_id)s, %(exam_schedule_id)s, %(email)s, %(status)s, %(sent_at)s, now()) RETURNING email_logs.id, email_logs.created_at]
+[parameters: {'subscription_id': 33, 'exam_schedule_id': None, 'email': '', 'status': 'sent', 'sent_at': datetime.datetime(2026, 6, 6, 8, 53, 36, 542419)}]
+(Background on this error at: https://sqlalche.me/e/20/gkpj)
+2026-06-06 09:00:52 | INFO     | app.main:lifespan:17 - Shutting down...
+2026-06-06 09:00:52 | INFO     | app.scheduler.scheduler:stop_scheduler:30 - Stopping scheduler...
+2026-06-06 09:00:52 | INFO     | app.scheduler.scheduler:stop_scheduler:32 - Scheduler stopped.
+2026-06-06 09:00:54 | INFO     | app.main:lifespan:11 - Starting up...
+2026-06-06 09:00:54 | INFO     | app.main:lifespan:12 - Creating database tables if they don't exist...
+2026-06-06 09:00:59 | INFO     | app.main:lifespan:14 - Tables created successfully (if not already present).
+2026-06-06 09:00:59 | INFO     | app.scheduler.scheduler:start_scheduler:11 - Starting scheduler...
+2026-06-06 09:00:59 | INFO     | app.scheduler.scheduler:start_scheduler:21 - Scheduler started successfully.
+2026-06-06 09:05:50 | INFO     | app.api.routes.files:get_exam_files:26 - Fetching exam files: page=1, page_size=15
+2026-06-06 09:05:51 | INFO     | app.api.routes.files:get_exam_files:26 - Fetching exam files: page=1, page_size=15
+2026-06-06 09:06:08 | INFO     | app.api.routes.files:get_exam_files:26 - Fetching exam files: page=1, page_size=15
+2026-06-06 09:06:08 | INFO     | app.api.routes.files:get_exam_files:26 - Fetching exam files: page=1, page_size=15
+2026-06-06 09:06:11 | INFO     | app.api.routes.files:get_exam_files:26 - Fetching exam files: page=1, page_size=15
+2026-06-06 09:06:12 | INFO     | app.api.routes.files:get_exam_files:26 - Fetching exam files: page=1, page_size=15
+2026-06-06 09:06:12 | INFO     | app.api.routes.files:get_exam_files:26 - Fetching exam files: page=1, page_size=15
+2026-06-06 09:06:14 | INFO     | app.api.routes.files:get_exam_files:26 - Fetching exam files: page=1, page_size=15
+2026-06-06 09:07:43 | INFO     | app.api.routes.subscriptions:create_subscription:27 - New subscription request: huynhdinh2k52707@gmail.com, subject_code=KOR 206
+2026-06-06 09:07:45 | INFO     | app.services.subscription_service:subscribe_and_notify:783 - New subscription created: huynhdinh2k52707@gmail.com
+2026-06-06 09:07:48 | INFO     | app.services.subscription_service:_download_excel_file:77 - Downloaded Excel file: Đọc 2 - KOR 206 (B-D-F-H-J-L) (08:19 29/05/2026) as Đọc 2 - KOR 206 (B-D-F-H-J-L) (08_19 29-05-2026)
+2026-06-06 09:07:48 | ERROR    | app.services.subscription_service:_extract_user_exam_info:251 - Lỗi khi xử lý trích xuất file Excel storage\excel\Đọc 2 - KOR 206 (B-D-F-H-J-L) (08_19 29-05-2026): Excel file format cannot be determined, you must specify an engine manually.
+2026-06-06 09:07:48 | INFO     | app.services.subscription_service:_create_email_message:303 - Attached file với đuôi chuẩn: Đọc 2 - KOR 206 (B-D-F-H-J-L) (08_19 29-05-2026).xlsx
+2026-06-06 09:07:57 | INFO     | app.services.subscription_service:_send_email:739 - Email sent successfully to huynhdinh2k52707@gmail.com
+2026-06-06 09:15:24 | INFO     | app.api.routes.files:get_exam_files:26 - Fetching exam files: page=1, page_size=15
+2026-06-06 09:15:25 | INFO     | app.api.routes.files:get_exam_files:26 - Fetching exam files: page=1, page_size=15
+2026-06-06 14:45:06 | INFO     | app.api.routes.files:get_exam_files:26 - Fetching exam files: page=1, page_size=15
+2026-06-06 14:45:09 | INFO     | app.api.routes.files:get_exam_files:26 - Fetching exam files: page=1, page_size=15
