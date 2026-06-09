@@ -40,7 +40,7 @@ class SubscriptionService:
             "smtp_user": os.getenv("SMTP_EMAIL"),
             "smtp_password": os.getenv("SMTP_PASSWORD"),
             "from_email": os.getenv("FROM_EMAIL", os.getenv("SMTP_EMAIL")),
-            "from_name": os.getenv("FROM_NAME", "Hệ thống Thông báo Danh Sách Thi"),
+            "from_name": os.getenv("FROM_NAME", "Thông báo Danh Sách Thi"),
         }
 
     def _sanitize_filename(self, filename: str) -> str:
@@ -91,24 +91,29 @@ class SubscriptionService:
 
     def _find_matching_exam_files(self, subject_code: Optional[str], subject_name: Optional[str]) -> List[ExamFile]:
         """
-        Find exam files that match the given subject code and/or subject name.
-        Searches in the file_name field which contains subject information.
+        Tìm kiếm file thi thông minh:
+        Tách mã môn và mã lớp thành các từ độc lập để tránh lỗi gãy kí tự dấu ngoặc ( ) của DTU.
+        Ví dụ: "pos 351 l" -> Sẽ tìm file chứa cả từ "pos", "351" và "l".
         """
         query = self.db.query(ExamFile)
 
+        # ĐÃ SỬA: Bộ lọc mã môn học thông minh bằng toán tử AND liên tiếp
         if subject_code:
-            query = query.filter(ExamFile.file_name.ilike(f"%{subject_code}%"))
+            # Tách chuỗi (Ví dụ: "pos 351 l" -> ["pos", "351", "l"])
+            code_parts = subject_code.strip().split()
+            for part in code_parts:
+                if part:
+                    # Ép điều kiện lọc nối tầng (Mỗi từ bắt buộc phải xuất hiện trong tên file)
+                    query = query.filter(ExamFile.file_name.ilike(f"%{part}%"))
 
         if subject_name:
             query = query.filter(ExamFile.file_name.ilike(f"%{subject_name}%"))
 
-        # If no filters provided, return all files
+        # Nếu không có bộ lọc nào, trả về 10 file mới nhất như cũ
         if not subject_code and not subject_name:
             return query.order_by(ExamFile.crawl_time.desc()).limit(10).all()
 
         return query.order_by(ExamFile.crawl_time.desc()).all()
-
-    log = logging.getLogger(__name__)
 
     def _extract_user_exam_info(self, excel_file_path: str, user_full_name: str) -> list:
         """

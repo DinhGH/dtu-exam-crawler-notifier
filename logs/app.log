@@ -6063,3 +6063,115 @@ DETAIL:  Failing row contains (18, 43, null, , sent, 2026-06-09 11:21:26.560798,
 2026-06-09 18:47:17 | INFO     | app.api.routes.subscriptions:get_subscriptions:52 - Fetching subscriptions: skip=0, limit=200
 2026-06-09 18:47:24 | INFO     | app.api.routes.subscriptions:delete_subscription:142 - Deleting subscription id=23
 2026-06-09 18:47:25 | INFO     | app.api.routes.subscriptions:get_subscriptions:52 - Fetching subscriptions: skip=0, limit=200
+2026-06-09 19:46:05 | INFO     | app.main:lifespan:11 - Starting up...
+2026-06-09 19:46:05 | INFO     | app.main:lifespan:12 - Creating database tables if they don't exist...
+2026-06-09 19:46:11 | INFO     | app.main:lifespan:14 - Tables created successfully (if not already present).
+2026-06-09 19:46:11 | INFO     | app.scheduler.scheduler:start_scheduler:11 - Starting scheduler...
+2026-06-09 19:46:11 | INFO     | app.scheduler.scheduler:start_scheduler:21 - Scheduler started successfully.
+2026-06-09 19:46:33 | INFO     | app.api.routes.subscriptions:get_subscriptions:52 - Fetching subscriptions: skip=0, limit=200
+2026-06-09 19:46:38 | INFO     | app.api.routes.subscriptions:delete_subscription:142 - Deleting subscription id=42
+2026-06-09 19:46:38 | INFO     | app.api.routes.subscriptions:get_subscriptions:52 - Fetching subscriptions: skip=0, limit=200
+2026-06-09 19:46:41 | INFO     | app.api.routes.subscriptions:delete_subscription:142 - Deleting subscription id=17
+2026-06-09 19:46:42 | INFO     | app.api.routes.subscriptions:get_subscriptions:52 - Fetching subscriptions: skip=0, limit=200
+2026-06-09 19:46:44 | INFO     | app.api.routes.subscriptions:delete_subscription:142 - Deleting subscription id=16
+2026-06-09 19:46:45 | INFO     | app.api.routes.subscriptions:get_subscriptions:52 - Fetching subscriptions: skip=0, limit=200
+2026-06-09 19:46:47 | INFO     | app.api.routes.subscriptions:delete_subscription:142 - Deleting subscription id=10
+2026-06-09 19:46:48 | INFO     | app.api.routes.subscriptions:get_subscriptions:52 - Fetching subscriptions: skip=0, limit=200
+2026-06-09 19:46:50 | INFO     | app.api.routes.subscriptions:delete_subscription:142 - Deleting subscription id=11
+2026-06-09 19:46:51 | INFO     | app.api.routes.subscriptions:get_subscriptions:52 - Fetching subscriptions: skip=0, limit=200
+2026-06-09 19:46:54 | INFO     | app.api.routes.subscriptions:delete_subscription:142 - Deleting subscription id=13
+2026-06-09 19:46:56 | INFO     | app.api.routes.subscriptions:get_subscriptions:52 - Fetching subscriptions: skip=0, limit=200
+2026-06-09 19:46:58 | INFO     | app.api.routes.subscriptions:delete_subscription:142 - Deleting subscription id=18
+2026-06-09 19:46:59 | INFO     | app.api.routes.subscriptions:get_subscriptions:52 - Fetching subscriptions: skip=0, limit=200
+2026-06-09 19:47:14 | INFO     | app.api.routes.subscriptions:create_subscription:27 - New subscription request: huynhdinh2k52707@gmail.com, subject_code=pos 351
+2026-06-09 19:47:15 | INFO     | app.services.subscription_service:subscribe_and_notify:900 - New subscription created: huynhdinh2k52707@gmail.com
+2026-06-09 19:47:18 | INFO     | app.services.subscription_service:_download_excel_file:85 - Downloaded Excel file: Chủ nghĩa Xã hội Khoa học POS 351 (R-V) (08:12 28/05/2026) as Chủ nghĩa Xã hội Khoa học POS 351 (R-V) (08_12 28-05-2026)
+2026-06-09 19:47:23 | INFO     | app.services.subscription_service:_download_excel_file:85 - Downloaded Excel file: Chủ nghĩa Xã hội Khoa học POS 351 (L-P-T) (17:17 29/05/2026) as Chủ nghĩa Xã hội Khoa học POS 351 (L-P-T) (17_17 29-05-2026)
+2026-06-09 19:47:26 | INFO     | app.services.subscription_service:_create_email_message:420 - Attached file với đuôi chuẩn: Chủ nghĩa Xã hội Khoa học POS 351 (R-V) (08_12 28-05-2026).xlsx
+2026-06-09 19:47:26 | INFO     | app.services.subscription_service:_create_email_message:420 - Attached file với đuôi chuẩn: Chủ nghĩa Xã hội Khoa học POS 351 (L-P-T) (17_17 29-05-2026).xlsx
+2026-06-09 19:47:48 | INFO     | app.services.subscription_service:_send_email:856 - Email sent successfully to huynhdinh2k52707@gmail.com
+2026-06-09 19:47:49 | ERROR    | app.services.subscription_service:_log_email:875 - Failed to log email: (psycopg2.errors.NotNullViolation) null value in column "exam_schedule_id" of relation "email_logs" violates not-null constraint
+DETAIL:  Failing row contains (19, 44, null, , sent, 2026-06-09 19:47:49.162924, 2026-06-09 12:47:48.067285).
+
+[SQL: INSERT INTO email_logs (subscription_id, exam_schedule_id, email, status, sent_at, created_at) VALUES (%(subscription_id)s, %(exam_schedule_id)s, %(email)s, %(status)s, %(sent_at)s, now()) RETURNING email_logs.id, email_logs.created_at]
+[parameters: {'subscription_id': 44, 'exam_schedule_id': None, 'email': '', 'status': 'sent', 'sent_at': datetime.datetime(2026, 6, 9, 19, 47, 49, 162924)}]
+(Background on this error at: https://sqlalche.me/e/20/gkpj)
+2026-06-09 19:47:50 | INFO     | app.api.routes.subscriptions:get_subscriptions:52 - Fetching subscriptions: skip=0, limit=200
+2026-06-09 19:49:57 | INFO     | app.api.routes.subscriptions:create_subscription:27 - New subscription request: huynhdinh2k52707@gmail.com, subject_code=pos 351 l
+2026-06-09 19:49:59 | INFO     | app.services.subscription_service:subscribe_and_notify:900 - New subscription created: huynhdinh2k52707@gmail.com
+2026-06-09 19:49:59 | WARNING  | app.services.subscription_service:subscribe_and_notify:906 - No exam files found for subscription 45
+2026-06-09 19:49:59 | INFO     | app.api.routes.subscriptions:get_subscriptions:52 - Fetching subscriptions: skip=0, limit=200
+2026-06-09 19:50:53 | INFO     | app.api.routes.subscriptions:create_subscription:27 - New subscription request: huynhdinh2k52707@gmail.com, subject_code=pos 351
+2026-06-09 19:50:55 | INFO     | app.services.subscription_service:subscribe_and_notify:900 - New subscription created: huynhdinh2k52707@gmail.com
+2026-06-09 19:51:00 | INFO     | app.services.subscription_service:_create_email_message:420 - Attached file với đuôi chuẩn: Chủ nghĩa Xã hội Khoa học POS 351 (R-V) (08_12 28-05-2026).xlsx
+2026-06-09 19:51:00 | INFO     | app.services.subscription_service:_create_email_message:420 - Attached file với đuôi chuẩn: Chủ nghĩa Xã hội Khoa học POS 351 (L-P-T) (17_17 29-05-2026).xlsx
+2026-06-09 19:51:22 | INFO     | app.services.subscription_service:_send_email:856 - Email sent successfully to huynhdinh2k52707@gmail.com
+2026-06-09 19:51:23 | ERROR    | app.services.subscription_service:_log_email:875 - Failed to log email: (psycopg2.errors.NotNullViolation) null value in column "exam_schedule_id" of relation "email_logs" violates not-null constraint
+DETAIL:  Failing row contains (20, 46, null, , sent, 2026-06-09 19:51:22.60643, 2026-06-09 12:51:21.584104).
+
+[SQL: INSERT INTO email_logs (subscription_id, exam_schedule_id, email, status, sent_at, created_at) VALUES (%(subscription_id)s, %(exam_schedule_id)s, %(email)s, %(status)s, %(sent_at)s, now()) RETURNING email_logs.id, email_logs.created_at]
+[parameters: {'subscription_id': 46, 'exam_schedule_id': None, 'email': '', 'status': 'sent', 'sent_at': datetime.datetime(2026, 6, 9, 19, 51, 22, 606430)}]
+(Background on this error at: https://sqlalche.me/e/20/gkpj)
+2026-06-09 19:51:23 | INFO     | app.api.routes.subscriptions:get_subscriptions:52 - Fetching subscriptions: skip=0, limit=200
+2026-06-09 19:53:41 | INFO     | app.main:lifespan:17 - Shutting down...
+2026-06-09 19:53:41 | INFO     | app.scheduler.scheduler:stop_scheduler:30 - Stopping scheduler...
+2026-06-09 19:53:41 | INFO     | app.scheduler.scheduler:stop_scheduler:32 - Scheduler stopped.
+2026-06-09 19:53:44 | INFO     | app.main:lifespan:11 - Starting up...
+2026-06-09 19:53:44 | INFO     | app.main:lifespan:12 - Creating database tables if they don't exist...
+2026-06-09 19:53:50 | INFO     | app.main:lifespan:14 - Tables created successfully (if not already present).
+2026-06-09 19:53:50 | INFO     | app.scheduler.scheduler:start_scheduler:11 - Starting scheduler...
+2026-06-09 19:53:50 | INFO     | app.scheduler.scheduler:start_scheduler:21 - Scheduler started successfully.
+2026-06-09 20:51:07 | INFO     | app.api.routes.files:get_exam_files:28 - Fetching exam files: page=1, page_size=15, q=None
+2026-06-09 20:51:08 | INFO     | app.api.routes.files:get_exam_files:28 - Fetching exam files: page=1, page_size=15, q=None
+2026-06-09 20:53:50 | INFO     | app.scheduler.jobs:crawl_and_process_job:13 - Starting scheduled crawl job...
+2026-06-09 20:57:47 | INFO     | app.scheduler.jobs:crawl_and_process_job:21 - Successfully crawled and updated 105 files to database.
+2026-06-09 20:57:47 | INFO     | app.scheduler.jobs:crawl_and_process_job:31 - Scheduled crawl job finished.
+2026-06-09 21:58:26 | INFO     | app.api.routes.files:get_exam_files:28 - Fetching exam files: page=1, page_size=15, q=None
+2026-06-09 21:58:27 | INFO     | app.api.routes.files:get_exam_files:28 - Fetching exam files: page=1, page_size=15, q=None
+2026-06-09 21:58:32 | INFO     | app.api.routes.subscriptions:get_subscriptions:52 - Fetching subscriptions: skip=0, limit=200
+2026-06-09 21:58:36 | INFO     | app.api.routes.subscriptions:delete_subscription:142 - Deleting subscription id=15
+2026-06-09 21:58:37 | INFO     | app.api.routes.subscriptions:get_subscriptions:52 - Fetching subscriptions: skip=0, limit=200
+2026-06-09 21:58:39 | INFO     | app.api.routes.subscriptions:delete_subscription:142 - Deleting subscription id=19
+2026-06-09 21:58:40 | INFO     | app.api.routes.subscriptions:get_subscriptions:52 - Fetching subscriptions: skip=0, limit=200
+2026-06-09 21:58:42 | INFO     | app.api.routes.subscriptions:delete_subscription:142 - Deleting subscription id=20
+2026-06-09 21:58:43 | INFO     | app.api.routes.subscriptions:get_subscriptions:52 - Fetching subscriptions: skip=0, limit=200
+2026-06-09 21:58:45 | INFO     | app.api.routes.subscriptions:delete_subscription:142 - Deleting subscription id=21
+2026-06-09 21:58:46 | INFO     | app.api.routes.subscriptions:get_subscriptions:52 - Fetching subscriptions: skip=0, limit=200
+2026-06-09 21:58:50 | INFO     | app.api.routes.subscriptions:delete_subscription:142 - Deleting subscription id=41
+2026-06-09 21:58:51 | INFO     | app.api.routes.subscriptions:get_subscriptions:52 - Fetching subscriptions: skip=0, limit=200
+2026-06-09 21:58:53 | INFO     | app.api.routes.subscriptions:delete_subscription:142 - Deleting subscription id=22
+2026-06-09 21:58:54 | INFO     | app.api.routes.subscriptions:get_subscriptions:52 - Fetching subscriptions: skip=0, limit=200
+2026-06-09 21:58:56 | INFO     | app.api.routes.subscriptions:delete_subscription:142 - Deleting subscription id=29
+2026-06-09 21:58:57 | INFO     | app.api.routes.subscriptions:get_subscriptions:52 - Fetching subscriptions: skip=0, limit=200
+2026-06-09 21:58:59 | INFO     | app.api.routes.subscriptions:delete_subscription:142 - Deleting subscription id=30
+2026-06-09 21:59:00 | INFO     | app.api.routes.subscriptions:get_subscriptions:52 - Fetching subscriptions: skip=0, limit=200
+2026-06-09 21:59:36 | INFO     | app.api.routes.subscriptions:create_subscription:27 - New subscription request: huynhdinh2k52707@gmail.com, subject_code=pos 351 l
+2026-06-09 21:59:38 | INFO     | app.services.subscription_service:subscribe_and_notify:900 - New subscription created: huynhdinh2k52707@gmail.com
+2026-06-09 21:59:38 | WARNING  | app.services.subscription_service:subscribe_and_notify:906 - No exam files found for subscription 47
+2026-06-09 21:59:38 | INFO     | app.api.routes.subscriptions:get_subscriptions:52 - Fetching subscriptions: skip=0, limit=200
+2026-06-09 22:01:00 | INFO     | app.api.routes.subscriptions:create_subscription:27 - New subscription request: huynhdinh2k52707@gmail.com, subject_code=pos 351 l
+2026-06-09 22:01:01 | INFO     | app.services.subscription_service:subscribe_and_notify:900 - New subscription created: huynhdinh2k52707@gmail.com
+2026-06-09 22:01:01 | WARNING  | app.services.subscription_service:subscribe_and_notify:906 - No exam files found for subscription 48
+2026-06-09 22:01:01 | INFO     | app.api.routes.subscriptions:get_subscriptions:52 - Fetching subscriptions: skip=0, limit=200
+2026-06-09 22:01:29 | INFO     | app.api.routes.subscriptions:get_subscriptions:52 - Fetching subscriptions: skip=0, limit=200
+2026-06-09 22:01:35 | INFO     | app.api.routes.subscriptions:delete_subscription:142 - Deleting subscription id=24
+2026-06-09 22:01:37 | INFO     | app.api.routes.subscriptions:get_subscriptions:52 - Fetching subscriptions: skip=0, limit=200
+2026-06-09 22:01:39 | INFO     | app.api.routes.subscriptions:delete_subscription:142 - Deleting subscription id=28
+2026-06-09 22:01:40 | INFO     | app.api.routes.subscriptions:get_subscriptions:52 - Fetching subscriptions: skip=0, limit=200
+2026-06-09 22:01:42 | INFO     | app.api.routes.subscriptions:delete_subscription:142 - Deleting subscription id=32
+2026-06-09 22:01:43 | INFO     | app.api.routes.subscriptions:get_subscriptions:52 - Fetching subscriptions: skip=0, limit=200
+2026-06-09 22:06:42 | INFO     | app.api.routes.subscriptions:create_subscription:27 - New subscription request: huynhdinh2k52707@gmail.com, subject_code=pos 351
+2026-06-09 22:06:44 | INFO     | app.services.subscription_service:subscribe_and_notify:900 - New subscription created: huynhdinh2k52707@gmail.com
+2026-06-09 22:06:51 | INFO     | app.services.subscription_service:_create_email_message:420 - Attached file với đuôi chuẩn: Chủ nghĩa Xã hội Khoa học POS 351 (R-V) (08_12 28-05-2026).xlsx
+2026-06-09 22:06:51 | INFO     | app.services.subscription_service:_create_email_message:420 - Attached file với đuôi chuẩn: Chủ nghĩa Xã hội Khoa học POS 351 (L-P-T) (17_17 29-05-2026).xlsx
+2026-06-09 22:07:15 | INFO     | app.services.subscription_service:_send_email:856 - Email sent successfully to huynhdinh2k52707@gmail.com
+2026-06-09 22:07:16 | ERROR    | app.services.subscription_service:_log_email:875 - Failed to log email: (psycopg2.errors.NotNullViolation) null value in column "exam_schedule_id" of relation "email_logs" violates not-null constraint
+DETAIL:  Failing row contains (21, 49, null, , sent, 2026-06-09 22:07:16.321271, 2026-06-09 15:07:15.675893).
+
+[SQL: INSERT INTO email_logs (subscription_id, exam_schedule_id, email, status, sent_at, created_at) VALUES (%(subscription_id)s, %(exam_schedule_id)s, %(email)s, %(status)s, %(sent_at)s, now()) RETURNING email_logs.id, email_logs.created_at]
+[parameters: {'subscription_id': 49, 'exam_schedule_id': None, 'email': '', 'status': 'sent', 'sent_at': datetime.datetime(2026, 6, 9, 22, 7, 16, 321271)}]
+(Background on this error at: https://sqlalche.me/e/20/gkpj)
+2026-06-09 22:07:17 | INFO     | app.api.routes.subscriptions:get_subscriptions:52 - Fetching subscriptions: skip=0, limit=200
+2026-06-09 22:13:38 | INFO     | app.main:lifespan:17 - Shutting down...
+2026-06-09 22:13:38 | INFO     | app.scheduler.scheduler:stop_scheduler:30 - Stopping scheduler...
+2026-06-09 22:13:38 | INFO     | app.scheduler.scheduler:stop_scheduler:32 - Scheduler stopped.

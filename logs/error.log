@@ -3326,3 +3326,21 @@ DETAIL:  Failing row contains (18, 43, null, , sent, 2026-06-09 11:21:26.560798,
 2026-06-09 13:00:40 | ERROR    | app.services.file_service:process_file:105 - Unsupported file type: storage\excel\Toán Rời Rạc & Ứng Dụng MTH 254 (BB-J-L-R-T-V-X-Z) (09_20 29-05-2026)
 2026-06-09 13:00:41 | ERROR    | app.services.file_service:process_file:105 - Unsupported file type: storage\excel\Kỹ Thuật Thương Mại Điện Tử IS 385 (BB-BL-BP-BX-N-V) (09_21 29-05-2026)
 2026-06-09 13:00:42 | ERROR    | app.services.file_service:process_file:105 - Unsupported file type: storage\excel\Lập Trình Ứng Dụng cho các Thiết Bị Di Động CR 424 (B-D-F) (09_22 29-05-2026)
+2026-06-09 19:47:49 | ERROR    | app.services.subscription_service:_log_email:875 - Failed to log email: (psycopg2.errors.NotNullViolation) null value in column "exam_schedule_id" of relation "email_logs" violates not-null constraint
+DETAIL:  Failing row contains (19, 44, null, , sent, 2026-06-09 19:47:49.162924, 2026-06-09 12:47:48.067285).
+
+[SQL: INSERT INTO email_logs (subscription_id, exam_schedule_id, email, status, sent_at, created_at) VALUES (%(subscription_id)s, %(exam_schedule_id)s, %(email)s, %(status)s, %(sent_at)s, now()) RETURNING email_logs.id, email_logs.created_at]
+[parameters: {'subscription_id': 44, 'exam_schedule_id': None, 'email': '', 'status': 'sent', 'sent_at': datetime.datetime(2026, 6, 9, 19, 47, 49, 162924)}]
+(Background on this error at: https://sqlalche.me/e/20/gkpj)
+2026-06-09 19:51:23 | ERROR    | app.services.subscription_service:_log_email:875 - Failed to log email: (psycopg2.errors.NotNullViolation) null value in column "exam_schedule_id" of relation "email_logs" violates not-null constraint
+DETAIL:  Failing row contains (20, 46, null, , sent, 2026-06-09 19:51:22.60643, 2026-06-09 12:51:21.584104).
+
+[SQL: INSERT INTO email_logs (subscription_id, exam_schedule_id, email, status, sent_at, created_at) VALUES (%(subscription_id)s, %(exam_schedule_id)s, %(email)s, %(status)s, %(sent_at)s, now()) RETURNING email_logs.id, email_logs.created_at]
+[parameters: {'subscription_id': 46, 'exam_schedule_id': None, 'email': '', 'status': 'sent', 'sent_at': datetime.datetime(2026, 6, 9, 19, 51, 22, 606430)}]
+(Background on this error at: https://sqlalche.me/e/20/gkpj)
+2026-06-09 22:07:16 | ERROR    | app.services.subscription_service:_log_email:875 - Failed to log email: (psycopg2.errors.NotNullViolation) null value in column "exam_schedule_id" of relation "email_logs" violates not-null constraint
+DETAIL:  Failing row contains (21, 49, null, , sent, 2026-06-09 22:07:16.321271, 2026-06-09 15:07:15.675893).
+
+[SQL: INSERT INTO email_logs (subscription_id, exam_schedule_id, email, status, sent_at, created_at) VALUES (%(subscription_id)s, %(exam_schedule_id)s, %(email)s, %(status)s, %(sent_at)s, now()) RETURNING email_logs.id, email_logs.created_at]
+[parameters: {'subscription_id': 49, 'exam_schedule_id': None, 'email': '', 'status': 'sent', 'sent_at': datetime.datetime(2026, 6, 9, 22, 7, 16, 321271)}]
+(Background on this error at: https://sqlalche.me/e/20/gkpj)
