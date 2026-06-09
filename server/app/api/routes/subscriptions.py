@@ -1,6 +1,6 @@
-from fastapi import APIRouter, Depends, HTTPException
+from fastapi import APIRouter, Depends, HTTPException, status
 from sqlalchemy.orm import Session
-from typing import List
+from typing import List, Optional
 from app.core.database import get_db
 from app.models.subscription import Subscription
 from app.services.subscription_service import SubscriptionService
@@ -74,4 +74,84 @@ def get_subscription_by_email(
         return subscriptions
     except Exception as e:
         log.error(f"Error fetching subscription: {e}")
+        raise HTTPException(status_code=500, detail=str(e))
+
+
+@router.get("/{subscription_id}", response_model=SubscriptionResponse)
+def get_subscription_by_id(
+    subscription_id: int,
+    db: Session = Depends(get_db),
+):
+    """
+    Retrieve a single subscription by ID.
+    """
+    log.info(f"Fetching subscription id={subscription_id}")
+    try:
+        subscription = db.query(Subscription).filter(Subscription.id == subscription_id).first()
+        if not subscription:
+            raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Subscription not found")
+        return subscription
+    except HTTPException:
+        raise
+    except Exception as e:
+        log.error(f"Error fetching subscription by id: {e}")
+        raise HTTPException(status_code=500, detail=str(e))
+
+
+@router.put("/{subscription_id}", response_model=SubscriptionResponse)
+def update_subscription(
+    subscription_id: int,
+    payload: SubscriptionCreate,
+    db: Session = Depends(get_db),
+):
+    """
+    Update an existing subscription.
+    """
+    log.info(f"Updating subscription id={subscription_id}")
+    try:
+        subscription = db.query(Subscription).filter(Subscription.id == subscription_id).first()
+        if not subscription:
+            raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Subscription not found")
+
+        subscription.full_name = payload.full_name
+        subscription.email = payload.email
+        subscription.subject_code = payload.subject_code
+        subscription.subject_name = payload.subject_name
+
+        db.add(subscription)
+        db.commit()
+        db.refresh(subscription)
+
+        return subscription
+    except HTTPException:
+        raise
+    except Exception as e:
+        log.error(f"Error updating subscription: {e}")
+        db.rollback()
+        raise HTTPException(status_code=500, detail=str(e))
+
+
+@router.delete("/{subscription_id}", response_model=dict)
+def delete_subscription(
+    subscription_id: int,
+    db: Session = Depends(get_db),
+):
+    """
+    Delete a subscription by ID.
+    """
+    log.info(f"Deleting subscription id={subscription_id}")
+    try:
+        subscription = db.query(Subscription).filter(Subscription.id == subscription_id).first()
+        if not subscription:
+            raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Subscription not found")
+
+        db.delete(subscription)
+        db.commit()
+
+        return {"success": True, "message": "Subscription deleted"}
+    except HTTPException:
+        raise
+    except Exception as e:
+        log.error(f"Error deleting subscription: {e}")
+        db.rollback()
         raise HTTPException(status_code=500, detail=str(e))

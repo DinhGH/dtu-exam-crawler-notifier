@@ -1,10 +1,15 @@
 import apiClient from "./apiClient";
 
 export const fileService = {
-  async getFiles(page = 1, pageSize = 10) {
-    const res = await apiClient.get(
-      `/files?page=${page}&page_size=${pageSize}`,
-    );
+  async getFiles(page = 1, pageSize = 10, q = "") {
+    const params = new URLSearchParams({
+      page,
+      page_size: pageSize,
+    });
+    if (q) {
+      params.append("q", q);
+    }
+    const res = await apiClient.get(`/files?${params.toString()}`);
 
     return res.data;
   },

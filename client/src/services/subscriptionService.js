@@ -9,7 +9,7 @@ export const subscriptionService = {
       subject_name: data.subjectName,
     };
 
-    const response = apiClient.post("/subscriptions", dataToSend);
+    const response = await apiClient.post("/subscriptions", dataToSend);
     return response.data;
   },
 
@@ -22,6 +22,27 @@ export const subscriptionService = {
 
   async getSubscriptionByEmail(email) {
     const response = await apiClient.get(`/subscriptions/email/${email}`);
+    return response.data;
+  },
+
+  async getSubscriptionById(id) {
+    const response = await apiClient.get(`/subscriptions/${id}`);
+    return response.data;
+  },
+
+  async updateSubscription(id, data) {
+    const payload = {
+      full_name: data.fullName,
+      email: data.email,
+      subject_code: data.subjectCode,
+      subject_name: data.subjectName,
+    };
+    const response = await apiClient.put(`/subscriptions/${id}`, payload);
+    return response.data;
+  },
+
+  async deleteSubscription(id) {
+    const response = await apiClient.delete(`/subscriptions/${id}`);
     return response.data;
   },
 };

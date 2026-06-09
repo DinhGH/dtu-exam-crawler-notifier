@@ -19,13 +19,34 @@ def get_exam_files(
     db: Session = Depends(get_db),
     page: int = Query(1, ge=1),
     page_size: int = Query(15, ge=1, le=105),
+    q: str | None = Query(None, description="Search query to match file name or subject code"),
 ):
     """
     Retrieve a paginated list of crawled exam files.
+    Supports optional search by file name or exam subject code.
     """
-    log.info(f"Fetching exam files: page={page}, page_size={page_size}")
+    log.info(f"Fetching exam files: page={page}, page_size={page_size}, q={q!r}")
     
-    query = db.query(ExamFile).order_by(ExamFile.crawl_time.asc())
+    query = db.query(ExamFile)
+    
+    # If a search query is provided, filter by file_name (case-insensitive)
+    # and by exam_subject_code if that attribute exists on the model/table.
+    if q and q.strip():
+        q_val = f"%{q.strip()}%"
+        try:
+            # Try to filter by both file_name and exam_subject_code (if present)
+            if hasattr(ExamFile, "exam_subject_code"):
+                query = query.filter(
+                    (ExamFile.file_name.ilike(q_val)) |
+                    (ExamFile.exam_subject_code.ilike(q_val))
+                )
+            else:
+                query = query.filter(ExamFile.file_name.ilike(q_val))
+        except Exception:
+            # Fallback: only filter by file_name if anything goes wrong
+            query = query.filter(ExamFile.file_name.ilike(q_val))
+    
+    query = query.order_by(ExamFile.crawl_time.asc())
     
     total = query.count()
     items = query.offset((page - 1) * page_size).limit(page_size).all()

@@ -10,7 +10,9 @@ import {
 } from "../../components/ui/Table";
 import { LoadingSpinner } from "../../components/ui/LoadingSpinner";
 import { EmptyState } from "../../components/ui/EmptyState";
-import { FileText, Download, RefreshCw } from "lucide-react";
+import { FileText, Download, RefreshCw, Search } from "lucide-react";
+import { SearchBox } from "../../components/ui/SearchBox";
+import { Button } from "../../components/ui/Button";
 
 const Files = () => {
   const [files, setFiles] = useState([]);
@@ -21,16 +23,17 @@ const Files = () => {
   const [total, setTotal] = useState(0);
   const [crawling, setCrawling] = useState(false);
   const [crawlMessage, setCrawlMessage] = useState("");
+  const [searchQuery, setSearchQuery] = useState("");
 
   useEffect(() => {
     fetchFiles();
-  }, [page]);
+  }, [page, searchQuery]); // Re-fetch on page or search query change
 
   async function fetchFiles() {
     setLoading(true);
 
     try {
-      const data = await fileService.getFiles(page, pageSize);
+      const data = await fileService.getFiles(page, pageSize, searchQuery);
 
       setFiles(data?.items || []);
       setTotal(data?.total || 0);
@@ -48,6 +51,11 @@ const Files = () => {
     } catch (err) {
       console.error("Download error:", err);
     }
+  }
+
+  function handleSearchClick() {
+    setPage(1); // Reset to first page on new search
+    fetchFiles(); // Trigger fetch with new search query
   }
 
   async function handleCrawlLatest() {
@@ -82,26 +90,40 @@ const Files = () => {
     }
   };
 
-  if (loading) {
-    return (
-      <div className="container mx-auto px-4 py-12 flex justify-center">
-        <LoadingSpinner size={48} />
-      </div>
-    );
-  }
   const totalPages = Math.ceil(total / pageSize);
   return (
-    <div className="container mx-auto px-4 py-8">
+    <div className="container mx-auto px-12 py-4">
       <div className="flex justify-between items-center mb-4">
         <h1 className="text-3xl font-bold text-gray-900">Danh sách tệp</h1>
-        <button
-          onClick={handleCrawlLatest}
-          disabled={crawling}
-          className="inline-flex items-center gap-2 px-4 py-2 bg-green-600 text-white rounded-md hover:bg-green-700 transition-colors disabled:opacity-50"
-        >
-          <RefreshCw className={`h-4 w-4 ${crawling ? "animate-spin" : ""}`} />
-          {crawling ? "Đang cào..." : "Cào dữ liệu mới (100 file)"}
-        </button>
+        <div className="flex items-center gap-2">
+          <SearchBox
+            placeholder="Tìm theo tên tệp hoặc mã môn học..."
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+            onKeyDown={(e) => {
+              if (e.key === "Enter") {
+                handleSearchClick();
+              }
+            }}
+            className="w-80"
+          />
+          <Button
+            onClick={handleSearchClick}
+            className="inline-flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-colors"
+          >
+            <Search className="h-4 w-4" /> Tìm
+          </Button>
+          <Button
+            onClick={handleCrawlLatest}
+            disabled={crawling}
+            className="inline-flex items-center gap-2 px-4 py-2 bg-[#1447E6] text-white rounded-md hover:bg-[#1442ce] transition-colors disabled:opacity-50"
+          >
+            <RefreshCw
+              className={`h-4 w-4 ${crawling ? "animate-spin" : ""}`}
+            />
+            {crawling ? "Đang cào..." : "Cào dữ liệu mới"}
+          </Button>
+        </div>
       </div>
 
       {crawlMessage && (
@@ -130,46 +152,59 @@ const Files = () => {
           />
         </div>
       ) : (
-        <div className="bg-white rounded-lg shadow overflow-hidden">
-          <Table>
-            <TableHeader>
-              <TableRow>
-                <TableHead>Tên tệp</TableHead>
-                <TableHead>Ngày cào</TableHead>
-                <TableHead>Hành động</TableHead>
-              </TableRow>
-            </TableHeader>
-            <TableBody>
-              {files.map((f, i) => (
-                <TableRow key={f.id || i} hover>
-                  <TableCell>
-                    <div className="flex items-center gap-2">
-                      <FileText className="h-5 w-5 text-blue-600" />
-                      <div className="font-medium text-gray-900 max-w-2xl truncate">
-                        <span className="font-medium text-gray-900">
-                          {f.file_name}
-                        </span>
-                      </div>
-                    </div>
-                  </TableCell>
-                  <TableCell>
-                    {formatDate(f.crawl_time || f.created_at)}
-                  </TableCell>
-                  <TableCell>
-                    <button
-                      onClick={() =>
-                        handleDownload(f.download_link, f.file_name)
-                      }
-                      className="inline-flex items-center gap-2 px-3 py-1 text-sm bg-blue-600 text-white rounded hover:bg-blue-700 transition-colors"
-                    >
-                      <Download className="h-4 w-4" /> Tải xuống
-                    </button>
-                  </TableCell>
+        <div className="bg-white rounded-lg shadow flex flex-col h-115">
+          <div className="flex-1 overflow-auto min-h-0">
+            <Table>
+              <TableHeader>
+                <TableRow>
+                  <TableHead>Tên tệp</TableHead>
+                  <TableHead>Ngày cào</TableHead>
+                  <TableHead>Hành động</TableHead>
                 </TableRow>
-              ))}
-            </TableBody>
-          </Table>
-          <div className="flex items-center justify-between px-4 py-4 border-t">
+              </TableHeader>
+              <TableBody>
+                {loading ? (
+                  <TableRow>
+                    <TableCell colSpan={3} className="text-center py-8">
+                      <div className="flex-1 flex items-center justify-center">
+                        <LoadingSpinner size={32} />
+                      </div>
+                    </TableCell>
+                  </TableRow>
+                ) : (
+                  files.map((f, i) => (
+                    <TableRow key={f.id || i} hover>
+                      <TableCell>
+                        <div className="flex items-center gap-2">
+                          <FileText className="h-5 w-5 text-blue-600" />
+                          <div className="font-medium text-gray-900 max-w-2xl truncate">
+                            <span className="font-medium text-gray-900">
+                              {f.file_name}
+                            </span>
+                          </div>
+                        </div>
+                      </TableCell>
+                      <TableCell>
+                        {formatDate(f.crawl_time || f.created_at)}
+                      </TableCell>
+                      <TableCell>
+                        <button
+                          onClick={() =>
+                            handleDownload(f.download_link, f.file_name)
+                          }
+                          className="inline-flex items-center gap-2 px-3 py-1 text-sm bg-blue-600 text-white rounded hover:bg-blue-700 transition-colors"
+                        >
+                          <Download className="h-4 w-4" /> Tải xuống
+                        </button>
+                      </TableCell>
+                    </TableRow>
+                  ))
+                )}
+              </TableBody>
+            </Table>
+          </div>
+
+          <div className="flex items-center justify-between px-4 py-2 border-t">
             <div className="text-sm text-gray-600">
               Hiển thị {(page - 1) * pageSize + 1} -{" "}
               {Math.min(page * pageSize, total)} trên {total} tệp

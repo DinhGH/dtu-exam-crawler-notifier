@@ -10,18 +10,16 @@ const Modal = ({ isOpen, onClose, title, children }) => {
       onClick={onClose}
     >
       <div
-        className="relative w-full max-w-2xl rounded-xl bg-white dark:bg-gray-900 shadow-xl"
+        className="relative w-full max-w-2xl rounded-xl bg-white text-black shadow-xl max-h-[85vh] overflow-hidden"
         onClick={(e) => e.stopPropagation()}
       >
-        <div className="flex items-center justify-between border-b border-gray-200 p-4 dark:border-gray-800">
-          <h3 className="text-lg font-semibold text-gray-900 dark:text-gray-100">
-            {title}
-          </h3>
+        <div className="flex items-center justify-between border-b border-slate-200 p-4">
+          <h3 className="text-lg font-semibold text-gray-900">{title}</h3>
           <Button variant="ghost" size="icon" onClick={onClose}>
-            <X className="h-5 w-5" />
+            <X className="h-5 w-5 text-gray-700" />
           </Button>
         </div>
-        <div className="p-6">{children}</div>
+        <div className="p-6 overflow-auto">{children}</div>
       </div>
     </div>
   );
