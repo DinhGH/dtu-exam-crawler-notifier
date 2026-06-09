@@ -20,6 +20,13 @@ from app.utils.logger import log
 from email.header import Header
 import logging
 
+# Import pypdf for PDF processing
+try:
+    from pypdf import PdfReader
+    PDF_SUPPORTED = True
+except ImportError:
+    PDF_SUPPORTED = False
+
 
 
 
@@ -40,13 +47,14 @@ class SubscriptionService:
         """
         Sanitize filename to be valid for Windows file system.
         Replaces invalid characters with underscores.
+        Preserves the file extension.
         """
         # Invalid characters for Windows filenames: < > : " / \ | ? *
         invalid_chars = r'[<>:"|?*]'
         sanitized = re.sub(invalid_chars, '_', filename)
-        # Also replace backslashes with forward slashes
-        sanitized = sanitized.replace('\\', '/')
-        # Replace date format slashes
+        # Remove backslashes (not for path separators, just remove them)
+        sanitized = sanitized.replace('\\', '')
+        # Replace date format slashes (e.g., 31/05/2026 -> 31-05-2026)
         sanitized = re.sub(r'(\d{2})/(\d{2})/(\d{4})', r'\1-\2-\3', sanitized)
         return sanitized
 
@@ -110,6 +118,13 @@ class SubscriptionService:
         - Tìm kiếm sinh viên chính xác từ đầu, giữa đến cuối danh sách.
         - Tự động dừng khi gặp 15 dòng trống liên tiếp để tối ưu hiệu năng.
         """
+        # Determine file type based on extension
+        file_path = Path(excel_file_path)
+        extension = file_path.suffix.lower()
+        
+        if extension == '.pdf':
+            return self._extract_user_exam_info_from_pdf(excel_file_path, user_full_name)
+        
         try:
             # 1. Đọc toàn bộ file Excel dưới dạng bảng thô (Matrix) để tránh cơ chế ngầm của Pandas
             df_raw = pd.read_excel(excel_file_path, header=None)
@@ -255,6 +270,108 @@ class SubscriptionService:
             log.error(f"Lỗi khi xử lý file Excel {excel_file_path}: {e}")
             return []
 
+    def _extract_user_exam_info_from_pdf(self, pdf_file_path: str, user_full_name: str) -> list:
+        """
+        Extract user's exam information from a PDF file.
+        Similar logic to Excel extraction but adapted for PDF text extraction.
+        """
+        if not PDF_SUPPORTED:
+            log.error("PDF support not available. Please install pypdf.")
+            return []
+        
+        try:
+            # Read PDF text
+            reader = PdfReader(pdf_file_path)
+            text = ""
+            for page in reader.pages:
+                text += page.extract_text() + "\n"
+            
+            # Normalize name for searching
+            search_name = " ".join(user_full_name.lower().split())
+            result = []
+            
+            # Track current time and room info
+            current_room_number = ""
+            current_location = ""
+            current_time = ""
+            blank_line_count = 0
+            
+            # Split text into lines
+            lines = text.split('\n')
+            
+            for line in lines:
+                # Clean up the line
+                line_stripped = line.strip()
+                
+                # Check if this is a blank line
+                is_blank = len(line_stripped) == 0
+                
+                if is_blank:
+                    blank_line_count += 1
+                    if blank_line_count >= 10:
+                        break
+                    continue
+                
+                # Reset blank line counter
+                blank_line_count = 0
+                
+                # Check for time and room info
+                time_room_match = re.search(r'Thời\s+gian:\s*(.+?)\s*Phòng:\s*(.+)', line_stripped, re.IGNORECASE)
+                
+                if time_room_match:
+                    current_time = time_room_match.group(1).strip()
+                    room_part = time_room_match.group(2).strip()
+                    current_room_number = re.sub(r'\bnan\b', '', room_part, flags=re.IGNORECASE).strip()
+                    current_room_number = re.sub(r'\s+', ' ', current_room_number).strip()
+                    log.debug(f"Found time/room: {current_time} - {current_room_number}")
+                    continue
+                
+                # Split line into parts (by multiple spaces)
+                parts = re.split(r'\s{2,}', line_stripped)
+                
+                if len(parts) >= 5:
+                    # Try to find student ID (10-12 digits)
+                    student_id = None
+                    for part in parts:
+                        part_stripped = part.strip()
+                        if re.match(r'^\d{10,12}$', part_stripped):
+                            student_id = part_stripped
+                            break
+                    
+                    if student_id:
+                        # Extract student name
+                        student_name = ""
+                        if len(parts) > 3:
+                            part3 = parts[3].strip() if parts[3] else ""
+                            part4 = parts[4].strip() if len(parts) > 4 and parts[4] else ""
+                            
+                            if part3 and part3.lower() != 'nan':
+                                student_name = part3
+                            if part4 and part4.lower() != 'nan':
+                                student_name = f"{student_name} {part4}" if student_name else part4
+                        
+                        if student_name and len(student_name.strip()) >= 2:
+                            # Check if this is the user
+                            full_name_clean = " ".join(student_name.lower().split())
+                            
+                            if search_name in full_name_clean:
+                                result.append({
+                                    'student_no': parts[0].strip() if parts else "",
+                                    'student_name': student_name.strip(),
+                                    'student_id': student_id,
+                                    'exam_date_time': current_time if current_time else "Xem trong file",
+                                    'exam_room': current_room_number if current_room_number else "Xem trong file",
+                                    'exam_location': current_location if current_location else "Xem trong file",
+                                    'subject_meta': ""
+                                })
+            
+            log.info(f"Found {len(result)} exam entries for {user_full_name} in PDF")
+            return result
+            
+        except Exception as e:
+            log.error(f"Lỗi khi xử lý trích xuất file PDF {pdf_file_path}: {e}")
+            return []
+    
     def _create_email_message(
         self,
         to_email: str,
