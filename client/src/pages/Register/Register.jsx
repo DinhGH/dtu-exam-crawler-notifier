@@ -193,7 +193,7 @@ const Register = () => {
                     <Input
                       type="email"
                       {...form.register("email")}
-                      placeholder="example@duytan.edu.vn"
+                      placeholder="example@gmail.com"
                       className="border-neutral-300 focus:border-blue-600 focus:ring-blue-600/10 rounded-md text-sm placeholder-neutral-400 text-neutral-950 bg-white"
                       error={form.formState.errors?.email?.message}
                     />
@@ -205,7 +205,7 @@ const Register = () => {
                     </label>
                     <Input
                       {...form.register("subjectCode")}
-                      placeholder="Ví dụ: OB 253, KOR 206"
+                      placeholder="Ví dụ: CS 466 SA"
                       className="border-neutral-300 focus:border-blue-600 focus:ring-blue-600/10 rounded-md text-sm placeholder-neutral-400 text-neutral-950 bg-white"
                     />
                   </div>
@@ -216,7 +216,7 @@ const Register = () => {
                     </label>
                     <Input
                       {...form.register("subjectName")}
-                      placeholder="Ví dụ: Tổng quan hành vi tổ chức"
+                      placeholder="Ví dụ: Perl & Python"
                       className="border-neutral-300 focus:border-blue-600 focus:ring-blue-600/10 rounded-md text-sm placeholder-neutral-400 text-neutral-950 bg-white"
                     />
                   </div>
