@@ -1,6 +1,7 @@
 from sqlalchemy.orm import Session
 from app.core.database import SessionLocal
 from app.services.crawler_service import CrawlerService
+from app.services.subscription_service import SubscriptionService
 from app.utils.logger import log
 
 def crawl_and_process_job():
@@ -22,7 +23,11 @@ def crawl_and_process_job():
         else:
             log.info("No new exam files discovered on portal.")
         
-        # ĐÃ XÓA: Đoạn code gọi file_service.process_all_pending_files(...) gây lỗi tải vô tội vạ.
+        # Quét các đăng ký chờ sau khi cào file mới
+        subscription_service = SubscriptionService(db)
+        processed = subscription_service.process_pending_subscriptions()
+        if processed > 0:
+            log.info(f"Processed {processed} pending subscriptions after crawl.")
 
     except Exception as e:
         log.error(f"An error occurred in the crawl job: {e}")

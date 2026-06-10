@@ -880,6 +880,52 @@ class SubscriptionService:
             log.error(f"Failed to log email: {e}")
             self.db.rollback()
 
+    def process_pending_subscriptions(self) -> int:
+        """
+        Process all pending subscriptions: search for matching files, send email, and delete the subscription.
+        Returns the number of subscriptions processed.
+        """
+        subscriptions = self.db.query(Subscription).all()
+        processed_count = 0
+        
+        for sub in subscriptions:
+            # Find matching exam files
+            exam_files = self._find_matching_exam_files(sub.subject_code, sub.subject_name)
+            
+            exam_files_data = []
+            for exam_file in exam_files:
+                file_path = self._get_excel_file_path(exam_file.file_name)
+                if not file_path.exists():
+                    file_path = self._download_excel_file(exam_file)
+
+                if not file_path or not file_path.exists():
+                    continue
+
+                user_exam_info = self._extract_user_exam_info(file_path, sub.full_name)
+                
+                if user_exam_info:
+                    exam_files_data.append({
+                        'file_id': exam_file.id,
+                        'file_name': exam_file.file_name,
+                        'file_path': str(file_path),
+                        'exam_info': user_exam_info
+                    })
+            
+            if exam_files_data:
+                msg = self._create_email_message(sub.email, sub.full_name, exam_files_data)
+                success = self._send_email(msg, sub.email)
+                
+                if success:
+                    # Log email logs if needed, but since we are deleting the subscription, 
+                    # we should probably keep logs or maybe just delete the subscription.
+                    # As requested: "sau khi tìm thấy file danh sách theo đúng yêu cầu, gửi mail xong thì tự động xóa cái đăng ký đã gửi đó đi."
+                    self.db.delete(sub)
+                    self.db.commit()
+                    processed_count += 1
+                    log.info(f"Processed and deleted subscription for {sub.email}")
+        
+        return processed_count
+
     def subscribe_and_notify(
         self,
         full_name: str,
@@ -888,11 +934,9 @@ class SubscriptionService:
         subject_name: Optional[str] = None
     ) -> Dict[str, Any]:
         """
-        Main method to handle subscription and send email notification.
-        Returns a dictionary with the result.
+        Create subscription and immediately trigger processing.
         """
         try:
-            # Create subscription record
             subscription = Subscription(
                 full_name=full_name,
                 email=email,
@@ -901,97 +945,19 @@ class SubscriptionService:
             )
             self.db.add(subscription)
             self.db.commit()
-            self.db.refresh(subscription)
-            log.info(f"New subscription created: {email}")
-
-            # Find matching exam files
-            exam_files = self._find_matching_exam_files(subject_code, subject_name)
-
-            if not exam_files:
-                log.warning(f"No exam files found for subscription {subscription.id}")
-                return {
-                    "success": True,
-                    "message": "Đăng ký thành công. Không tìm thấy file thi phù hợp.",
-                    "subscription_id": subscription.id,
-                    "files_found": 0
-                }
-
-            # Process each exam file
-            exam_files_data = []
-            for exam_file in exam_files:
-                # Download the file if not already downloaded
-                file_path = self._get_excel_file_path(exam_file.file_name)
-                if not file_path.exists():
-                    file_path = self._download_excel_file(exam_file)
-
-                if not file_path or not file_path.exists():
-                    log.warning(f"Could not download file {exam_file.file_name}")
-                    continue
-
-                # Extract user's exam information
-                user_exam_info = self._extract_user_exam_info(file_path, full_name)
-
-                exam_files_data.append({
-                    'file_id': exam_file.id,
-                    'file_name': exam_file.file_name,
-                    'file_path': str(file_path),
-                    'exam_info': user_exam_info
-                })
-
-                # Log user's exam information to email_log
-                for info in user_exam_info:
-                    try:
-                        # Try to find the exam_schedule record
-                        exam_schedule = self.db.query(ExamSchedule).filter(
-                            ExamSchedule.student_name == info.get('student_name'),
-                            ExamSchedule.subject_code == info.get('subject_code'),
-                            ExamSchedule.exam_file_id == exam_file.id
-                        ).first()
-
-                        if exam_schedule:
-                            email_log = EmailLog(
-                                subscription_id=subscription.id,
-                                exam_schedule_id=exam_schedule.id,
-                                email=email,
-                                status='pending',
-                                sent_at=None
-                            )
-                            self.db.add(email_log)
-                    except Exception as e:
-                        log.debug(f"Could not log exam schedule: {e}")
-
-            self.db.commit()
-
-            # Create and send email
-            if exam_files_data:
-                msg = self._create_email_message(email, full_name, exam_files_data)
-                success = self._send_email(msg, email)
-
-                # Update email log status
-                for file_data in exam_files_data:
-                    for info in file_data.get('exam_info', []):
-                        self._log_email(subscription.id, info, 'sent' if success else 'failed')
-
-                return {
-                    "success": True,
-                    "message": f"Đăng ký thành công! Email đã được gửi đến {email}.",
-                    "subscription_id": subscription.id,
-                    "files_found": len(exam_files),
-                    "files_with_info": len([f for f in exam_files_data if f.get('exam_info')])
-                }
-
+            
+            # Immediately attempt to process all (including the new one)
+            processed_count = self.process_pending_subscriptions()
+            
             return {
                 "success": True,
-                "message": "Đăng ký thành công. Không tìm thấy thông tin thi cho bạn.",
-                "subscription_id": subscription.id,
-                "files_found": len(exam_files)
+                "message": "Đăng ký thành công và đang được xử lý.",
+                "subscription_id": subscription.id
             }
-
         except Exception as e:
             log.error(f"Error in subscribe_and_notify: {e}")
             self.db.rollback()
             return {
                 "success": False,
-                "message": f"Lỗi: {str(e)}",
-                "error": str(e)
+                "message": f"Lỗi: {str(e)}"
             }

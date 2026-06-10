@@ -90,7 +90,9 @@ const Register = () => {
     try {
       await subscriptionService.subscribe(data);
       toast.success("Đăng ký thành công!", {
-        description: "Bạn sẽ nhận được email khi có danh sách thi mới.",
+        description:
+          "Hệ thống sẽ gửi danh sách lịch thi đến email của bạn ngay khi có dữ liệu.",
+        duration: 3000,
       });
       form.reset();
       fetchSubscriptions();
