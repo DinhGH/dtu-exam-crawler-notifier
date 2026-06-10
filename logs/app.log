@@ -6334,3 +6334,276 @@ DETAIL:  Failing row contains (22, 50, null, , sent, 2026-06-09 22:14:12.964838,
 2026-06-10 18:43:20 | INFO     | app.services.subscription_service:process_pending_subscriptions:925 - Processed and deleted subscription for huynhdinh2k52707@gmail.com
 2026-06-10 18:43:20 | INFO     | app.api.routes.subscriptions:get_subscriptions:52 - Fetching subscriptions: skip=0, limit=200
 2026-06-10 18:43:35 | INFO     | app.api.routes.subscriptions:get_subscriptions:52 - Fetching subscriptions: skip=0, limit=200
+2026-06-10 18:49:48 | INFO     | app.api.routes.subscriptions:get_subscriptions:52 - Fetching subscriptions: skip=0, limit=200
+2026-06-10 18:49:51 | INFO     | app.api.routes.subscriptions:get_subscriptions:52 - Fetching subscriptions: skip=0, limit=200
+2026-06-10 18:49:52 | INFO     | app.api.routes.subscriptions:get_subscriptions:52 - Fetching subscriptions: skip=0, limit=200
+2026-06-10 18:49:53 | INFO     | app.api.routes.subscriptions:get_subscriptions:52 - Fetching subscriptions: skip=0, limit=200
+2026-06-10 18:50:10 | INFO     | app.api.routes.files:get_exam_files:28 - Fetching exam files: page=1, page_size=15, q=None
+2026-06-10 18:50:11 | INFO     | app.api.routes.files:get_exam_files:28 - Fetching exam files: page=1, page_size=15, q=None
+2026-06-10 18:50:15 | INFO     | app.api.routes.subscriptions:get_subscriptions:52 - Fetching subscriptions: skip=0, limit=200
+2026-06-10 18:50:16 | INFO     | app.api.routes.files:get_exam_files:28 - Fetching exam files: page=1, page_size=15, q=None
+2026-06-10 18:50:16 | INFO     | app.api.routes.files:get_exam_files:28 - Fetching exam files: page=1, page_size=15, q=None
+2026-06-10 18:52:01 | INFO     | app.api.routes.subscriptions:get_subscriptions:52 - Fetching subscriptions: skip=0, limit=200
+2026-06-10 18:55:15 | INFO     | app.main:lifespan:17 - Shutting down...
+2026-06-10 18:55:15 | INFO     | app.scheduler.scheduler:stop_scheduler:30 - Stopping scheduler...
+2026-06-10 18:55:15 | INFO     | app.scheduler.scheduler:stop_scheduler:32 - Scheduler stopped.
+2026-06-10 18:55:27 | INFO     | app.main:lifespan:11 - Starting up...
+2026-06-10 18:55:27 | INFO     | app.main:lifespan:12 - Creating database tables if they don't exist...
+2026-06-10 18:55:33 | INFO     | app.main:lifespan:14 - Tables created successfully (if not already present).
+2026-06-10 18:55:33 | INFO     | app.scheduler.scheduler:start_scheduler:11 - Starting scheduler...
+2026-06-10 18:55:33 | INFO     | app.scheduler.scheduler:start_scheduler:21 - Scheduler started successfully.
+2026-06-10 18:58:43 | INFO     | app.api.routes.subscriptions:get_subscription_by_id:88 - Fetching subscription id=56
+2026-06-10 18:59:03 | INFO     | app.api.routes.subscriptions:update_subscription:110 - Updating subscription id=56
+2026-06-10 18:59:04 | INFO     | app.api.routes.subscriptions:get_subscriptions:52 - Fetching subscriptions: skip=0, limit=200
+2026-06-10 18:59:32 | INFO     | app.api.routes.subscriptions:get_subscriptions:52 - Fetching subscriptions: skip=0, limit=200
+2026-06-10 18:59:40 | INFO     | app.api.routes.subscriptions:get_subscription_by_id:88 - Fetching subscription id=56
+2026-06-10 18:59:44 | INFO     | app.api.routes.subscriptions:update_subscription:110 - Updating subscription id=56
+2026-06-10 18:59:45 | INFO     | app.api.routes.subscriptions:get_subscriptions:52 - Fetching subscriptions: skip=0, limit=200
+2026-06-10 19:00:25 | INFO     | app.api.routes.subscriptions:get_subscription_by_id:88 - Fetching subscription id=56
+2026-06-10 19:00:26 | INFO     | app.api.routes.subscriptions:get_subscription_by_id:88 - Fetching subscription id=56
+2026-06-10 19:00:41 | INFO     | app.api.routes.subscriptions:update_subscription:110 - Updating subscription id=56
+2026-06-10 19:00:43 | INFO     | app.api.routes.subscriptions:get_subscriptions:52 - Fetching subscriptions: skip=0, limit=200
+2026-06-10 19:01:18 | INFO     | app.api.routes.subscriptions:create_subscription:27 - New subscription request: huynhdinh2k52707@gmail.com, subject_code=ob 253
+2026-06-10 19:01:22 | INFO     | app.services.subscription_service:_create_email_message:425 - Attached file với đuôi chuẩn: Tổng quan Hành vi Tổ chức trong Du lịch OB 253 (B-D-F) (17_18 29-05-2026).xlsx
+2026-06-10 19:01:36 | INFO     | app.services.subscription_service:_send_email:861 - Email sent successfully to huynhdinh2k52707@gmail.com
+2026-06-10 19:01:36 | INFO     | app.services.subscription_service:_process_subscription:916 - Processed and deleted subscription for huynhdinh2k52707@gmail.com
+2026-06-10 19:01:36 | INFO     | app.api.routes.subscriptions:get_subscriptions:52 - Fetching subscriptions: skip=0, limit=200
+2026-06-10 19:02:12 | INFO     | app.api.routes.subscriptions:get_subscription_by_id:88 - Fetching subscription id=56
+2026-06-10 19:02:19 | INFO     | app.api.routes.subscriptions:get_subscription_by_id:88 - Fetching subscription id=56
+2026-06-10 19:02:29 | INFO     | app.api.routes.subscriptions:update_subscription:110 - Updating subscription id=56
+2026-06-10 19:02:31 | INFO     | app.api.routes.subscriptions:get_subscriptions:52 - Fetching subscriptions: skip=0, limit=200
+2026-06-10 19:03:03 | INFO     | app.api.routes.subscriptions:get_subscription_by_id:88 - Fetching subscription id=56
+2026-06-10 19:03:10 | INFO     | app.api.routes.subscriptions:get_subscription_by_id:88 - Fetching subscription id=56
+2026-06-10 19:04:16 | INFO     | app.main:lifespan:17 - Shutting down...
+2026-06-10 19:04:16 | INFO     | app.scheduler.scheduler:stop_scheduler:30 - Stopping scheduler...
+2026-06-10 19:04:16 | INFO     | app.scheduler.scheduler:stop_scheduler:32 - Scheduler stopped.
+2026-06-10 19:04:27 | INFO     | app.main:lifespan:11 - Starting up...
+2026-06-10 19:04:27 | INFO     | app.main:lifespan:12 - Creating database tables if they don't exist...
+2026-06-10 19:04:34 | INFO     | app.main:lifespan:14 - Tables created successfully (if not already present).
+2026-06-10 19:04:34 | INFO     | app.scheduler.scheduler:start_scheduler:11 - Starting scheduler...
+2026-06-10 19:04:34 | INFO     | app.scheduler.scheduler:start_scheduler:21 - Scheduler started successfully.
+2026-06-10 19:05:04 | INFO     | app.api.routes.subscriptions:get_subscription_by_id:88 - Fetching subscription id=56
+2026-06-10 19:05:08 | INFO     | app.api.routes.subscriptions:update_subscription:110 - Updating subscription id=56
+2026-06-10 19:05:12 | INFO     | app.services.subscription_service:_create_email_message:425 - Attached file với đuôi chuẩn: Tổng quan Hành vi Tổ chức trong Du lịch OB 253 (B-D-F) (17_18 29-05-2026).xlsx
+2026-06-10 19:05:26 | INFO     | app.services.subscription_service:_send_email:861 - Email sent successfully to huynhdinh2k52707@gmail.com
+2026-06-10 19:05:26 | INFO     | app.services.subscription_service:_process_subscription:916 - Processed and deleted subscription for huynhdinh2k52707@gmail.com
+2026-06-10 19:05:26 | INFO     | app.api.routes.subscriptions:get_subscriptions:52 - Fetching subscriptions: skip=0, limit=200
+2026-06-10 19:37:14 | INFO     | app.api.routes.subscriptions:get_subscriptions:52 - Fetching subscriptions: skip=0, limit=200
+2026-06-10 19:37:14 | ERROR    | app.api.routes.subscriptions:get_subscriptions:58 - Error fetching subscriptions: (psycopg2.OperationalError) server closed the connection unexpectedly
+	This probably means the server terminated abnormally
+	before or while processing the request.
+server closed the connection unexpectedly
+	This probably means the server terminated abnormally
+	before or while processing the request.
+
+[SQL: SELECT subscriptions.id AS subscriptions_id, subscriptions.full_name AS subscriptions_full_name, subscriptions.email AS subscriptions_email, subscriptions.subject_code AS subscriptions_subject_code, subscriptions.subject_name AS subscriptions_subject_name, subscriptions.created_at AS subscriptions_created_at 
+FROM subscriptions 
+ LIMIT %(param_1)s OFFSET %(param_2)s]
+[parameters: {'param_1': 200, 'param_2': 0}]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2026-06-10 19:37:15 | INFO     | app.api.routes.subscriptions:get_subscriptions:52 - Fetching subscriptions: skip=0, limit=200
+2026-06-10 19:37:20 | INFO     | app.api.routes.subscriptions:get_subscriptions:52 - Fetching subscriptions: skip=0, limit=200
+2026-06-10 19:38:05 | INFO     | app.api.routes.subscriptions:create_subscription:27 - New subscription request: huynhdinh2k52707@gmail.com, subject_code=cs 466 sa
+2026-06-10 19:38:06 | INFO     | app.api.routes.subscriptions:get_subscriptions:52 - Fetching subscriptions: skip=0, limit=200
+2026-06-10 19:39:28 | INFO     | app.api.routes.subscriptions:create_subscription:27 - New subscription request: huynhdinh2k52707@gmail.com, subject_code=cmu-se
+2026-06-10 19:39:29 | INFO     | app.api.routes.subscriptions:get_subscriptions:52 - Fetching subscriptions: skip=0, limit=200
+2026-06-10 19:39:44 | INFO     | app.api.routes.subscriptions:get_subscription_by_id:88 - Fetching subscription id=60
+2026-06-10 19:39:48 | INFO     | app.api.routes.subscriptions:get_subscription_by_id:88 - Fetching subscription id=61
+2026-06-10 19:40:04 | INFO     | app.api.routes.subscriptions:get_subscription_by_id:88 - Fetching subscription id=60
+2026-06-10 19:43:48 | INFO     | app.api.routes.subscriptions:get_subscriptions:52 - Fetching subscriptions: skip=0, limit=200
+2026-06-10 19:43:50 | INFO     | app.api.routes.subscriptions:get_subscription_by_id:88 - Fetching subscription id=60
+2026-06-10 19:43:53 | INFO     | app.api.routes.subscriptions:get_subscription_by_id:88 - Fetching subscription id=61
+2026-06-10 19:43:56 | INFO     | app.api.routes.subscriptions:delete_subscription:146 - Deleting subscription id=61
+2026-06-10 19:43:57 | INFO     | app.api.routes.subscriptions:get_subscriptions:52 - Fetching subscriptions: skip=0, limit=200
+2026-06-10 19:44:20 | INFO     | app.api.routes.subscriptions:create_subscription:27 - New subscription request: huynhdinh2k52707@gmail.com, subject_code=cmu-cs 123 abc
+2026-06-10 19:44:22 | INFO     | app.api.routes.subscriptions:get_subscriptions:52 - Fetching subscriptions: skip=0, limit=200
+2026-06-10 19:44:56 | INFO     | app.api.routes.files:get_exam_files:28 - Fetching exam files: page=1, page_size=15, q=None
+2026-06-10 19:44:56 | INFO     | app.api.routes.files:get_exam_files:28 - Fetching exam files: page=1, page_size=15, q=None
+2026-06-10 19:45:00 | INFO     | app.api.routes.subscriptions:get_subscriptions:52 - Fetching subscriptions: skip=0, limit=200
+2026-06-10 19:45:31 | INFO     | app.api.routes.subscriptions:get_subscription_by_id:88 - Fetching subscription id=62
+2026-06-10 19:45:35 | INFO     | app.api.routes.subscriptions:update_subscription:110 - Updating subscription id=62
+2026-06-10 19:45:36 | INFO     | app.api.routes.subscriptions:get_subscriptions:52 - Fetching subscriptions: skip=0, limit=200
+2026-06-10 19:45:58 | INFO     | app.api.routes.subscriptions:get_subscription_by_id:88 - Fetching subscription id=62
+2026-06-10 19:46:13 | INFO     | app.api.routes.subscriptions:update_subscription:110 - Updating subscription id=62
+2026-06-10 19:46:15 | INFO     | app.api.routes.subscriptions:get_subscriptions:52 - Fetching subscriptions: skip=0, limit=200
+2026-06-10 19:46:27 | INFO     | app.api.routes.subscriptions:get_subscription_by_id:88 - Fetching subscription id=62
+2026-06-10 19:46:34 | INFO     | app.api.routes.subscriptions:update_subscription:110 - Updating subscription id=62
+2026-06-10 19:46:38 | INFO     | app.services.subscription_service:_create_email_message:425 - Attached file với đuôi chuẩn: Tổng quan Hành vi Tổ chức trong Du lịch OB 253 (B-D-F) (17_18 29-05-2026).xlsx
+2026-06-10 19:46:53 | INFO     | app.services.subscription_service:_send_email:861 - Email sent successfully to huynhdinh2k52707@gmail.com
+2026-06-10 19:46:53 | INFO     | app.services.subscription_service:_process_subscription:916 - Processed and deleted subscription for huynhdinh2k52707@gmail.com
+2026-06-10 19:46:53 | INFO     | app.api.routes.subscriptions:get_subscriptions:52 - Fetching subscriptions: skip=0, limit=200
+2026-06-10 19:48:38 | INFO     | app.api.routes.subscriptions:create_subscription:27 - New subscription request: huynhdinh2k52707@gmail.com, subject_code=ob 253
+2026-06-10 19:48:42 | INFO     | app.api.routes.subscriptions:get_subscriptions:52 - Fetching subscriptions: skip=0, limit=200
+2026-06-10 19:50:41 | INFO     | app.api.routes.subscriptions:get_subscription_by_id:88 - Fetching subscription id=63
+2026-06-10 19:50:44 | INFO     | app.api.routes.subscriptions:update_subscription:110 - Updating subscription id=63
+2026-06-10 19:50:48 | INFO     | app.api.routes.subscriptions:get_subscriptions:52 - Fetching subscriptions: skip=0, limit=200
+2026-06-10 19:51:11 | INFO     | app.api.routes.subscriptions:get_subscriptions:52 - Fetching subscriptions: skip=0, limit=200
+2026-06-10 19:51:22 | INFO     | app.api.routes.subscriptions:get_subscription_by_id:88 - Fetching subscription id=63
+2026-06-10 19:51:27 | INFO     | app.api.routes.subscriptions:update_subscription:110 - Updating subscription id=63
+2026-06-10 19:51:31 | INFO     | app.api.routes.subscriptions:get_subscriptions:52 - Fetching subscriptions: skip=0, limit=200
+2026-06-10 19:54:25 | INFO     | app.main:lifespan:17 - Shutting down...
+2026-06-10 19:54:25 | INFO     | app.scheduler.scheduler:stop_scheduler:30 - Stopping scheduler...
+2026-06-10 19:54:25 | INFO     | app.scheduler.scheduler:stop_scheduler:32 - Scheduler stopped.
+2026-06-10 19:54:34 | INFO     | app.main:lifespan:11 - Starting up...
+2026-06-10 19:54:34 | INFO     | app.main:lifespan:12 - Creating database tables if they don't exist...
+2026-06-10 19:54:40 | INFO     | app.main:lifespan:14 - Tables created successfully (if not already present).
+2026-06-10 19:54:40 | INFO     | app.scheduler.scheduler:start_scheduler:11 - Starting scheduler...
+2026-06-10 19:54:40 | INFO     | app.scheduler.scheduler:start_scheduler:21 - Scheduler started successfully.
+2026-06-10 19:54:40 | INFO     | app.api.routes.subscriptions:get_subscription_by_id:88 - Fetching subscription id=63
+2026-06-10 19:54:44 | INFO     | app.api.routes.subscriptions:update_subscription:110 - Updating subscription id=63
+2026-06-10 19:54:48 | INFO     | app.api.routes.subscriptions:get_subscriptions:52 - Fetching subscriptions: skip=0, limit=200
+2026-06-10 19:55:42 | INFO     | app.api.routes.subscriptions:get_subscription_by_id:88 - Fetching subscription id=63
+2026-06-10 19:55:47 | INFO     | app.api.routes.subscriptions:update_subscription:110 - Updating subscription id=63
+2026-06-10 19:55:51 | INFO     | app.api.routes.subscriptions:get_subscriptions:52 - Fetching subscriptions: skip=0, limit=200
+2026-06-10 19:56:16 | INFO     | app.api.routes.subscriptions:get_subscription_by_id:88 - Fetching subscription id=63
+2026-06-10 19:56:56 | INFO     | app.api.routes.subscriptions:update_subscription:110 - Updating subscription id=63
+2026-06-10 19:57:00 | INFO     | app.services.subscription_service:_create_email_message:425 - Attached file với đuôi chuẩn: Tổng quan Hành vi Tổ chức trong Du lịch OB 253 (B-D-F) (17_18 29-05-2026).xlsx
+2026-06-10 19:57:14 | INFO     | app.services.subscription_service:_send_email:861 - Email sent successfully to huynhdinh2k52707@gmail.com
+2026-06-10 19:57:15 | INFO     | app.services.subscription_service:_process_subscription:916 - Processed and deleted subscription for huynhdinh2k52707@gmail.com
+2026-06-10 19:57:15 | INFO     | app.api.routes.subscriptions:get_subscriptions:52 - Fetching subscriptions: skip=0, limit=200
+2026-06-10 19:59:39 | INFO     | app.api.routes.subscriptions:create_subscription:27 - New subscription request: huynhdinh2k52707@gmail.com, subject_code=ob 253
+2026-06-10 19:59:42 | INFO     | app.api.routes.subscriptions:get_subscriptions:52 - Fetching subscriptions: skip=0, limit=200
+2026-06-10 20:00:33 | INFO     | app.api.routes.subscriptions:get_subscription_by_id:88 - Fetching subscription id=64
+2026-06-10 20:00:48 | INFO     | app.api.routes.subscriptions:update_subscription:110 - Updating subscription id=64
+2026-06-10 20:00:52 | INFO     | app.services.subscription_service:_create_email_message:425 - Attached file với đuôi chuẩn: Tổng quan Hành vi Tổ chức trong Du lịch OB 253 (B-D-F) (17_18 29-05-2026).xlsx
+2026-06-10 20:01:07 | INFO     | app.services.subscription_service:_send_email:861 - Email sent successfully to huynhdinh2k52707@gmail.com
+2026-06-10 20:01:07 | INFO     | app.services.subscription_service:_process_subscription:916 - Processed and deleted subscription for huynhdinh2k52707@gmail.com
+2026-06-10 20:01:07 | INFO     | app.api.routes.subscriptions:get_subscriptions:52 - Fetching subscriptions: skip=0, limit=200
+2026-06-10 20:02:07 | INFO     | app.api.routes.subscriptions:create_subscription:27 - New subscription request: huynhdinh2k52707@gmail.com, subject_code=pos 351
+2026-06-10 20:02:13 | INFO     | app.services.subscription_service:_create_email_message:425 - Attached file với đuôi chuẩn: Chủ nghĩa Xã hội Khoa học POS 351 (L-P-T) (17_17 29-05-2026).xlsx
+2026-06-10 20:02:27 | INFO     | app.services.subscription_service:_send_email:861 - Email sent successfully to huynhdinh2k52707@gmail.com
+2026-06-10 20:02:27 | INFO     | app.services.subscription_service:_process_subscription:916 - Processed and deleted subscription for huynhdinh2k52707@gmail.com
+2026-06-10 20:02:27 | INFO     | app.api.routes.subscriptions:get_subscriptions:52 - Fetching subscriptions: skip=0, limit=200
+2026-06-10 20:02:58 | INFO     | app.api.routes.files:get_exam_files:28 - Fetching exam files: page=1, page_size=15, q=None
+2026-06-10 20:02:59 | INFO     | app.api.routes.files:get_exam_files:28 - Fetching exam files: page=1, page_size=15, q=None
+2026-06-10 20:03:00 | INFO     | app.api.routes.files:get_exam_files:28 - Fetching exam files: page=1, page_size=15, q='p'
+2026-06-10 20:03:00 | INFO     | app.api.routes.files:get_exam_files:28 - Fetching exam files: page=1, page_size=15, q='po'
+2026-06-10 20:03:00 | INFO     | app.api.routes.files:get_exam_files:28 - Fetching exam files: page=1, page_size=15, q='pó'
+2026-06-10 20:03:01 | INFO     | app.api.routes.files:get_exam_files:28 - Fetching exam files: page=1, page_size=15, q='pos'
+2026-06-10 20:03:05 | INFO     | app.api.routes.files:get_exam_files:28 - Fetching exam files: page=1, page_size=15, q='po'
+2026-06-10 20:04:03 | INFO     | app.api.routes.subscriptions:get_subscriptions:52 - Fetching subscriptions: skip=0, limit=200
+2026-06-10 20:04:27 | INFO     | app.api.routes.subscriptions:create_subscription:27 - New subscription request: huynhdinh2k52707@gmail.com, subject_code=pos 351
+2026-06-10 20:04:33 | INFO     | app.api.routes.subscriptions:get_subscriptions:52 - Fetching subscriptions: skip=0, limit=200
+2026-06-10 20:04:53 | INFO     | app.api.routes.subscriptions:get_subscription_by_id:88 - Fetching subscription id=66
+2026-06-10 20:05:01 | INFO     | app.api.routes.subscriptions:update_subscription:110 - Updating subscription id=66
+2026-06-10 20:05:07 | INFO     | app.api.routes.subscriptions:get_subscriptions:52 - Fetching subscriptions: skip=0, limit=200
+2026-06-10 20:05:47 | INFO     | app.api.routes.subscriptions:get_subscription_by_id:88 - Fetching subscription id=66
+2026-06-10 20:06:05 | INFO     | app.api.routes.subscriptions:update_subscription:110 - Updating subscription id=66
+2026-06-10 20:06:11 | INFO     | app.api.routes.subscriptions:get_subscriptions:52 - Fetching subscriptions: skip=0, limit=200
+2026-06-10 20:07:19 | INFO     | app.api.routes.subscriptions:get_subscription_by_id:88 - Fetching subscription id=66
+2026-06-10 20:07:21 | INFO     | app.api.routes.subscriptions:update_subscription:110 - Updating subscription id=66
+2026-06-10 20:07:26 | INFO     | app.api.routes.subscriptions:get_subscriptions:52 - Fetching subscriptions: skip=0, limit=200
+2026-06-10 20:08:00 | INFO     | app.api.routes.subscriptions:get_subscription_by_id:88 - Fetching subscription id=66
+2026-06-10 20:08:02 | INFO     | app.api.routes.subscriptions:delete_subscription:150 - Deleting subscription id=66
+2026-06-10 20:08:03 | INFO     | app.api.routes.subscriptions:get_subscriptions:52 - Fetching subscriptions: skip=0, limit=200
+2026-06-10 20:08:24 | INFO     | app.api.routes.subscriptions:create_subscription:27 - New subscription request: huynhdinh2k52707@gmail.com, subject_code=pos 351 v
+2026-06-10 20:08:28 | INFO     | app.api.routes.subscriptions:get_subscriptions:52 - Fetching subscriptions: skip=0, limit=200
+2026-06-10 20:10:02 | INFO     | app.api.routes.subscriptions:get_subscription_by_id:88 - Fetching subscription id=67
+2026-06-10 20:10:12 | INFO     | app.api.routes.subscriptions:update_subscription:110 - Updating subscription id=67
+2026-06-10 20:10:18 | INFO     | app.services.subscription_service:_create_email_message:425 - Attached file với đuôi chuẩn: Chủ nghĩa Xã hội Khoa học POS 351 (R-V) (08_12 28-05-2026).xlsx
+2026-06-10 20:10:32 | INFO     | app.services.subscription_service:_send_email:861 - Email sent successfully to huynhdinh2k52707@gmail.com
+2026-06-10 20:10:32 | INFO     | app.services.subscription_service:_process_subscription:916 - Processed and deleted subscription for huynhdinh2k52707@gmail.com
+2026-06-10 20:10:32 | INFO     | app.api.routes.subscriptions:get_subscriptions:52 - Fetching subscriptions: skip=0, limit=200
+2026-06-10 20:13:16 | INFO     | app.api.routes.subscriptions:create_subscription:27 - New subscription request: huynhdinh2k52707@gmail.com, subject_code=ob 253
+2026-06-10 20:13:18 | INFO     | app.api.routes.subscriptions:get_subscriptions:52 - Fetching subscriptions: skip=0, limit=200
+2026-06-10 20:13:22 | INFO     | app.api.routes.subscriptions:get_subscription_by_id:88 - Fetching subscription id=68
+2026-06-10 20:13:29 | INFO     | app.api.routes.subscriptions:update_subscription:110 - Updating subscription id=68
+2026-06-10 20:13:31 | INFO     | app.api.routes.subscriptions:get_subscriptions:52 - Fetching subscriptions: skip=0, limit=200
+2026-06-10 20:13:51 | INFO     | app.api.routes.subscriptions:get_subscription_by_id:88 - Fetching subscription id=68
+2026-06-10 20:13:54 | INFO     | app.api.routes.subscriptions:update_subscription:110 - Updating subscription id=68
+2026-06-10 20:14:00 | INFO     | app.api.routes.subscriptions:get_subscriptions:52 - Fetching subscriptions: skip=0, limit=200
+2026-06-10 20:14:12 | INFO     | app.api.routes.subscriptions:get_subscription_by_id:88 - Fetching subscription id=68
+2026-06-10 20:14:20 | INFO     | app.api.routes.subscriptions:update_subscription:110 - Updating subscription id=68
+2026-06-10 20:14:24 | INFO     | app.services.subscription_service:_create_email_message:425 - Attached file với đuôi chuẩn: Tổng quan Hành vi Tổ chức trong Du lịch OB 253 (B-D-F) (17_18 29-05-2026).xlsx
+2026-06-10 20:14:38 | INFO     | app.services.subscription_service:_send_email:861 - Email sent successfully to huynhdinh2k52707@gmail.com
+2026-06-10 20:14:38 | INFO     | app.services.subscription_service:_process_subscription:916 - Processed and deleted subscription for huynhdinh2k52707@gmail.com
+2026-06-10 20:14:38 | INFO     | app.api.routes.subscriptions:get_subscriptions:52 - Fetching subscriptions: skip=0, limit=200
+2026-06-10 20:14:48 | INFO     | app.api.routes.subscriptions:create_subscription:27 - New subscription request: huynhdinh2k52707@gmail.com, subject_code=ob 253
+2026-06-10 20:14:49 | INFO     | app.api.routes.subscriptions:get_subscriptions:52 - Fetching subscriptions: skip=0, limit=200
+2026-06-10 20:14:51 | INFO     | app.api.routes.subscriptions:get_subscription_by_id:88 - Fetching subscription id=69
+2026-06-10 20:15:03 | INFO     | app.api.routes.subscriptions:update_subscription:110 - Updating subscription id=69
+2026-06-10 20:15:09 | INFO     | app.services.subscription_service:_create_email_message:425 - Attached file với đuôi chuẩn: Chủ nghĩa Xã hội Khoa học POS 351 (R-V) (08_12 28-05-2026).xlsx
+2026-06-10 20:15:23 | INFO     | app.services.subscription_service:_send_email:861 - Email sent successfully to huynhdinh2k52707@gmail.com
+2026-06-10 20:15:24 | INFO     | app.services.subscription_service:_process_subscription:916 - Processed and deleted subscription for huynhdinh2k52707@gmail.com
+2026-06-10 20:15:24 | INFO     | app.api.routes.subscriptions:get_subscriptions:52 - Fetching subscriptions: skip=0, limit=200
+2026-06-10 20:22:43 | INFO     | app.api.routes.files:get_exam_files:28 - Fetching exam files: page=1, page_size=15, q=None
+2026-06-10 20:22:44 | INFO     | app.api.routes.files:get_exam_files:28 - Fetching exam files: page=1, page_size=15, q=None
+2026-06-10 20:22:46 | INFO     | app.api.routes.files:crawl_exam_files:105 - Triggering manual crawl with crawl_latest_only=True
+2026-06-10 20:22:50 | INFO     | app.api.routes.subscriptions:get_subscriptions:52 - Fetching subscriptions: skip=0, limit=200
+2026-06-10 20:23:03 | INFO     | app.api.routes.files:get_exam_files:28 - Fetching exam files: page=1, page_size=15, q=None
+2026-06-10 20:23:04 | INFO     | app.api.routes.files:get_exam_files:28 - Fetching exam files: page=1, page_size=15, q=None
+2026-06-10 20:23:10 | INFO     | app.api.routes.subscriptions:get_subscriptions:52 - Fetching subscriptions: skip=0, limit=200
+2026-06-10 20:23:33 | INFO     | app.api.routes.subscriptions:create_subscription:27 - New subscription request: huynhdinh2k52707@gmail.com, subject_code=pos 351
+2026-06-10 20:23:37 | INFO     | app.api.routes.subscriptions:get_subscriptions:52 - Fetching subscriptions: skip=0, limit=200
+2026-06-10 20:24:08 | INFO     | app.api.routes.files:get_exam_files:28 - Fetching exam files: page=1, page_size=15, q=None
+2026-06-10 20:24:09 | INFO     | app.api.routes.files:get_exam_files:28 - Fetching exam files: page=1, page_size=15, q=None
+2026-06-10 20:24:11 | INFO     | app.api.routes.files:get_exam_files:28 - Fetching exam files: page=1, page_size=15, q='p'
+2026-06-10 20:24:11 | INFO     | app.api.routes.files:get_exam_files:28 - Fetching exam files: page=1, page_size=15, q='po'
+2026-06-10 20:24:21 | INFO     | app.api.routes.files:get_exam_files:28 - Fetching exam files: page=1, page_size=15, q=None
+2026-06-10 20:25:33 | INFO     | app.api.routes.subscriptions:get_subscriptions:52 - Fetching subscriptions: skip=0, limit=200
+2026-06-10 20:25:42 | INFO     | app.api.routes.files:get_exam_files:28 - Fetching exam files: page=1, page_size=15, q=None
+2026-06-10 20:25:42 | INFO     | app.api.routes.files:get_exam_files:28 - Fetching exam files: page=1, page_size=15, q=None
+2026-06-10 20:25:45 | INFO     | app.api.routes.subscriptions:get_subscriptions:52 - Fetching subscriptions: skip=0, limit=200
+2026-06-10 20:26:02 | INFO     | app.api.routes.files:get_exam_files:28 - Fetching exam files: page=1, page_size=15, q=None
+2026-06-10 20:26:19 | INFO     | app.api.routes.files:get_exam_files:28 - Fetching exam files: page=1, page_size=15, q=None
+2026-06-10 20:26:20 | INFO     | app.api.routes.files:get_exam_files:28 - Fetching exam files: page=1, page_size=15, q=None
+2026-06-10 20:26:21 | INFO     | app.api.routes.subscriptions:get_subscriptions:52 - Fetching subscriptions: skip=0, limit=200
+2026-06-10 20:26:41 | INFO     | app.api.routes.subscriptions:get_subscription_by_id:88 - Fetching subscription id=70
+2026-06-10 20:27:05 | INFO     | app.api.routes.files:get_exam_files:28 - Fetching exam files: page=1, page_size=15, q=None
+2026-06-10 20:27:06 | INFO     | app.api.routes.files:get_exam_files:28 - Fetching exam files: page=1, page_size=15, q=None
+2026-06-10 20:27:07 | INFO     | app.api.routes.files:crawl_exam_files:105 - Triggering manual crawl with crawl_latest_only=True
+2026-06-10 20:27:11 | INFO     | app.api.routes.subscriptions:get_subscriptions:52 - Fetching subscriptions: skip=0, limit=200
+2026-06-10 20:27:14 | INFO     | app.api.routes.files:get_exam_files:28 - Fetching exam files: page=1, page_size=15, q=None
+2026-06-10 20:27:14 | INFO     | app.api.routes.files:get_exam_files:28 - Fetching exam files: page=1, page_size=15, q=None
+2026-06-10 20:27:15 | INFO     | app.api.routes.subscriptions:get_subscriptions:52 - Fetching subscriptions: skip=0, limit=200
+2026-06-10 20:27:17 | INFO     | app.api.routes.subscriptions:get_subscription_by_id:88 - Fetching subscription id=70
+2026-06-10 20:27:23 | INFO     | app.api.routes.subscriptions:update_subscription:110 - Updating subscription id=70
+2026-06-10 20:27:27 | INFO     | app.api.routes.subscriptions:get_subscriptions:52 - Fetching subscriptions: skip=0, limit=200
+2026-06-10 20:30:33 | INFO     | app.api.routes.files:get_exam_files:28 - Fetching exam files: page=1, page_size=15, q=None
+2026-06-10 20:54:40 | INFO     | app.scheduler.jobs:crawl_and_process_job:14 - Starting scheduled crawl job...
+2026-06-10 20:57:46 | INFO     | app.scheduler.jobs:crawl_and_process_job:22 - Successfully crawled and updated 105 files to database.
+2026-06-10 20:57:50 | INFO     | app.services.subscription_service:_create_email_message:425 - Attached file với đuôi chuẩn: Chủ nghĩa Xã hội Khoa học POS 351 (R-V) (08_12 28-05-2026).xlsx
+2026-06-10 20:58:05 | INFO     | app.services.subscription_service:_send_email:861 - Email sent successfully to huynhdinh2k52707@gmail.com
+2026-06-10 20:58:05 | INFO     | app.services.subscription_service:_process_subscription:916 - Processed and deleted subscription for huynhdinh2k52707@gmail.com
+2026-06-10 20:58:05 | INFO     | app.scheduler.jobs:crawl_and_process_job:30 - Processed 1 pending subscriptions after crawl.
+2026-06-10 20:58:05 | INFO     | app.scheduler.jobs:crawl_and_process_job:36 - Scheduled crawl job finished.
+2026-06-10 21:02:12 | INFO     | app.api.routes.subscriptions:get_subscriptions:52 - Fetching subscriptions: skip=0, limit=200
+2026-06-10 21:28:39 | INFO     | app.api.routes.subscriptions:create_subscription:27 - New subscription request: huynhdinh2k52707@gmail.com, subject_code=ob 253
+2026-06-10 21:28:43 | INFO     | app.api.routes.subscriptions:get_subscriptions:52 - Fetching subscriptions: skip=0, limit=200
+2026-06-10 21:28:48 | INFO     | app.api.routes.files:get_exam_files:28 - Fetching exam files: page=1, page_size=15, q=None
+2026-06-10 21:28:49 | INFO     | app.api.routes.files:get_exam_files:28 - Fetching exam files: page=1, page_size=15, q=None
+2026-06-10 21:28:49 | INFO     | app.api.routes.files:crawl_exam_files:105 - Triggering manual crawl with crawl_latest_only=True
+2026-06-10 21:28:50 | INFO     | app.api.routes.subscriptions:get_subscriptions:52 - Fetching subscriptions: skip=0, limit=200
+2026-06-10 21:28:52 | INFO     | app.api.routes.subscriptions:get_subscription_by_id:88 - Fetching subscription id=71
+2026-06-10 21:29:07 | INFO     | app.api.routes.subscriptions:update_subscription:110 - Updating subscription id=71
+2026-06-10 21:29:10 | INFO     | app.api.routes.subscriptions:get_subscriptions:52 - Fetching subscriptions: skip=0, limit=200
+2026-06-10 21:31:34 | INFO     | app.api.routes.files:get_exam_files:28 - Fetching exam files: page=1, page_size=15, q=None
+2026-06-10 21:31:35 | INFO     | app.api.routes.files:get_exam_files:28 - Fetching exam files: page=1, page_size=15, q=None
+2026-06-10 21:31:39 | INFO     | app.api.routes.subscriptions:get_subscriptions:52 - Fetching subscriptions: skip=0, limit=200
+2026-06-10 21:31:40 | INFO     | app.api.routes.files:get_exam_files:28 - Fetching exam files: page=1, page_size=15, q=None
+2026-06-10 21:31:41 | INFO     | app.api.routes.files:get_exam_files:28 - Fetching exam files: page=1, page_size=15, q=None
+2026-06-10 21:31:44 | INFO     | app.api.routes.subscriptions:get_subscriptions:52 - Fetching subscriptions: skip=0, limit=200
+2026-06-10 21:32:03 | INFO     | app.api.routes.files:get_exam_files:28 - Fetching exam files: page=1, page_size=15, q=None
+2026-06-10 21:32:10 | INFO     | app.api.routes.files:get_exam_files:28 - Fetching exam files: page=1, page_size=15, q=None
+2026-06-10 21:32:10 | INFO     | app.api.routes.files:get_exam_files:28 - Fetching exam files: page=1, page_size=15, q=None
+2026-06-10 21:32:11 | INFO     | app.api.routes.subscriptions:get_subscriptions:52 - Fetching subscriptions: skip=0, limit=200
+2026-06-10 21:34:20 | INFO     | app.main:lifespan:17 - Shutting down...
+2026-06-10 21:34:20 | INFO     | app.scheduler.scheduler:stop_scheduler:30 - Stopping scheduler...
+2026-06-10 21:34:20 | INFO     | app.scheduler.scheduler:stop_scheduler:32 - Scheduler stopped.
+2026-06-10 21:34:29 | INFO     | app.main:lifespan:11 - Starting up...
+2026-06-10 21:34:29 | INFO     | app.main:lifespan:12 - Creating database tables if they don't exist...
+2026-06-10 21:34:34 | INFO     | app.main:lifespan:14 - Tables created successfully (if not already present).
+2026-06-10 21:34:34 | INFO     | app.scheduler.scheduler:start_scheduler:11 - Starting scheduler...
+2026-06-10 21:34:34 | INFO     | app.scheduler.scheduler:start_scheduler:21 - Scheduler started successfully.
+2026-06-10 22:04:03 | INFO     | app.api.routes.subscriptions:get_subscriptions:52 - Fetching subscriptions: skip=0, limit=200
+2026-06-10 22:04:08 | INFO     | app.api.routes.files:get_exam_files:29 - Fetching exam files: page=1, page_size=15, q=None
+2026-06-10 22:04:08 | INFO     | app.api.routes.files:get_exam_files:29 - Fetching exam files: page=1, page_size=15, q=None
+2026-06-10 22:04:09 | INFO     | app.api.routes.files:crawl_exam_files:106 - Triggering manual crawl with crawl_latest_only=True
+2026-06-10 22:04:10 | INFO     | app.api.routes.subscriptions:get_subscriptions:52 - Fetching subscriptions: skip=0, limit=200
+2026-06-10 22:07:30 | ERROR    | app.api.routes.files:crawl_exam_files:124 - Error during manual crawl: 'SubscriptionService' object has no attribute 'process_all_subscriptions'
+2026-06-10 22:07:50 | INFO     | app.api.routes.files:get_exam_files:29 - Fetching exam files: page=1, page_size=15, q=None
+2026-06-10 22:07:50 | INFO     | app.api.routes.files:get_exam_files:29 - Fetching exam files: page=1, page_size=15, q=None
+2026-06-10 22:07:51 | INFO     | app.api.routes.subscriptions:get_subscriptions:52 - Fetching subscriptions: skip=0, limit=200
+2026-06-10 22:08:13 | INFO     | app.main:lifespan:17 - Shutting down...
+2026-06-10 22:08:13 | INFO     | app.scheduler.scheduler:stop_scheduler:30 - Stopping scheduler...
+2026-06-10 22:08:13 | INFO     | app.scheduler.scheduler:stop_scheduler:32 - Scheduler stopped.

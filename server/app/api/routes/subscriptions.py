@@ -122,6 +122,14 @@ def update_subscription(
         db.commit()
         db.refresh(subscription)
 
+        # Trigger notification check after update
+        # Use a new session or ensure the current session is clean to prevent transaction issues
+        try:
+            service = SubscriptionService(db)
+            service._process_subscription(subscription)
+        except Exception as e:
+            log.error(f"Error triggering process for updated subscription: {e}")
+
         return subscription
     except HTTPException:
         raise

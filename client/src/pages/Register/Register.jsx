@@ -278,9 +278,6 @@ const Register = () => {
                   <Table className="w-full">
                     <TableHeader className="bg-neutral-50 sticky top-0 border-b border-neutral-200 z-10 shadow-sm">
                       <TableRow>
-                        <TableHead className="w-14 text-center font-bold text-neutral-900">
-                          ID
-                        </TableHead>
                         <TableHead className="font-bold text-neutral-900 text-xs uppercase tracking-wider">
                           Họ tên
                         </TableHead>
@@ -289,6 +286,9 @@ const Register = () => {
                         </TableHead>
                         <TableHead className="font-bold text-neutral-900 text-xs uppercase tracking-wider text-center">
                           Mã môn
+                        </TableHead>
+                        <TableHead className="font-bold text-neutral-900 text-xs uppercase tracking-wider text-center">
+                          Tên môn
                         </TableHead>
                         <TableHead className="text-right font-bold text-neutral-900 text-xs uppercase tracking-wider pr-5">
                           Thao tác
@@ -301,9 +301,6 @@ const Register = () => {
                           key={s.id}
                           className="hover:bg-neutral-50/60 border-b border-neutral-100 transition-colors"
                         >
-                          <TableCell className="text-center font-mono text-xs font-semibold text-neutral-400">
-                            {s.id}
-                          </TableCell>
                           <TableCell className="font-semibold text-neutral-950">
                             {s.full_name}
                           </TableCell>
@@ -321,6 +318,9 @@ const Register = () => {
                               </span>
                             )}
                           </TableCell>
+                          <TableCell className="text-center text-xs text-neutral-600">
+                            {s.subject_name || "-"}
+                          </TableCell>
                           <TableCell className="text-right pr-5">
                             <div className="flex gap-1.5 justify-end">
                               <Button
@@ -330,22 +330,6 @@ const Register = () => {
                                 className="h-7 text-xs font-medium border-neutral-200 text-neutral-700 hover:bg-neutral-100 rounded"
                               >
                                 📝 Sửa
-                              </Button>
-                              <Button
-                                variant="destructive"
-                                onClick={() =>
-                                  window.confirm(
-                                    "Gỡ bỏ cấu hình theo dõi này?",
-                                  ) &&
-                                  subscriptionService
-                                    .deleteSubscription(s.id)
-                                    .then(fetchSubscriptions)
-                                    .catch(() => toast.error("Xóa thất bại"))
-                                }
-                                size="sm"
-                                className="h-7 text-xs font-medium bg-rose-50 hover:bg-rose-100 text-rose-600 border border-rose-200 shadow-none rounded"
-                              >
-                                🗑️ Xóa
                               </Button>
                             </div>
                           </TableCell>

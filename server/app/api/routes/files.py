@@ -10,6 +10,7 @@ from app.schemas.exam import (
 )
 from app.utils.logger import log
 from app.services.crawler_service import CrawlerService
+from app.services.subscription_service import SubscriptionService
 from fastapi.responses import RedirectResponse
 
 router = APIRouter()
@@ -108,10 +109,16 @@ def crawl_exam_files(
         crawler_service = CrawlerService(db)
         new_files = crawler_service.crawl_exam_files(crawl_latest_only=crawl_latest_only)
         
+        # Process subscriptions after crawling
+        subscription_service = SubscriptionService(db)
+        processed_count = subscription_service.process_pending_subscriptions()
+        log.info(f"Processed {processed_count} subscriptions after manual crawl.")
+        
         return {
             "success": True,
-            "message": f"Crawl completed. Found {len(new_files)} new files.",
-            "new_files_count": len(new_files)
+            "message": f"Crawl completed. Found {len(new_files)} new files. Processed {processed_count} subscriptions.",
+            "new_files_count": len(new_files),
+            "processed_subscriptions": processed_count
         }
     except Exception as e:
         log.error(f"Error during manual crawl: {e}")

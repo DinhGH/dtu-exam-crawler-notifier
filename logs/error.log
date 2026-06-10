@@ -3350,3 +3350,16 @@ DETAIL:  Failing row contains (22, 50, null, , sent, 2026-06-09 22:14:12.964838,
 [SQL: INSERT INTO email_logs (subscription_id, exam_schedule_id, email, status, sent_at, created_at) VALUES (%(subscription_id)s, %(exam_schedule_id)s, %(email)s, %(status)s, %(sent_at)s, now()) RETURNING email_logs.id, email_logs.created_at]
 [parameters: {'subscription_id': 50, 'exam_schedule_id': None, 'email': '', 'status': 'sent', 'sent_at': datetime.datetime(2026, 6, 9, 22, 14, 12, 964838)}]
 (Background on this error at: https://sqlalche.me/e/20/gkpj)
+2026-06-10 19:37:14 | ERROR    | app.api.routes.subscriptions:get_subscriptions:58 - Error fetching subscriptions: (psycopg2.OperationalError) server closed the connection unexpectedly
+	This probably means the server terminated abnormally
+	before or while processing the request.
+server closed the connection unexpectedly
+	This probably means the server terminated abnormally
+	before or while processing the request.
+
+[SQL: SELECT subscriptions.id AS subscriptions_id, subscriptions.full_name AS subscriptions_full_name, subscriptions.email AS subscriptions_email, subscriptions.subject_code AS subscriptions_subject_code, subscriptions.subject_name AS subscriptions_subject_name, subscriptions.created_at AS subscriptions_created_at 
+FROM subscriptions 
+ LIMIT %(param_1)s OFFSET %(param_2)s]
+[parameters: {'param_1': 200, 'param_2': 0}]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2026-06-10 22:07:30 | ERROR    | app.api.routes.files:crawl_exam_files:124 - Error during manual crawl: 'SubscriptionService' object has no attribute 'process_all_subscriptions'

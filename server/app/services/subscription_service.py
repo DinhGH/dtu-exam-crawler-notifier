@@ -880,49 +880,54 @@ class SubscriptionService:
             log.error(f"Failed to log email: {e}")
             self.db.rollback()
 
+    def _process_subscription(self, sub: Subscription) -> bool:
+        """
+        Process a single subscription: search for matching files, send email, and delete the subscription if successful.
+        """
+        # Find matching exam files
+        exam_files = self._find_matching_exam_files(sub.subject_code, sub.subject_name)
+        
+        exam_files_data = []
+        for exam_file in exam_files:
+            file_path = self._get_excel_file_path(exam_file.file_name)
+            if not file_path.exists():
+                file_path = self._download_excel_file(exam_file)
+
+            if not file_path or not file_path.exists():
+                continue
+
+            user_exam_info = self._extract_user_exam_info(file_path, sub.full_name)
+            
+            if user_exam_info:
+                exam_files_data.append({
+                    'file_id': exam_file.id,
+                    'file_name': exam_file.file_name,
+                    'file_path': str(file_path),
+                    'exam_info': user_exam_info
+                })
+        
+        if exam_files_data:
+            msg = self._create_email_message(sub.email, sub.full_name, exam_files_data)
+            success = self._send_email(msg, sub.email)
+            
+            if success:
+                self.db.delete(sub)
+                self.db.commit()
+                log.info(f"Processed and deleted subscription for {sub.email}")
+                return True
+        return False
+
     def process_pending_subscriptions(self) -> int:
         """
-        Process all pending subscriptions: search for matching files, send email, and delete the subscription.
+        Process all pending subscriptions.
         Returns the number of subscriptions processed.
         """
         subscriptions = self.db.query(Subscription).all()
         processed_count = 0
         
         for sub in subscriptions:
-            # Find matching exam files
-            exam_files = self._find_matching_exam_files(sub.subject_code, sub.subject_name)
-            
-            exam_files_data = []
-            for exam_file in exam_files:
-                file_path = self._get_excel_file_path(exam_file.file_name)
-                if not file_path.exists():
-                    file_path = self._download_excel_file(exam_file)
-
-                if not file_path or not file_path.exists():
-                    continue
-
-                user_exam_info = self._extract_user_exam_info(file_path, sub.full_name)
-                
-                if user_exam_info:
-                    exam_files_data.append({
-                        'file_id': exam_file.id,
-                        'file_name': exam_file.file_name,
-                        'file_path': str(file_path),
-                        'exam_info': user_exam_info
-                    })
-            
-            if exam_files_data:
-                msg = self._create_email_message(sub.email, sub.full_name, exam_files_data)
-                success = self._send_email(msg, sub.email)
-                
-                if success:
-                    # Log email logs if needed, but since we are deleting the subscription, 
-                    # we should probably keep logs or maybe just delete the subscription.
-                    # As requested: "sau khi tìm thấy file danh sách theo đúng yêu cầu, gửi mail xong thì tự động xóa cái đăng ký đã gửi đó đi."
-                    self.db.delete(sub)
-                    self.db.commit()
-                    processed_count += 1
-                    log.info(f"Processed and deleted subscription for {sub.email}")
+            if self._process_subscription(sub):
+                processed_count += 1
         
         return processed_count
 
@@ -945,9 +950,10 @@ class SubscriptionService:
             )
             self.db.add(subscription)
             self.db.commit()
+            self.db.refresh(subscription)
             
-            # Immediately attempt to process all (including the new one)
-            processed_count = self.process_pending_subscriptions()
+            # Immediately attempt to process only this new subscription
+            self._process_subscription(subscription)
             
             return {
                 "success": True,
