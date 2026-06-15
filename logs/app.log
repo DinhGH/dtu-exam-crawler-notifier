@@ -6644,3 +6644,16 @@ FROM subscriptions
 2026-06-15 20:21:38 | INFO     | app.main:lifespan:17 - Shutting down...
 2026-06-15 20:21:38 | INFO     | app.scheduler.scheduler:stop_scheduler:30 - Stopping scheduler...
 2026-06-15 20:21:38 | INFO     | app.scheduler.scheduler:stop_scheduler:32 - Scheduler stopped.
+2026-06-15 20:21:42 | INFO     | app.main:lifespan:12 - Starting up...
+2026-06-15 20:21:42 | INFO     | app.main:lifespan:13 - Creating database tables if they don't exist...
+2026-06-15 20:21:48 | INFO     | app.main:lifespan:15 - Tables created successfully (if not already present).
+2026-06-15 20:21:48 | INFO     | app.scheduler.scheduler:start_scheduler:11 - Starting scheduler...
+2026-06-15 20:21:48 | INFO     | app.scheduler.scheduler:start_scheduler:21 - Scheduler started successfully.
+2026-06-15 20:24:05 | INFO     | app.api.routes.files:get_exam_files:29 - Fetching exam files: page=1, page_size=15, q=None
+2026-06-15 20:24:06 | INFO     | app.api.routes.files:get_exam_files:29 - Fetching exam files: page=1, page_size=15, q=None
+2026-06-15 20:24:15 | INFO     | app.api.routes.subscriptions:get_subscriptions:52 - Fetching subscriptions: skip=0, limit=200
+2026-06-15 20:24:31 | INFO     | app.api.routes.subscriptions:create_subscription:27 - New subscription request: huynhdinh2k52707@gmail.com, subject_code=ob 253
+2026-06-15 20:24:37 | INFO     | app.services.subscription_service:_create_email_message:425 - Attached file với đuôi chuẩn: Tổng quan Hành vi Tổ chức trong Du lịch OB 253 (B-D-F) (17_18 29-05-2026).xlsx
+2026-06-15 20:24:52 | INFO     | app.services.subscription_service:_send_email:861 - Email sent successfully to huynhdinh2k52707@gmail.com
+2026-06-15 20:24:53 | INFO     | app.services.subscription_service:_process_subscription:916 - Processed and deleted subscription for huynhdinh2k52707@gmail.com
+2026-06-15 20:24:53 | INFO     | app.api.routes.subscriptions:get_subscriptions:52 - Fetching subscriptions: skip=0, limit=200
