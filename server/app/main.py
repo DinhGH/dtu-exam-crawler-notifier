@@ -5,6 +5,7 @@ from app.core.database import engine, Base
 from app.api.router import api_router
 from app.scheduler.scheduler import start_scheduler, stop_scheduler
 from app.utils.logger import log
+from app.core.config import settings
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
@@ -19,13 +20,10 @@ async def lifespan(app: FastAPI):
 
 app = FastAPI(lifespan=lifespan)
 
-# 2. Định nghĩa danh sách các Origin được phép truy cập backend này
-origins = ["*"]
-
 # 3. Thêm CORSMiddleware vào ứng dụng của bạn
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=origins,            # Cho phép các origin trong danh sách trên
+    allow_origins=settings.ALLOWED_ORIGINS,            # Cho phép các origin được cấu hình
     allow_credentials=True,
     allow_methods=["*"],              # Cho phép tất cả các HTTP Methods (GET, POST, PUT, DELETE,...)
     allow_headers=["*"],              # Cho phép tất cả các Headers gửi lên (Content-Type, Authorization,...)

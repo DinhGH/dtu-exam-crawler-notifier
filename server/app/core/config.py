@@ -3,6 +3,7 @@ from pydantic_settings import BaseSettings
 class Settings(BaseSettings):
     DATABASE_URL: str
     BASE_URL: str = "https://pdaotao.duytan.edu.vn/"
+    ALLOWED_ORIGINS: list[str] = ["*"]
     crawl_interval: int = 60  # seconds, optional override from .env
 
     # SMTP Configuration
