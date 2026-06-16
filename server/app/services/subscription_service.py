@@ -63,27 +63,19 @@ class SubscriptionService:
         sanitized_name = self._sanitize_filename(file_name)
         return self.storage_path / sanitized_name
 
-    def _download_excel_file(self, exam_file: ExamFile) -> Path | None:
+    def _download_excel_file(self, exam_file: ExamFile) -> bytes | None:
         """
-        Download an Excel file from the download link and save it to storage.
-        Returns the path to the downloaded file or None if download fails.
+        Download an Excel file from the download link into memory.
+        Returns the file content as bytes or None if download fails.
         """
         import requests
 
         try:
             response = requests.get(exam_file.download_link, timeout=30)
             response.raise_for_status()
-
-            # Use sanitized filename for storage
-            sanitized_name = self._sanitize_filename(exam_file.file_name)
-            file_path = self.storage_path / sanitized_name
-            self.storage_path.mkdir(parents=True, exist_ok=True)
-
-            with open(file_path, 'wb') as f:
-                f.write(response.content)
-
-            log.info(f"Downloaded Excel file: {exam_file.file_name} as {sanitized_name}")
-            return file_path
+            
+            log.info(f"Downloaded Excel file: {exam_file.file_name} into memory")
+            return response.content
 
         except Exception as e:
             log.error(f"Failed to download Excel file {exam_file.download_link}: {e}")
@@ -115,7 +107,7 @@ class SubscriptionService:
 
         return query.order_by(ExamFile.crawl_time.desc()).all()
 
-    def _extract_user_exam_info(self, excel_file_path: str, user_full_name: str) -> list:
+    def _extract_user_exam_info(self, file_content: bytes, file_name: str, user_full_name: str) -> list:
         """
         Quét file Excel từ trên xuống theo logic cuốn chiếu (Scanner):
         - Tự động nhận diện và cập nhật thông tin Phòng/Thời gian thi khi bắt gặp.
@@ -123,24 +115,15 @@ class SubscriptionService:
         - Tìm kiếm sinh viên chính xác từ đầu, giữa đến cuối danh sách.
         - Tự động dừng khi gặp 15 dòng trống liên tiếp để tối ưu hiệu năng.
         """
-        # Determine file type
-        file_path = Path(excel_file_path)
+        import io
         
-        # Check if it is actually a PDF (by content/signature or just extension)
-        try:
-            with open(file_path, 'rb') as f:
-                header = f.read(5)
-                if header.startswith(b'%PDF-'):
-                    return self._extract_user_exam_info_from_pdf(excel_file_path, user_full_name)
-        except Exception:
-            pass
-        
-        if file_path.suffix.lower() == '.pdf':
-            return self._extract_user_exam_info_from_pdf(excel_file_path, user_full_name)
+        # Check if it is actually a PDF
+        if file_content.startswith(b'%PDF-') or file_name.lower().endswith('.pdf'):
+            return self._extract_user_exam_info_from_pdf(file_content, user_full_name)
         
         try:
             # 1. Đọc toàn bộ file Excel dưới dạng bảng thô (Matrix) để tránh cơ chế ngầm của Pandas
-            df_raw = pd.read_excel(excel_file_path, header=None, engine='openpyxl')
+            df_raw = pd.read_excel(io.BytesIO(file_content), header=None, engine='openpyxl')
             raw_matrix = df_raw.values.tolist()
             
             # Khởi tạo các biến trạng thái lưu tạm dữ liệu phòng và thời gian
@@ -283,7 +266,7 @@ class SubscriptionService:
             log.error(f"Lỗi khi xử lý file Excel {excel_file_path}: {e}")
             return []
 
-    def _extract_user_exam_info_from_pdf(self, pdf_file_path: str, user_full_name: str) -> list:
+    def _extract_user_exam_info_from_pdf(self, file_content: bytes, user_full_name: str) -> list:
         """
         Extract user's exam information from a PDF file.
         Similar logic to Excel extraction but adapted for PDF text extraction.
@@ -294,7 +277,8 @@ class SubscriptionService:
         
         try:
             # Read PDF text
-            reader = PdfReader(pdf_file_path)
+            import io
+            reader = PdfReader(io.BytesIO(file_content))
             text = ""
             for page in reader.pages:
                 text += page.extract_text() + "\n"
@@ -405,44 +389,36 @@ class SubscriptionService:
 
         # Attach Excel files
         for file_data in exam_files_data:
-            if 'file_path' in file_data and Path(file_data['file_path']).exists():
+            if 'file_content' in file_data and 'file_name' in file_data:
                 try:
-                    file_path_obj = Path(file_data['file_path'])
-                    with open(file_path_obj, 'rb') as f:
-                        # Detect if file is PDF or Excel
-                        file_ext = file_path_obj.suffix.lower()
-                        if file_ext == '.pdf':
-                            part = MIMEBase('application', 'pdf')
-                        else:
-                            part = MIMEBase('application', 'vnd.openxmlformats-officedocument.spreadsheetml.sheet')
+                    file_content = file_data['file_content']
+                    filename_raw = file_data['file_name']
+                    
+                    # Detect if file is PDF or Excel
+                    if file_content.startswith(b'%PDF-'):
+                        part = MIMEBase('application', 'pdf')
+                        if not filename_raw.lower().endswith('.pdf'):
+                            filename_raw += '.pdf'
+                    else:
+                        part = MIMEBase('application', 'vnd.openxmlformats-officedocument.spreadsheetml.sheet')
+                        if not filename_raw.lower().endswith(('.xlsx', '.xls')):
+                            filename_raw += '.xlsx'
                             
-                        part.set_payload(f.read())
-                        encoders.encode_base64(part)
-                        
-                        filename_raw = file_path_obj.name
-                        
-                        # Verify the actual file content to determine extension
-                        with open(file_path_obj, 'rb') as f:
-                            header = f.read(5)
-                            if header.startswith(b'%PDF-'):
-                                if not filename_raw.lower().endswith('.pdf'):
-                                    filename_raw += '.pdf'
-                            else:
-                                if not filename_raw.lower().endswith(('.xlsx', '.xls')):
-                                    filename_raw += '.xlsx'
-                        
-                        encoded_filename = Header(filename_raw, 'utf-8').encode()
-                        
-                        part.add_header(
-                            'Content-Disposition',
-                            'attachment',
-                            filename=encoded_filename
-                        )
-                        
-                        msg.attach(part)
-                        log.info(f"Attached file với đuôi chuẩn: {filename_raw}")
+                    part.set_payload(file_content)
+                    encoders.encode_base64(part)
+                    
+                    encoded_filename = Header(filename_raw, 'utf-8').encode()
+                    
+                    part.add_header(
+                        'Content-Disposition',
+                        'attachment',
+                        filename=encoded_filename
+                    )
+                    
+                    msg.attach(part)
+                    log.info(f"Attached file với đuôi chuẩn: {filename_raw}")
                 except Exception as e:
-                    log.error(f"Failed to attach file {file_data['file_path']}: {e}")
+                    log.error(f"Failed to attach file {file_data['file_name']}: {e}")
 
         return msg
 
@@ -907,20 +883,18 @@ class SubscriptionService:
         
         exam_files_data = []
         for exam_file in exam_files:
-            file_path = self._get_excel_file_path(exam_file.file_name)
-            if not file_path.exists():
-                file_path = self._download_excel_file(exam_file)
+            file_content = self._download_excel_file(exam_file)
 
-            if not file_path or not file_path.exists():
+            if not file_content:
                 continue
 
-            user_exam_info = self._extract_user_exam_info(file_path, sub.full_name)
+            user_exam_info = self._extract_user_exam_info(file_content, exam_file.file_name, sub.full_name)
             
             if user_exam_info:
                 exam_files_data.append({
                     'file_id': exam_file.id,
                     'file_name': exam_file.file_name,
-                    'file_path': str(file_path),
+                    'file_content': file_content,
                     'exam_info': user_exam_info
                 })
         
