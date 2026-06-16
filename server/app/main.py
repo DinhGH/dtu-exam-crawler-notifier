@@ -23,6 +23,7 @@ app = FastAPI(lifespan=lifespan)
 # 3. Thêm CORSMiddleware vào ứng dụng của bạn
 app.add_middleware(
     CORSMiddleware,
+    allow_origins=["http://localhost:5173", "https://dtu-exam-crawler-notifier.vercel.app"],
     allow_credentials=True,
     allow_methods=["*"],              # Cho phép tất cả các HTTP Methods (GET, POST, PUT, DELETE,...)
     allow_headers=["*"],              # Cho phép tất cả các Headers gửi lên (Content-Type, Authorization,...)
