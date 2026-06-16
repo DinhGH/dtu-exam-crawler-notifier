@@ -14,6 +14,8 @@ const Navbar = () => {
     { name: "Danh sách tệp", path: "/files" },
   ];
 
+  const isAuthenticated = !!localStorage.getItem("token");
+
   return (
     <header className="sticky top-0 z-40 w-full border-b border-gray-200 bg-white/95 backdrop-blur">
       <div className="container mx-auto flex h-16 items-center justify-between px-4">
@@ -26,19 +28,28 @@ const Navbar = () => {
 
         {/* Desktop Navigation */}
         <nav className="hidden md:flex items-center space-x-6">
-          {navLinks.map((link) => (
-            <Link
-              key={link.path}
-              to={link.path}
-              className={`text-sm font-medium transition-colors hover:text-blue-600 ${
-                location.pathname === link.path
-                  ? "text-blue-600"
-                  : "text-gray-700 hover:text-gray-900"
-              }`}
-            >
-              {link.name}
-            </Link>
-          ))}
+          {navLinks.map((link) => {
+            if (
+              !isAuthenticated &&
+              link.path !== "/register" &&
+              link.path !== "/login"
+            ) {
+              return null;
+            }
+            return (
+              <Link
+                key={link.path}
+                to={link.path}
+                className={`text-sm font-medium transition-colors hover:text-blue-600 ${
+                  location.pathname === link.path
+                    ? "text-blue-600"
+                    : "text-gray-700 hover:text-gray-900"
+                }`}
+              >
+                {link.name}
+              </Link>
+            );
+          })}
           <Button
             variant="ghost"
             size="icon"
@@ -85,20 +96,29 @@ const Navbar = () => {
       {isMenuOpen && (
         <div className="md:hidden border-t border-gray-200 bg-white">
           <nav className="flex flex-col p-4 space-y-2">
-            {navLinks.map((link) => (
-              <Link
-                key={link.path}
-                to={link.path}
-                className={`px-3 py-2 rounded-md text-base font-medium ${
-                  location.pathname === link.path
-                    ? "bg-blue-50 text-blue-600"
-                    : "text-gray-700 hover:bg-gray-50"
-                }`}
-                onClick={() => setIsMenuOpen(false)}
-              >
-                {link.name}
-              </Link>
-            ))}
+            {navLinks.map((link) => {
+              if (
+                !isAuthenticated &&
+                link.path !== "/register" &&
+                link.path !== "/login"
+              ) {
+                return null;
+              }
+              return (
+                <Link
+                  key={link.path}
+                  to={link.path}
+                  className={`px-3 py-2 rounded-md text-base font-medium ${
+                    location.pathname === link.path
+                      ? "bg-blue-50 text-blue-600"
+                      : "text-gray-700 hover:bg-gray-50"
+                  }`}
+                  onClick={() => setIsMenuOpen(false)}
+                >
+                  {link.name}
+                </Link>
+              );
+            })}
           </nav>
         </div>
       )}

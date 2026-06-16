@@ -20,6 +20,7 @@ from app.models.exam_file import ExamFile
 from app.models.exam_schedule import ExamSchedule
 from app.models.subscription import Subscription
 from app.models.email_log import EmailLog
+from app.models.user import User
 from app.core.database import Base
 
 target_metadata = Base.metadata

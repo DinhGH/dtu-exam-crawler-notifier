@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { toast } from "sonner";
 import { fileService } from "../../services/fileService";
 import {
   Table,
@@ -22,7 +23,6 @@ const Files = () => {
   const [pageSize] = useState(15);
   const [total, setTotal] = useState(0);
   const [crawling, setCrawling] = useState(false);
-  const [crawlMessage, setCrawlMessage] = useState("");
   const [searchQuery, setSearchQuery] = useState("");
 
   useEffect(() => {
@@ -39,6 +39,7 @@ const Files = () => {
       setTotal(data?.total || 0);
     } catch (err) {
       console.error("Error fetching files:", err);
+      toast.error("Không thể tải danh sách tệp");
     } finally {
       setLoading(false);
     }
@@ -60,14 +61,15 @@ const Files = () => {
 
   async function handleCrawlLatest() {
     setCrawling(true);
-    setCrawlMessage("");
     try {
       const result = await fileService.crawlFiles(true);
-      setCrawlMessage(result.message);
-      fetchFiles(); // Refresh the list after crawling
+      toast.success(result.message || "Cào dữ liệu thành công");
+      fetchFiles();
     } catch (err) {
       console.error("Crawl error:", err);
-      setCrawlMessage("Crawl failed: " + err.message);
+      toast.error(
+        "Cào dữ liệu thất bại: " + (err.message || "Lỗi không xác định"),
+      );
     } finally {
       setCrawling(false);
     }
@@ -125,14 +127,6 @@ const Files = () => {
           </Button>
         </div>
       </div>
-
-      {crawlMessage && (
-        <div
-          className={`mb-4 p-3 rounded-md ${crawlMessage.includes("success") || crawlMessage.includes("completed") ? "bg-green-100 text-green-800" : "bg-red-100 text-red-800"}`}
-        >
-          {crawlMessage}
-        </div>
-      )}
 
       {!loading && files.length === 0 ? (
         <div className="mt-8">

@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
@@ -43,6 +43,7 @@ const Register = () => {
 
   const [subscriptions, setSubscriptions] = useState([]);
   const [loadingList, setLoadingList] = useState(false);
+  const [loadingAction, setLoadingAction] = useState(false);
   const [selected, setSelected] = useState(null);
   const [modalOpen, setModalOpen] = useState(false);
   const [editData, setEditData] = useState({
@@ -51,6 +52,8 @@ const Register = () => {
     subjectCode: "",
     subjectName: "",
   });
+
+  const hasLoaded = useRef(false);
 
   const fetchSubscriptions = async () => {
     try {
@@ -66,40 +69,35 @@ const Register = () => {
   };
 
   useEffect(() => {
-    let mounted = true;
+    if (hasLoaded.current) return;
+    hasLoaded.current = true;
+
     const load = async () => {
       try {
-        setLoadingList(true);
         const data = await subscriptionService.getSubscriptions(0, 200);
-        if (mounted) setSubscriptions(data || []);
+        setSubscriptions(data || []);
       } catch (e) {
         console.error(e);
-        if (mounted) toast.error("Không thể tải danh sách đăng ký");
-      } finally {
-        if (mounted) setLoadingList(false);
       }
     };
-    const t = setTimeout(load, 0);
-    return () => {
-      mounted = false;
-      clearTimeout(t);
-    };
+
+    load();
   }, []);
 
   const onSubmit = async (data) => {
+    setLoadingAction(true);
     try {
       await subscriptionService.subscribe(data);
       toast.success("Đăng ký thành công!", {
-        description:
-          "Hệ thống sẽ gửi danh sách lịch thi đến email của bạn ngay khi có dữ liệu.",
         duration: 3000,
       });
       form.reset();
-      fetchSubscriptions();
+      // Chạy 1 lần duy nhất sau khi gửi
+      await fetchSubscriptions();
     } catch {
-      toast.error("Đăng ký thất bại", {
-        description: "Vui lòng thử lại sau.",
-      });
+      // toast is handled by apiClient
+    } finally {
+      setLoadingAction(false);
     }
   };
 
@@ -122,6 +120,7 @@ const Register = () => {
 
   const handleSave = async () => {
     if (!selected) return;
+    setLoadingAction(true);
     try {
       await subscriptionService.updateSubscription(selected.id, {
         fullName: editData.fullName,
@@ -132,9 +131,10 @@ const Register = () => {
       toast.success("Cập nhật thành công");
       setModalOpen(false);
       fetchSubscriptions();
-    } catch (e) {
-      console.error(e);
-      toast.error("Cập nhật thất bại");
+    } catch {
+      // toast is handled by apiClient
+    } finally {
+      setLoadingAction(false);
     }
   };
 
@@ -142,14 +142,16 @@ const Register = () => {
     if (!selected) return;
     const ok = window.confirm("Bạn có chắc muốn xóa đăng ký này?");
     if (!ok) return;
+    setLoadingAction(true);
     try {
       await subscriptionService.deleteSubscription(selected.id);
       toast.success("Xóa thành công");
       setModalOpen(false);
       fetchSubscriptions();
-    } catch (e) {
-      console.error(e);
-      toast.error("Xóa thất bại");
+    } catch {
+      // toast is handled by apiClient
+    } finally {
+      setLoadingAction(false);
     }
   };
 
@@ -159,10 +161,10 @@ const Register = () => {
       {/* Top Header cố định thanh lịch */}
 
       {/* Vùng nội dung chính lấp đầy diện tích còn lại */}
-      <main className="flex-1 p-6 min-h-0 bg-neutral-50/40">
-        <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-6 h-full items-stretch">
-          {/* Khối bên trái: Form Đăng Ký (Chiếm 5 phần) */}
-          <section className="lg:col-span-5 flex flex-col min-h-0">
+      <main className="flex-1 p-4 min-h-0 bg-neutral-50/40">
+        <div className="max-w-full mx-auto grid grid-cols-1 lg:grid-cols-12 gap-4 h-full items-stretch">
+          {/* Khối bên trái: Form Đăng Ký (Chiếm 4 phần) */}
+          <section className="lg:col-span-4 flex flex-col min-h-0">
             <Card className="border border-neutral-200 shadow-sm rounded-lg bg-white h-full flex flex-col overflow-hidden">
               <CardHeader className="space-y-1 border-b border-neutral-100 pb-4 pt-5 px-5 shrink-0">
                 <CardTitle className="text-lg font-bold text-neutral-950 flex items-center gap-2">
@@ -177,7 +179,7 @@ const Register = () => {
                   className="space-y-4"
                 >
                   <div className="space-y-1">
-                    <label className="text-[11px] font-bold text-neutral-700 uppercase tracking-wider">
+                    <label className="text-sm font-bold text-neutral-700 uppercase tracking-wider">
                       Họ và tên *
                     </label>
                     <Input
@@ -189,7 +191,7 @@ const Register = () => {
                   </div>
 
                   <div className="space-y-1">
-                    <label className="text-[11px] font-bold text-neutral-700 uppercase tracking-wider">
+                    <label className="text-sm font-bold text-neutral-700 uppercase tracking-wider">
                       Email nhận thông báo *
                     </label>
                     <Input
@@ -202,7 +204,7 @@ const Register = () => {
                   </div>
 
                   <div className="space-y-1">
-                    <label className="text-[11px] font-bold text-neutral-700 uppercase tracking-wider">
+                    <label className="text-sm font-bold text-neutral-700 uppercase tracking-wider">
                       Mã môn học (Tùy chọn)
                     </label>
                     <Input
@@ -213,7 +215,7 @@ const Register = () => {
                   </div>
 
                   <div className="space-y-1">
-                    <label className="text-[11px] font-bold text-neutral-700 uppercase tracking-wider">
+                    <label className="text-sm font-bold text-neutral-700 uppercase tracking-wider">
                       Tên môn học (Tùy chọn)
                     </label>
                     <Input
@@ -226,6 +228,7 @@ const Register = () => {
                   {/* Nút hành động phối màu Xanh Blue hiện đại */}
                   <Button
                     type="submit"
+                    isLoading={loadingAction}
                     className="w-full bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 rounded-md shadow-sm transition-colors duration-150 mt-2"
                   >
                     Kích hoạt giám sát
@@ -235,8 +238,8 @@ const Register = () => {
             </Card>
           </section>
 
-          {/* Khối bên phải: Danh Sách Đăng Ký (Chiếm 7 phần) */}
-          <section className="lg:col-span-7 flex flex-col min-h-0">
+          {/* Khối bên phải: Danh Sách Đăng Ký (Chiếm 8 phần) */}
+          <section className="lg:col-span-8 flex flex-col min-h-0">
             <Card className="border border-neutral-200 shadow-sm rounded-lg bg-white h-full flex flex-col overflow-hidden">
               <CardHeader className="flex flex-row items-center justify-between space-y-0 border-b border-neutral-100 py-4 px-5 shrink-0 bg-neutral-50/40">
                 <div>
@@ -278,19 +281,19 @@ const Register = () => {
                   <Table className="w-full">
                     <TableHeader className="bg-neutral-50 sticky top-0 border-b border-neutral-200 z-10 shadow-sm">
                       <TableRow>
-                        <TableHead className="font-bold text-neutral-900 text-xs uppercase tracking-wider">
+                        <TableHead className="font-bold text-neutral-900 text-sm uppercase tracking-wider">
                           Họ tên
                         </TableHead>
-                        <TableHead className="font-bold text-neutral-900 text-xs uppercase tracking-wider">
+                        <TableHead className="font-bold text-neutral-900 text-sm uppercase tracking-wider">
                           Email
                         </TableHead>
-                        <TableHead className="font-bold text-neutral-900 text-xs uppercase tracking-wider text-center">
+                        <TableHead className="font-bold text-neutral-900 text-sm uppercase tracking-wider text-center">
                           Mã môn
                         </TableHead>
-                        <TableHead className="font-bold text-neutral-900 text-xs uppercase tracking-wider text-center">
+                        <TableHead className="font-bold text-neutral-900 text-sm uppercase tracking-wider text-center">
                           Tên môn
                         </TableHead>
-                        <TableHead className="text-right font-bold text-neutral-900 text-xs uppercase tracking-wider pr-5">
+                        <TableHead className="text-right font-bold text-neutral-900 text-sm uppercase tracking-wider pr-5">
                           Thao tác
                         </TableHead>
                       </TableRow>
@@ -301,24 +304,24 @@ const Register = () => {
                           key={s.id}
                           className="hover:bg-neutral-50/60 border-b border-neutral-100 transition-colors"
                         >
-                          <TableCell className="font-semibold text-neutral-950">
+                          <TableCell className="font-semibold text-neutral-950 text-sm">
                             {s.full_name}
                           </TableCell>
-                          <TableCell className="text-neutral-600 font-mono text-xs">
+                          <TableCell className="text-neutral-600 font-mono text-sm">
                             {s.email}
                           </TableCell>
                           <TableCell className="text-center">
                             {s.subject_code ? (
-                              <span className="inline-flex items-center px-2 py-0.5 rounded text-xs font-semibold bg-neutral-100 text-neutral-800 border border-neutral-200">
+                              <span className="inline-flex items-center px-2 py-0.5 rounded text-sm font-semibold bg-neutral-100 text-neutral-800 border border-neutral-200">
                                 {s.subject_code}
                               </span>
                             ) : (
-                              <span className="text-neutral-400 text-xs">
+                              <span className="text-neutral-400 text-sm">
                                 -
                               </span>
                             )}
                           </TableCell>
-                          <TableCell className="text-center text-xs text-neutral-600">
+                          <TableCell className="text-center text-sm text-neutral-600">
                             {s.subject_name || "-"}
                           </TableCell>
                           <TableCell className="text-right pr-5">
@@ -327,7 +330,7 @@ const Register = () => {
                                 onClick={() => openViewModal(s.id)}
                                 size="sm"
                                 variant="outline"
-                                className="h-7 text-xs font-medium border-neutral-200 text-neutral-700 hover:bg-neutral-100 rounded"
+                                className="h-9 text-sm font-medium border-neutral-200 text-neutral-700 hover:bg-neutral-100 rounded"
                               >
                                 📝 Sửa
                               </Button>
@@ -417,12 +420,14 @@ const Register = () => {
               <Button
                 variant="destructive"
                 onClick={handleDelete}
+                isLoading={loadingAction}
                 className="bg-rose-500 hover:bg-rose-600 text-white rounded-md text-xs font-medium px-4"
               >
                 Xóa đăng ký
               </Button>
               <Button
                 onClick={handleSave}
+                isLoading={loadingAction}
                 className="bg-blue-600 hover:bg-blue-700 text-white rounded-md text-xs font-medium px-5 shadow-sm"
               >
                 Lưu chỉnh sửa

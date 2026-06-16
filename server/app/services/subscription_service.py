@@ -923,39 +923,38 @@ class SubscriptionService:
         
         return processed_count
 
-    def subscribe_and_notify(
+    def create_subscription(
         self,
         full_name: str,
         email: str,
         subject_code: Optional[str] = None,
         subject_name: Optional[str] = None
-    ) -> Dict[str, Any]:
+    ) -> Subscription:
         """
-        Create subscription and immediately trigger processing.
+        Create subscription and return the object.
         """
+        subscription = Subscription(
+            full_name=full_name,
+            email=email,
+            subject_code=subject_code,
+            subject_name=subject_name
+        )
+        self.db.add(subscription)
+        self.db.commit()
+        self.db.refresh(subscription)
+        return subscription
+
+    def process_subscription_async(self, subscription_id: int):
+        """
+        Background task to process a subscription.
+        Creates a new DB session for the background task.
+        """
+        from app.core.database import SessionLocal
+        db = SessionLocal()
         try:
-            subscription = Subscription(
-                full_name=full_name,
-                email=email,
-                subject_code=subject_code,
-                subject_name=subject_name
-            )
-            self.db.add(subscription)
-            self.db.commit()
-            self.db.refresh(subscription)
-            
-            # Immediately attempt to process only this new subscription
-            self._process_subscription(subscription)
-            
-            return {
-                "success": True,
-                "message": "Đăng ký thành công và đang được xử lý.",
-                "subscription_id": subscription.id
-            }
-        except Exception as e:
-            log.error(f"Error in subscribe_and_notify: {e}")
-            self.db.rollback()
-            return {
-                "success": False,
-                "message": f"Lỗi: {str(e)}"
-            }
+            service = SubscriptionService(db)
+            sub = db.query(Subscription).filter(Subscription.id == subscription_id).first()
+            if sub:
+                service._process_subscription(sub)
+        finally:
+            db.close()

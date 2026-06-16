@@ -1,4 +1,4 @@
-from fastapi import APIRouter, Depends, HTTPException, status
+from fastapi import APIRouter, Depends, HTTPException, status, BackgroundTasks
 from sqlalchemy.orm import Session
 from typing import List, Optional
 from app.core.database import get_db
@@ -17,6 +17,7 @@ router = APIRouter()
 @router.post("", response_model=SubscriptionResult)
 def create_subscription(
     subscription: SubscriptionCreate,
+    background_tasks: BackgroundTasks,
     db: Session = Depends(get_db),
 ):
     """
@@ -28,13 +29,21 @@ def create_subscription(
 
     try:
         service = SubscriptionService(db)
-        result = service.subscribe_and_notify(
+        subscription_obj = service.create_subscription(
             full_name=subscription.full_name,
             email=subscription.email,
             subject_code=subscription.subject_code,
             subject_name=subscription.subject_name,
         )
-        return result
+        
+        # Trigger background processing
+        background_tasks.add_task(service.process_subscription_async, subscription_obj.id)
+        
+        return {
+            "success": True,
+            "message": "Đăng ký thành công! Hệ thống đang xử lý và sẽ gửi email cho bạn.",
+            "subscription_id": subscription_obj.id
+        }
     except Exception as e:
         log.error(f"Error creating subscription: {e}")
         raise HTTPException(status_code=500, detail=str(e))

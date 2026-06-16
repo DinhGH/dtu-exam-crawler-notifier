@@ -1,4 +1,5 @@
 import axios from "axios";
+import { toast } from "sonner";
 
 const apiClient = axios.create({
   baseURL:
@@ -9,17 +10,30 @@ const apiClient = axios.create({
   },
 });
 
+// Add request interceptor for authentication
+apiClient.interceptors.request.use(
+  (config) => {
+    const token = localStorage.getItem("token");
+    if (token) {
+      config.headers.Authorization = `Bearer ${token}`;
+    }
+    return config;
+  },
+  (error) => Promise.reject(error),
+);
+
 // Add response interceptor for error handling
 apiClient.interceptors.response.use(
   (response) => response,
   (error) => {
-    if (error.response) {
-      console.error("API Error:", error.response.data);
-    } else if (error.request) {
-      console.error("No response received:", error.request);
-    } else {
-      console.error("Error:", error.message);
-    }
+    const message =
+      error.response?.data?.message ||
+      error.response?.data?.detail ||
+      error.message ||
+      "Đã có lỗi xảy ra";
+
+    toast.error(message);
+
     return Promise.reject(error);
   },
 );

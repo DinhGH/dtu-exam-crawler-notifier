@@ -3389,3 +3389,15 @@ FROM subscriptions
  LIMIT %(param_1)s OFFSET %(param_2)s]
 [parameters: {'param_1': 200, 'param_2': 0}]
 (Background on this error at: https://sqlalche.me/e/20/e3q8)
+2026-06-16 16:04:36 | ERROR    | app.api.routes.subscriptions:get_subscriptions:67 - Error fetching subscriptions: (psycopg2.OperationalError) server closed the connection unexpectedly
+	This probably means the server terminated abnormally
+	before or while processing the request.
+server closed the connection unexpectedly
+	This probably means the server terminated abnormally
+	before or while processing the request.
+
+[SQL: SELECT subscriptions.id AS subscriptions_id, subscriptions.full_name AS subscriptions_full_name, subscriptions.email AS subscriptions_email, subscriptions.subject_code AS subscriptions_subject_code, subscriptions.subject_name AS subscriptions_subject_name, subscriptions.created_at AS subscriptions_created_at 
+FROM subscriptions 
+ LIMIT %(param_1)s OFFSET %(param_2)s]
+[parameters: {'param_1': 200, 'param_2': 0}]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)

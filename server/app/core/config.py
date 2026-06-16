@@ -13,6 +13,9 @@ class Settings(BaseSettings):
     SMTP_PASSWORD: str | None = None
     FROM_EMAIL: str | None = None
     FROM_NAME: str = "Hệ thống Thông báo Danh Sách Thi"
+    SECRET_KEY: str = "supersecretkey"
+    ALGORITHM: str = "HS256"
+    ACCESS_TOKEN_EXPIRE_MINUTES: int = 30
 
     class Config:
         env_file = ".env"
