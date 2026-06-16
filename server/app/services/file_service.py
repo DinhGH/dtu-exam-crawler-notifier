@@ -32,7 +32,10 @@ class FileService:
         """
         try:
             log.info(f"Downloading file: {exam_file.file_name}")
-            response = requests.get(exam_file.download_link, timeout=30)
+            headers = {
+                "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36"
+            }
+            response = requests.get(exam_file.download_link, headers=headers, timeout=30)
             response.raise_for_status()
             
             # Use sanitized filename for storage

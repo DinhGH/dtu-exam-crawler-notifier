@@ -3363,3 +3363,29 @@ FROM subscriptions
 [parameters: {'param_1': 200, 'param_2': 0}]
 (Background on this error at: https://sqlalche.me/e/20/e3q8)
 2026-06-10 22:07:30 | ERROR    | app.api.routes.files:crawl_exam_files:124 - Error during manual crawl: 'SubscriptionService' object has no attribute 'process_all_subscriptions'
+2026-06-16 08:18:30 | ERROR    | app.services.subscription_service:_extract_user_exam_info:271 - Lỗi khi xử lý trích xuất file Excel storage\excel\Đọc 2 - KOR 206 (B-D-F-H-J-L) (08_19 29-05-2026): Excel file format cannot be determined, you must specify an engine manually.
+2026-06-16 08:50:49 | ERROR    | app.api.routes.subscriptions:get_subscriptions:58 - Error fetching subscriptions: (psycopg2.OperationalError) server closed the connection unexpectedly
+	This probably means the server terminated abnormally
+	before or while processing the request.
+server closed the connection unexpectedly
+	This probably means the server terminated abnormally
+	before or while processing the request.
+
+[SQL: SELECT subscriptions.id AS subscriptions_id, subscriptions.full_name AS subscriptions_full_name, subscriptions.email AS subscriptions_email, subscriptions.subject_code AS subscriptions_subject_code, subscriptions.subject_name AS subscriptions_subject_name, subscriptions.created_at AS subscriptions_created_at 
+FROM subscriptions 
+ LIMIT %(param_1)s OFFSET %(param_2)s]
+[parameters: {'param_1': 200, 'param_2': 0}]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2026-06-16 08:53:08 | ERROR    | app.services.subscription_service:_extract_user_exam_info:271 - Lỗi khi xử lý trích xuất file Excel storage\excel\Đọc 2 - KOR 206 (B-D-F-H-J-L) (08_19 29-05-2026): File is not a zip file
+2026-06-16 10:44:48 | ERROR    | app.api.routes.subscriptions:get_subscriptions:58 - Error fetching subscriptions: (psycopg2.OperationalError) server closed the connection unexpectedly
+	This probably means the server terminated abnormally
+	before or while processing the request.
+server closed the connection unexpectedly
+	This probably means the server terminated abnormally
+	before or while processing the request.
+
+[SQL: SELECT subscriptions.id AS subscriptions_id, subscriptions.full_name AS subscriptions_full_name, subscriptions.email AS subscriptions_email, subscriptions.subject_code AS subscriptions_subject_code, subscriptions.subject_name AS subscriptions_subject_name, subscriptions.created_at AS subscriptions_created_at 
+FROM subscriptions 
+ LIMIT %(param_1)s OFFSET %(param_2)s]
+[parameters: {'param_1': 200, 'param_2': 0}]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)

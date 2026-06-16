@@ -6657,3 +6657,172 @@ FROM subscriptions
 2026-06-15 20:24:52 | INFO     | app.services.subscription_service:_send_email:861 - Email sent successfully to huynhdinh2k52707@gmail.com
 2026-06-15 20:24:53 | INFO     | app.services.subscription_service:_process_subscription:916 - Processed and deleted subscription for huynhdinh2k52707@gmail.com
 2026-06-15 20:24:53 | INFO     | app.api.routes.subscriptions:get_subscriptions:52 - Fetching subscriptions: skip=0, limit=200
+2026-06-16 08:12:41 | INFO     | app.main:lifespan:12 - Starting up...
+2026-06-16 08:12:41 | INFO     | app.main:lifespan:13 - Creating database tables if they don't exist...
+2026-06-16 08:12:48 | INFO     | app.main:lifespan:15 - Tables created successfully (if not already present).
+2026-06-16 08:12:48 | INFO     | app.scheduler.scheduler:start_scheduler:11 - Starting scheduler...
+2026-06-16 08:12:48 | INFO     | app.scheduler.scheduler:start_scheduler:21 - Scheduler started successfully.
+2026-06-16 08:12:55 | INFO     | app.api.routes.subscriptions:get_subscriptions:52 - Fetching subscriptions: skip=0, limit=200
+2026-06-16 08:12:57 | INFO     | app.api.routes.files:get_exam_files:29 - Fetching exam files: page=1, page_size=15, q=None
+2026-06-16 08:12:58 | INFO     | app.api.routes.files:get_exam_files:29 - Fetching exam files: page=1, page_size=15, q=None
+2026-06-16 08:13:01 | INFO     | app.api.routes.files:crawl_exam_files:106 - Triggering manual crawl with crawl_latest_only=True
+2026-06-16 08:13:17 | INFO     | app.api.routes.files:get_exam_files:29 - Fetching exam files: page=1, page_size=15, q=None
+2026-06-16 08:13:18 | INFO     | app.api.routes.files:get_exam_files:29 - Fetching exam files: page=1, page_size=15, q=None
+2026-06-16 08:13:25 | INFO     | app.api.routes.files:get_exam_files:29 - Fetching exam files: page=1, page_size=15, q=None
+2026-06-16 08:13:26 | INFO     | app.api.routes.files:get_exam_files:29 - Fetching exam files: page=1, page_size=15, q=None
+2026-06-16 08:13:28 | INFO     | app.api.routes.files:get_exam_files:29 - Fetching exam files: page=1, page_size=15, q=None
+2026-06-16 08:13:29 | INFO     | app.api.routes.files:get_exam_files:29 - Fetching exam files: page=1, page_size=15, q=None
+2026-06-16 08:13:32 | INFO     | app.api.routes.files:get_exam_files:29 - Fetching exam files: page=1, page_size=15, q=None
+2026-06-16 08:13:33 | INFO     | app.api.routes.files:get_exam_files:29 - Fetching exam files: page=1, page_size=15, q=None
+2026-06-16 08:14:18 | INFO     | app.api.routes.files:get_exam_files:29 - Fetching exam files: page=1, page_size=15, q=None
+2026-06-16 08:14:19 | INFO     | app.api.routes.files:get_exam_files:29 - Fetching exam files: page=1, page_size=15, q=None
+2026-06-16 08:16:11 | INFO     | app.api.routes.files:get_exam_files:29 - Fetching exam files: page=1, page_size=15, q=None
+2026-06-16 08:16:12 | INFO     | app.api.routes.files:get_exam_files:29 - Fetching exam files: page=1, page_size=15, q=None
+2026-06-16 08:16:21 | INFO     | app.api.routes.files:get_exam_files:29 - Fetching exam files: page=1, page_size=15, q=None
+2026-06-16 08:16:21 | INFO     | app.api.routes.files:get_exam_files:29 - Fetching exam files: page=1, page_size=15, q=None
+2026-06-16 08:16:23 | INFO     | app.api.routes.files:get_exam_files:29 - Fetching exam files: page=1, page_size=15, q=None
+2026-06-16 08:16:24 | INFO     | app.api.routes.files:get_exam_files:29 - Fetching exam files: page=1, page_size=15, q=None
+2026-06-16 08:17:05 | INFO     | app.services.subscription_service:_create_email_message:425 - Attached file với đuôi chuẩn: Tổng quan Hành vi Tổ chức trong Du lịch OB 253 (B-D-F) (17_18 29-05-2026).xlsx
+2026-06-16 08:17:18 | INFO     | app.services.subscription_service:_send_email:861 - Email sent successfully to huynhdinh2k52707@gmail.com
+2026-06-16 08:17:19 | INFO     | app.services.subscription_service:_process_subscription:916 - Processed and deleted subscription for huynhdinh2k52707@gmail.com
+2026-06-16 08:17:24 | INFO     | app.services.subscription_service:_create_email_message:425 - Attached file với đuôi chuẩn: Tổng quan Hành vi Tổ chức trong Du lịch OB 253 (B-D-F) (17_18 29-05-2026).xlsx
+2026-06-16 08:17:36 | INFO     | app.services.subscription_service:_send_email:861 - Email sent successfully to huynhdinh2k52707@gmail.com
+2026-06-16 08:17:36 | INFO     | app.services.subscription_service:_process_subscription:916 - Processed and deleted subscription for huynhdinh2k52707@gmail.com
+2026-06-16 08:17:36 | INFO     | app.api.routes.files:crawl_exam_files:115 - Processed 2 subscriptions after manual crawl.
+2026-06-16 08:17:50 | INFO     | app.api.routes.files:get_exam_files:29 - Fetching exam files: page=1, page_size=15, q=None
+2026-06-16 08:17:51 | INFO     | app.api.routes.files:get_exam_files:29 - Fetching exam files: page=1, page_size=15, q=None
+2026-06-16 08:18:05 | INFO     | app.api.routes.subscriptions:get_subscriptions:52 - Fetching subscriptions: skip=0, limit=200
+2026-06-16 08:18:28 | INFO     | app.api.routes.subscriptions:create_subscription:27 - New subscription request: huynhdinh2k52707@gmail.com, subject_code=KOR 206
+2026-06-16 08:18:30 | INFO     | app.services.subscription_service:_download_excel_file:85 - Downloaded Excel file: Đọc 2 - KOR 206 (B-D-F-H-J-L) (08:19 29/05/2026) as Đọc 2 - KOR 206 (B-D-F-H-J-L) (08_19 29-05-2026)
+2026-06-16 08:18:30 | ERROR    | app.services.subscription_service:_extract_user_exam_info:271 - Lỗi khi xử lý trích xuất file Excel storage\excel\Đọc 2 - KOR 206 (B-D-F-H-J-L) (08_19 29-05-2026): Excel file format cannot be determined, you must specify an engine manually.
+2026-06-16 08:18:30 | INFO     | app.api.routes.subscriptions:get_subscriptions:52 - Fetching subscriptions: skip=0, limit=200
+2026-06-16 08:18:49 | INFO     | app.api.routes.subscriptions:get_subscriptions:52 - Fetching subscriptions: skip=0, limit=200
+2026-06-16 08:50:49 | INFO     | app.api.routes.subscriptions:get_subscriptions:52 - Fetching subscriptions: skip=0, limit=200
+2026-06-16 08:50:49 | ERROR    | app.api.routes.subscriptions:get_subscriptions:58 - Error fetching subscriptions: (psycopg2.OperationalError) server closed the connection unexpectedly
+	This probably means the server terminated abnormally
+	before or while processing the request.
+server closed the connection unexpectedly
+	This probably means the server terminated abnormally
+	before or while processing the request.
+
+[SQL: SELECT subscriptions.id AS subscriptions_id, subscriptions.full_name AS subscriptions_full_name, subscriptions.email AS subscriptions_email, subscriptions.subject_code AS subscriptions_subject_code, subscriptions.subject_name AS subscriptions_subject_name, subscriptions.created_at AS subscriptions_created_at 
+FROM subscriptions 
+ LIMIT %(param_1)s OFFSET %(param_2)s]
+[parameters: {'param_1': 200, 'param_2': 0}]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2026-06-16 08:50:50 | INFO     | app.api.routes.subscriptions:get_subscriptions:52 - Fetching subscriptions: skip=0, limit=200
+2026-06-16 08:52:02 | INFO     | app.main:lifespan:18 - Shutting down...
+2026-06-16 08:52:02 | INFO     | app.scheduler.scheduler:stop_scheduler:30 - Stopping scheduler...
+2026-06-16 08:52:02 | INFO     | app.scheduler.scheduler:stop_scheduler:32 - Scheduler stopped.
+2026-06-16 08:52:05 | INFO     | app.main:lifespan:12 - Starting up...
+2026-06-16 08:52:05 | INFO     | app.main:lifespan:13 - Creating database tables if they don't exist...
+2026-06-16 08:52:10 | INFO     | app.main:lifespan:15 - Tables created successfully (if not already present).
+2026-06-16 08:52:10 | INFO     | app.scheduler.scheduler:start_scheduler:11 - Starting scheduler...
+2026-06-16 08:52:10 | INFO     | app.scheduler.scheduler:start_scheduler:21 - Scheduler started successfully.
+2026-06-16 08:52:32 | INFO     | app.api.routes.subscriptions:create_subscription:27 - New subscription request: huynhdinh2k52707@gmail.com, subject_code=KOR 206
+2026-06-16 08:52:33 | INFO     | app.api.routes.subscriptions:get_subscriptions:52 - Fetching subscriptions: skip=0, limit=200
+2026-06-16 08:52:51 | INFO     | app.api.routes.subscriptions:get_subscription_by_id:88 - Fetching subscription id=76
+2026-06-16 08:53:06 | INFO     | app.api.routes.subscriptions:update_subscription:110 - Updating subscription id=76
+2026-06-16 08:53:08 | ERROR    | app.services.subscription_service:_extract_user_exam_info:271 - Lỗi khi xử lý trích xuất file Excel storage\excel\Đọc 2 - KOR 206 (B-D-F-H-J-L) (08_19 29-05-2026): File is not a zip file
+2026-06-16 08:53:08 | INFO     | app.api.routes.subscriptions:get_subscriptions:52 - Fetching subscriptions: skip=0, limit=200
+2026-06-16 08:58:39 | INFO     | app.main:lifespan:18 - Shutting down...
+2026-06-16 08:58:39 | INFO     | app.scheduler.scheduler:stop_scheduler:30 - Stopping scheduler...
+2026-06-16 08:58:39 | INFO     | app.scheduler.scheduler:stop_scheduler:32 - Scheduler stopped.
+2026-06-16 08:58:42 | INFO     | app.main:lifespan:12 - Starting up...
+2026-06-16 08:58:42 | INFO     | app.main:lifespan:13 - Creating database tables if they don't exist...
+2026-06-16 08:58:50 | INFO     | app.main:lifespan:15 - Tables created successfully (if not already present).
+2026-06-16 08:58:50 | INFO     | app.scheduler.scheduler:start_scheduler:11 - Starting scheduler...
+2026-06-16 08:58:50 | INFO     | app.scheduler.scheduler:start_scheduler:21 - Scheduler started successfully.
+2026-06-16 09:02:46 | INFO     | app.api.routes.subscriptions:get_subscription_by_id:88 - Fetching subscription id=75
+2026-06-16 09:02:48 | INFO     | app.api.routes.subscriptions:delete_subscription:150 - Deleting subscription id=75
+2026-06-16 09:02:50 | INFO     | app.api.routes.subscriptions:get_subscriptions:52 - Fetching subscriptions: skip=0, limit=200
+2026-06-16 09:02:53 | INFO     | app.api.routes.subscriptions:get_subscription_by_id:88 - Fetching subscription id=76
+2026-06-16 09:02:55 | INFO     | app.api.routes.subscriptions:delete_subscription:150 - Deleting subscription id=76
+2026-06-16 09:02:56 | INFO     | app.api.routes.subscriptions:get_subscriptions:52 - Fetching subscriptions: skip=0, limit=200
+2026-06-16 09:08:28 | INFO     | app.api.routes.subscriptions:create_subscription:27 - New subscription request: huynhdinh2k52707@gmail.com, subject_code=KOR 206
+2026-06-16 09:08:30 | INFO     | app.services.subscription_service:_extract_user_exam_info_from_pdf:381 - Found 0 exam entries for Lê Ngọc Anh in PDF
+2026-06-16 09:08:30 | INFO     | app.api.routes.subscriptions:get_subscriptions:52 - Fetching subscriptions: skip=0, limit=200
+2026-06-16 09:14:28 | INFO     | app.main:lifespan:18 - Shutting down...
+2026-06-16 09:14:28 | INFO     | app.scheduler.scheduler:stop_scheduler:30 - Stopping scheduler...
+2026-06-16 09:14:28 | INFO     | app.scheduler.scheduler:stop_scheduler:32 - Scheduler stopped.
+2026-06-16 09:14:32 | INFO     | app.main:lifespan:12 - Starting up...
+2026-06-16 09:14:32 | INFO     | app.main:lifespan:13 - Creating database tables if they don't exist...
+2026-06-16 09:14:37 | INFO     | app.main:lifespan:15 - Tables created successfully (if not already present).
+2026-06-16 09:14:37 | INFO     | app.scheduler.scheduler:start_scheduler:11 - Starting scheduler...
+2026-06-16 09:14:37 | INFO     | app.scheduler.scheduler:start_scheduler:21 - Scheduler started successfully.
+2026-06-16 09:15:03 | INFO     | app.main:lifespan:18 - Shutting down...
+2026-06-16 09:15:03 | INFO     | app.scheduler.scheduler:stop_scheduler:30 - Stopping scheduler...
+2026-06-16 09:15:03 | INFO     | app.scheduler.scheduler:stop_scheduler:32 - Scheduler stopped.
+2026-06-16 09:15:06 | INFO     | app.main:lifespan:12 - Starting up...
+2026-06-16 09:15:06 | INFO     | app.main:lifespan:13 - Creating database tables if they don't exist...
+2026-06-16 09:15:11 | INFO     | app.main:lifespan:15 - Tables created successfully (if not already present).
+2026-06-16 09:15:11 | INFO     | app.scheduler.scheduler:start_scheduler:11 - Starting scheduler...
+2026-06-16 09:15:11 | INFO     | app.scheduler.scheduler:start_scheduler:21 - Scheduler started successfully.
+2026-06-16 09:29:20 | INFO     | app.api.routes.subscriptions:create_subscription:27 - New subscription request: huynhdinh2k52707@gmail.com, subject_code=KOR 206
+2026-06-16 09:29:24 | INFO     | app.services.subscription_service:_extract_user_exam_info_from_pdf:375 - Found 1 exam entries for Lê Ngọc Anh in PDF
+2026-06-16 09:29:24 | INFO     | app.services.subscription_service:_create_email_message:427 - Attached file với đuôi chuẩn: Đọc 2 - KOR 206 (B-D-F-H-J-L) (08_19 29-05-2026).xlsx
+2026-06-16 09:29:33 | INFO     | app.services.subscription_service:_send_email:863 - Email sent successfully to huynhdinh2k52707@gmail.com
+2026-06-16 09:29:33 | INFO     | app.services.subscription_service:_process_subscription:918 - Processed and deleted subscription for huynhdinh2k52707@gmail.com
+2026-06-16 09:29:33 | INFO     | app.api.routes.subscriptions:get_subscriptions:52 - Fetching subscriptions: skip=0, limit=200
+2026-06-16 09:35:37 | INFO     | app.main:lifespan:18 - Shutting down...
+2026-06-16 09:35:37 | INFO     | app.scheduler.scheduler:stop_scheduler:30 - Stopping scheduler...
+2026-06-16 09:35:37 | INFO     | app.scheduler.scheduler:stop_scheduler:32 - Scheduler stopped.
+2026-06-16 09:35:44 | INFO     | app.main:lifespan:12 - Starting up...
+2026-06-16 09:35:44 | INFO     | app.main:lifespan:13 - Creating database tables if they don't exist...
+2026-06-16 09:35:49 | INFO     | app.main:lifespan:15 - Tables created successfully (if not already present).
+2026-06-16 09:35:49 | INFO     | app.scheduler.scheduler:start_scheduler:11 - Starting scheduler...
+2026-06-16 09:35:49 | INFO     | app.scheduler.scheduler:start_scheduler:21 - Scheduler started successfully.
+2026-06-16 09:47:45 | INFO     | app.api.routes.subscriptions:get_subscription_by_id:88 - Fetching subscription id=77
+2026-06-16 09:47:48 | INFO     | app.api.routes.subscriptions:delete_subscription:150 - Deleting subscription id=77
+2026-06-16 09:47:49 | INFO     | app.api.routes.subscriptions:get_subscriptions:52 - Fetching subscriptions: skip=0, limit=200
+2026-06-16 09:50:03 | INFO     | app.api.routes.subscriptions:create_subscription:27 - New subscription request: huynhdinh2k52707@gmail.com, subject_code=KOR 206
+2026-06-16 09:50:05 | INFO     | app.services.subscription_service:_extract_user_exam_info_from_pdf:375 - Found 1 exam entries for Lê Ngọc Anh in PDF
+2026-06-16 09:50:05 | INFO     | app.services.subscription_service:_create_email_message:429 - Attached file với đuôi chuẩn: Đọc 2 - KOR 206 (B-D-F-H-J-L) (08_19 29-05-2026)
+2026-06-16 09:50:15 | INFO     | app.services.subscription_service:_send_email:865 - Email sent successfully to huynhdinh2k52707@gmail.com
+2026-06-16 09:50:16 | INFO     | app.services.subscription_service:_process_subscription:920 - Processed and deleted subscription for huynhdinh2k52707@gmail.com
+2026-06-16 09:50:16 | INFO     | app.api.routes.subscriptions:get_subscriptions:52 - Fetching subscriptions: skip=0, limit=200
+2026-06-16 10:01:34 | INFO     | app.main:lifespan:18 - Shutting down...
+2026-06-16 10:01:34 | INFO     | app.scheduler.scheduler:stop_scheduler:30 - Stopping scheduler...
+2026-06-16 10:01:34 | INFO     | app.scheduler.scheduler:stop_scheduler:32 - Scheduler stopped.
+2026-06-16 10:01:42 | INFO     | app.main:lifespan:12 - Starting up...
+2026-06-16 10:01:42 | INFO     | app.main:lifespan:13 - Creating database tables if they don't exist...
+2026-06-16 10:01:47 | INFO     | app.main:lifespan:15 - Tables created successfully (if not already present).
+2026-06-16 10:01:47 | INFO     | app.scheduler.scheduler:start_scheduler:11 - Starting scheduler...
+2026-06-16 10:01:48 | INFO     | app.scheduler.scheduler:start_scheduler:21 - Scheduler started successfully.
+2026-06-16 10:44:48 | INFO     | app.api.routes.subscriptions:get_subscriptions:52 - Fetching subscriptions: skip=0, limit=200
+2026-06-16 10:44:48 | ERROR    | app.api.routes.subscriptions:get_subscriptions:58 - Error fetching subscriptions: (psycopg2.OperationalError) server closed the connection unexpectedly
+	This probably means the server terminated abnormally
+	before or while processing the request.
+server closed the connection unexpectedly
+	This probably means the server terminated abnormally
+	before or while processing the request.
+
+[SQL: SELECT subscriptions.id AS subscriptions_id, subscriptions.full_name AS subscriptions_full_name, subscriptions.email AS subscriptions_email, subscriptions.subject_code AS subscriptions_subject_code, subscriptions.subject_name AS subscriptions_subject_name, subscriptions.created_at AS subscriptions_created_at 
+FROM subscriptions 
+ LIMIT %(param_1)s OFFSET %(param_2)s]
+[parameters: {'param_1': 200, 'param_2': 0}]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2026-06-16 10:44:51 | INFO     | app.api.routes.subscriptions:get_subscriptions:52 - Fetching subscriptions: skip=0, limit=200
+2026-06-16 10:45:10 | INFO     | app.api.routes.subscriptions:create_subscription:27 - New subscription request: huynhdinh2k52707@gmail.com, subject_code=KOR 206
+2026-06-16 10:45:12 | INFO     | app.services.subscription_service:_extract_user_exam_info_from_pdf:375 - Found 1 exam entries for Lê Ngọc Anh in PDF
+2026-06-16 10:45:12 | INFO     | app.services.subscription_service:_create_email_message:432 - Attached file với đuôi chuẩn: Đọc 2 - KOR 206 (B-D-F-H-J-L) (08_19 29-05-2026).xlsx
+2026-06-16 10:45:21 | INFO     | app.services.subscription_service:_send_email:868 - Email sent successfully to huynhdinh2k52707@gmail.com
+2026-06-16 10:45:21 | INFO     | app.services.subscription_service:_process_subscription:923 - Processed and deleted subscription for huynhdinh2k52707@gmail.com
+2026-06-16 10:45:21 | INFO     | app.api.routes.subscriptions:get_subscriptions:52 - Fetching subscriptions: skip=0, limit=200
+2026-06-16 10:47:29 | INFO     | app.main:lifespan:18 - Shutting down...
+2026-06-16 10:47:29 | INFO     | app.scheduler.scheduler:stop_scheduler:30 - Stopping scheduler...
+2026-06-16 10:47:29 | INFO     | app.scheduler.scheduler:stop_scheduler:32 - Scheduler stopped.
+2026-06-16 10:47:42 | INFO     | app.main:lifespan:12 - Starting up...
+2026-06-16 10:47:42 | INFO     | app.main:lifespan:13 - Creating database tables if they don't exist...
+2026-06-16 10:47:47 | INFO     | app.main:lifespan:15 - Tables created successfully (if not already present).
+2026-06-16 10:47:47 | INFO     | app.scheduler.scheduler:start_scheduler:11 - Starting scheduler...
+2026-06-16 10:47:47 | INFO     | app.scheduler.scheduler:start_scheduler:21 - Scheduler started successfully.
+2026-06-16 10:51:28 | INFO     | app.api.routes.subscriptions:create_subscription:27 - New subscription request: huynhdinh2k52707@gmail.com, subject_code=KOR 206
+2026-06-16 10:51:30 | INFO     | app.services.subscription_service:_extract_user_exam_info_from_pdf:375 - Found 1 exam entries for Lê Ngọc Anh in PDF
+2026-06-16 10:51:30 | INFO     | app.services.subscription_service:_create_email_message:439 - Attached file với đuôi chuẩn: Đọc 2 - KOR 206 (B-D-F-H-J-L) (08_19 29-05-2026).pdf
+2026-06-16 10:51:38 | INFO     | app.services.subscription_service:_send_email:875 - Email sent successfully to huynhdinh2k52707@gmail.com
+2026-06-16 10:51:39 | INFO     | app.services.subscription_service:_process_subscription:930 - Processed and deleted subscription for huynhdinh2k52707@gmail.com
+2026-06-16 10:51:39 | INFO     | app.api.routes.subscriptions:get_subscriptions:52 - Fetching subscriptions: skip=0, limit=200
+2026-06-16 10:53:19 | INFO     | app.main:lifespan:18 - Shutting down...
+2026-06-16 10:53:19 | INFO     | app.scheduler.scheduler:stop_scheduler:30 - Stopping scheduler...
+2026-06-16 10:53:19 | INFO     | app.scheduler.scheduler:stop_scheduler:32 - Scheduler stopped.

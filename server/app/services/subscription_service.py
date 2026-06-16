@@ -123,16 +123,24 @@ class SubscriptionService:
         - Tìm kiếm sinh viên chính xác từ đầu, giữa đến cuối danh sách.
         - Tự động dừng khi gặp 15 dòng trống liên tiếp để tối ưu hiệu năng.
         """
-        # Determine file type based on extension
+        # Determine file type
         file_path = Path(excel_file_path)
-        extension = file_path.suffix.lower()
         
-        if extension == '.pdf':
+        # Check if it is actually a PDF (by content/signature or just extension)
+        try:
+            with open(file_path, 'rb') as f:
+                header = f.read(5)
+                if header.startswith(b'%PDF-'):
+                    return self._extract_user_exam_info_from_pdf(excel_file_path, user_full_name)
+        except Exception:
+            pass
+        
+        if file_path.suffix.lower() == '.pdf':
             return self._extract_user_exam_info_from_pdf(excel_file_path, user_full_name)
         
         try:
             # 1. Đọc toàn bộ file Excel dưới dạng bảng thô (Matrix) để tránh cơ chế ngầm của Pandas
-            df_raw = pd.read_excel(excel_file_path, header=None)
+            df_raw = pd.read_excel(excel_file_path, header=None, engine='openpyxl')
             raw_matrix = df_raw.values.tolist()
             
             # Khởi tạo các biến trạng thái lưu tạm dữ liệu phòng và thời gian
@@ -320,46 +328,44 @@ class SubscriptionService:
                 # Reset blank line counter
                 blank_line_count = 0
                 
-                # Check for time and room info
-                time_room_match = re.search(r'Thời\s+gian:\s*(.+?)\s*Phòng:\s*(.+)', line_stripped, re.IGNORECASE)
+                # Check for time and room info - updated regex to match "Thời gian : ... - Phòng thi ... - ..."
+                # Example: "Thời gian : 09h30 - 31/05/2026   -   Phòng thi 307/1  - K7/25 Quang Trung"
+                match = re.search(r'Thời\s+gian\s*:\s*(.+?)\s*-\s*Phòng\s+thi\s+(.+?)\s*-\s*(.+)', line_stripped, re.IGNORECASE)
                 
-                if time_room_match:
-                    current_time = time_room_match.group(1).strip()
-                    room_part = time_room_match.group(2).strip()
-                    current_room_number = re.sub(r'\bnan\b', '', room_part, flags=re.IGNORECASE).strip()
-                    current_room_number = re.sub(r'\s+', ' ', current_room_number).strip()
-                    log.debug(f"Found time/room: {current_time} - {current_room_number}")
+                if match:
+                    current_time = match.group(1).strip()
+                    current_room_number = match.group(2).strip()
+                    current_location = match.group(3).strip()
+                    log.debug(f"Found time/room/location: {current_time} - {current_room_number} - {current_location}")
                     continue
                 
-                # Split line into parts (by multiple spaces)
-                parts = re.split(r'\s{2,}', line_stripped)
+                # Split line into parts (by whitespace)
+                parts = re.split(r'\s+', line_stripped)
                 
-                if len(parts) >= 5:
-                    # Try to find student ID (10-12 digits)
-                    student_id = None
-                    for part in parts:
-                        part_stripped = part.strip()
-                        if re.match(r'^\d{10,12}$', part_stripped):
-                            student_id = part_stripped
-                            break
+                # Check if it looks like a student row: index, ID, name parts...
+                # Example: ['1', '31206545536', 'Đỗ', 'Phương', 'Anh', 'KOR', ...]
+                if len(parts) >= 5 and re.match(r'^\d+$', parts[0]) and re.match(r'^\d{10,12}$', parts[1]):
+                    student_id = parts[1]
                     
-                    if student_id:
-                        # Extract student name
-                        student_name = ""
-                        if len(parts) > 3:
-                            part3 = parts[3].strip() if parts[3] else ""
-                            part4 = parts[4].strip() if len(parts) > 4 and parts[4] else ""
-                            
-                            if part3 and part3.lower() != 'nan':
-                                student_name = part3
-                            if part4 and part4.lower() != 'nan':
-                                student_name = f"{student_name} {part4}" if student_name else part4
+                    # Student name is typically parts 2, 3, ... until class info
+                    # Class info usually starts with 'K' followed by numbers/letters
+                    student_name_parts = []
+                    for i in range(2, len(parts)):
+                        # If we see K... it's likely the start of class info
+                        if re.match(r'^K\d+[A-Z]*', parts[i].upper()):
+                            break
+                        # If we see a subject code pattern (e.g. KOR 206) it's also class info
+                        if i + 1 < len(parts) and re.match(r'^[A-Z]{3,4}$', parts[i].upper()) and re.match(r'^\d{3,4}$', parts[i+1]):
+                            break
+                        student_name_parts.append(parts[i])
+                    
+                    student_name = " ".join(student_name_parts)
+                    
+                    if student_name:
+                        # Check if this is the user
+                        full_name_clean = " ".join(student_name.lower().split())
                         
-                        if student_name and len(student_name.strip()) >= 2:
-                            # Check if this is the user
-                            full_name_clean = " ".join(student_name.lower().split())
-                            
-                            if search_name in full_name_clean:
+                        if search_name in full_name_clean:
                                 result.append({
                                     'student_no': parts[0].strip() if parts else "",
                                     'student_name': student_name.strip(),
@@ -403,16 +409,28 @@ class SubscriptionService:
                 try:
                     file_path_obj = Path(file_data['file_path'])
                     with open(file_path_obj, 'rb') as f:
-                        # SỬA TẠI ĐÂY: Thay 'application/octet-stream' thành định dạng chuẩn của Excel (.xlsx)
-                        part = MIMEBase('application', 'vnd.openxmlformats-officedocument.spreadsheetml.sheet')
+                        # Detect if file is PDF or Excel
+                        file_ext = file_path_obj.suffix.lower()
+                        if file_ext == '.pdf':
+                            part = MIMEBase('application', 'pdf')
+                        else:
+                            part = MIMEBase('application', 'vnd.openxmlformats-officedocument.spreadsheetml.sheet')
+                            
                         part.set_payload(f.read())
                         encoders.encode_base64(part)
                         
                         filename_raw = file_path_obj.name
-                        # Đảm bảo tên file đính kèm gửi đi bắt buộc phải kết thúc bằng đuôi .xlsx
-                        if not filename_raw.lower().endswith('.xlsx'):
-                            filename_raw += '.xlsx'
-                            
+                        
+                        # Verify the actual file content to determine extension
+                        with open(file_path_obj, 'rb') as f:
+                            header = f.read(5)
+                            if header.startswith(b'%PDF-'):
+                                if not filename_raw.lower().endswith('.pdf'):
+                                    filename_raw += '.pdf'
+                            else:
+                                if not filename_raw.lower().endswith(('.xlsx', '.xls')):
+                                    filename_raw += '.xlsx'
+                        
                         encoded_filename = Header(filename_raw, 'utf-8').encode()
                         
                         part.add_header(
