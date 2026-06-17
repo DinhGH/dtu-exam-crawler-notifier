@@ -1,26 +1,68 @@
-# Hệ thống tự động theo dõi và thông báo lịch thi (DTU) qua Email
+# Hệ thống tự động theo dõi và thông báo lịch thi (DTU)
 
 ## Mô tả
 
-Dự án này xây dựng một hệ thống tự động thu thập dữ liệu từ website công bố lịch thi của Đại học Duy Tân (DTU) theo chu kỳ định kỳ (ví dụ: 1 giờ/lần). Hệ thống cho phép người dùng đăng ký theo dõi lịch thi bằng cách cung cấp mã/tên môn học, họ tên và địa chỉ email.
+Dự án này là hệ thống tự động thu thập dữ liệu lịch thi từ website Đại học Duy Tân (DTU). Hệ thống tự động cào dữ liệu định kỳ, lưu trữ, và thông báo qua Email khi có lịch thi phù hợp với người dùng đã đăng ký.
 
-Khi hệ thống phát hiện một danh sách thi mới phù hợp với thông tin đăng ký của người dùng, nó sẽ tự động gửi một email thông báo chi tiết bao gồm ngày thi, phòng thi và các tệp đính kèm liên quan (nếu có).
+Dự án đã được triển khai (Live Demo): [https://dtu-exam-crawler-notifier-one.vercel.app/](https://dtu-exam-crawler-notifier-one.vercel.app/)
+
+## Hướng dẫn cài đặt và chạy dự án
+
+### 1. Yêu cầu hệ thống
+
+- Python 3.10+
+- Node.js 18+
+- Git
+
+### 2. Clone dự án
+
+```bash
+git clone https://github.com/DinhGH/dtu-exam-crawler-notifier.git
+cd dtu-exam-crawler-notifier
+```
+
+### 3. Cài đặt và chạy Server (Backend)
+
+```bash
+cd server
+# Tạo môi trường ảo (Virtual Environment)
+python -m venv venv
+# Kích hoạt môi trường
+# Windows:
+venv\Scripts\activate
+# Linux/macOS:
+source venv/bin/activate
+
+# Cài đặt thư viện
+pip install -r requirements.txt
+
+# Cấu hình biến môi trường
+cp .env.example .env
+# Mở file .env và điền các thông tin cấu hình (DATABASE_URL, EMAIL_SETTINGS, ...)
+
+# Chạy server (Sử dụng lệnh sau từ thư mục 'server')
+export PYTHONPATH=$PYTHONPATH:.
+python -m uvicorn app.main:app --reload
+```
+
+### 4. Cài đặt và chạy Client (Frontend)
+
+```bash
+cd ../client
+# Cài đặt thư viện
+npm install
+
+# Cấu hình biến môi trường
+cp .env.example .env
+# Mở file .env và cập nhật API_URL trỏ về server của bạn
+
+# Chạy project
+npm run dev
+```
 
 ## Tính năng chính
 
-- **Tự động cào dữ liệu**: Hệ thống tự động truy cập và thu thập dữ liệu lịch thi từ website của DTU theo chu kỳ 1 giờ/lần.
-- **Lưu trữ lịch thi**: Thu thập và lưu lại danh sách các tệp lịch thi mới được công bố.
-- **Đăng ký theo dõi**: Người dùng có thể đăng ký nhận thông báo bằng cách cung cấp:
-  - Mã hoặc tên môn học
-  - Họ và tên
-  - Địa chỉ email
-- **Tìm kiếm tự động**: Hệ thống tự động quét các tệp lịch thi đã thu thập để tìm kiếm thông tin của sinh viên đã đăng ký.
-- **Gửi Email thông báo**: Tự động gửi email đến người dùng khi phát hiện lịch thi phù hợp.
-- **Tra cứu và Lọc dữ liệu**:
-  - Hiển thị danh sách các tệp lịch thi đã được cào.
-  - Hỗ trợ tìm kiếm và lọc dữ liệu theo thời gian hoặc số lượng tệp gần nhất.
-  - Cho phép người dùng xem và tra cứu trực tiếp trên dữ liệu đã được hệ thống thu thập.
-
-Run:
-Client:/client npm run dev
-Server: server\venv\Scripts\python.exe -m uvicorn app.main:app --reload --app-dir server
+- **Tự động cào dữ liệu**: Thu thập dữ liệu từ cổng thông tin lịch thi DTU.
+- **Quản lý đăng ký**: Người dùng đăng ký môn học và nhận thông báo qua Email.
+- **Tra cứu**: Giao diện dashboard hiện đại để tra cứu lịch thi và tình trạng đăng ký.
+- **Thông báo**: Gửi email tự động khi có cập nhật mới.
