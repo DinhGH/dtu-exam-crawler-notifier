@@ -3401,3 +3401,14 @@ FROM subscriptions
  LIMIT %(param_1)s OFFSET %(param_2)s]
 [parameters: {'param_1': 200, 'param_2': 0}]
 (Background on this error at: https://sqlalche.me/e/20/e3q8)
+2026-06-16 21:46:27 | ERROR    | app.api.routes.auth:register:28 - Error creating user: password cannot be longer than 72 bytes, truncate manually if necessary (e.g. my_password[:72])
+2026-06-16 21:46:48 | ERROR    | app.api.routes.auth:register:28 - Error creating user: password cannot be longer than 72 bytes, truncate manually if necessary (e.g. my_password[:72])
+2026-06-16 21:48:32 | ERROR    | app.api.routes.auth:register:28 - Error creating user: password cannot be longer than 72 bytes, truncate manually if necessary (e.g. my_password[:72])
+2026-06-16 21:48:48 | ERROR    | app.api.routes.auth:register:28 - Error creating user: password cannot be longer than 72 bytes, truncate manually if necessary (e.g. my_password[:72])
+2026-06-16 21:53:41 | ERROR    | app.api.routes.auth:register:28 - Error creating user: password cannot be longer than 72 bytes, truncate manually if necessary (e.g. my_password[:72])
+2026-06-16 21:53:43 | ERROR    | app.api.routes.auth:register:28 - Error creating user: password cannot be longer than 72 bytes, truncate manually if necessary (e.g. my_password[:72])
+2026-06-16 21:53:43 | ERROR    | app.api.routes.auth:register:28 - Error creating user: password cannot be longer than 72 bytes, truncate manually if necessary (e.g. my_password[:72])
+2026-06-16 21:53:43 | ERROR    | app.api.routes.auth:register:28 - Error creating user: password cannot be longer than 72 bytes, truncate manually if necessary (e.g. my_password[:72])
+2026-06-16 21:53:43 | ERROR    | app.api.routes.auth:register:28 - Error creating user: password cannot be longer than 72 bytes, truncate manually if necessary (e.g. my_password[:72])
+2026-06-16 21:55:48 | ERROR    | app.api.routes.auth:register:28 - Error creating user: password cannot be longer than 72 bytes, truncate manually if necessary (e.g. my_password[:72])
+2026-06-17 16:29:11 | ERROR    | app.api.routes.subscriptions:create_subscription:54 - Error creating subscription: SubscriptionService.create_subscription() got an unexpected keyword argument 'user_id'

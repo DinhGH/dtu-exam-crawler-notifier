@@ -1,4 +1,5 @@
 from sqlalchemy import Column, BigInteger, String, DateTime, func
+from sqlalchemy.orm import relationship
 from app.core.database import Base
 
 class User(Base):
@@ -10,3 +11,5 @@ class User(Base):
     password = Column(String(255), nullable=False)
     role = Column(String(20), default='user') # 'user' or 'admin'
     created_at = Column(DateTime, default=func.now())
+
+    subscriptions = relationship("Subscription", back_populates="user")

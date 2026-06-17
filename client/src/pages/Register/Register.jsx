@@ -46,6 +46,7 @@ const Register = () => {
   const [loadingAction, setLoadingAction] = useState(false);
   const [selected, setSelected] = useState(null);
   const [modalOpen, setModalOpen] = useState(false);
+  const [deleteModalOpen, setDeleteModalOpen] = useState(false);
   const [editData, setEditData] = useState({
     fullName: "",
     email: "",
@@ -140,13 +141,12 @@ const Register = () => {
 
   const handleDelete = async () => {
     if (!selected) return;
-    const ok = window.confirm("Bạn có chắc muốn xóa đăng ký này?");
-    if (!ok) return;
     setLoadingAction(true);
     try {
       await subscriptionService.deleteSubscription(selected.id);
       toast.success("Xóa thành công");
       setModalOpen(false);
+      setDeleteModalOpen(false);
       fetchSubscriptions();
     } catch {
       // toast is handled by apiClient
@@ -156,14 +156,9 @@ const Register = () => {
   };
 
   return (
-    /* Khóa chết màn hình ngoài bằng h-screen và overflow-hidden */
     <div className="h-full w-full bg-white text-neutral-900 flex flex-col font-sans antialiased min-h-0">
-      {/* Top Header cố định thanh lịch */}
-
-      {/* Vùng nội dung chính lấp đầy diện tích còn lại */}
       <main className="flex-1 p-4 min-h-0 bg-neutral-50/40">
         <div className="max-w-full mx-auto grid grid-cols-1 lg:grid-cols-12 gap-4 h-full items-stretch">
-          {/* Khối bên trái: Form Đăng Ký (Chiếm 4 phần) */}
           <section className="lg:col-span-4 flex flex-col min-h-0">
             <Card className="border border-neutral-200 shadow-sm rounded-lg bg-white h-full flex flex-col overflow-hidden">
               <CardHeader className="space-y-1 border-b border-neutral-100 pb-4 pt-5 px-5 shrink-0">
@@ -225,7 +220,6 @@ const Register = () => {
                     />
                   </div>
 
-                  {/* Nút hành động phối màu Xanh Blue hiện đại */}
                   <Button
                     type="submit"
                     isLoading={loadingAction}
@@ -238,7 +232,6 @@ const Register = () => {
             </Card>
           </section>
 
-          {/* Khối bên phải: Danh Sách Đăng Ký (Chiếm 8 phần) */}
           <section className="lg:col-span-8 flex flex-col min-h-0">
             <Card className="border border-neutral-200 shadow-sm rounded-lg bg-white h-full flex flex-col overflow-hidden">
               <CardHeader className="flex flex-row items-center justify-between space-y-0 border-b border-neutral-100 py-4 px-5 shrink-0 bg-neutral-50/40">
@@ -264,7 +257,6 @@ const Register = () => {
                 </Button>
               </CardHeader>
 
-              {/* Thùng chứa Table bắt buộc phải overflow-y-auto để cuộn độc lập nội bộ */}
               <CardContent className="p-0 flex-1 overflow-y-auto min-h-0 bg-white">
                 {loadingList ? (
                   <div className="flex flex-col items-center justify-center h-full text-neutral-500 space-y-2">
@@ -278,68 +270,70 @@ const Register = () => {
                     Chưa có cấu hình theo dõi nào được kích hoạt.
                   </div>
                 ) : (
-                  <Table className="w-full">
-                    <TableHeader className="bg-neutral-50 sticky top-0 border-b border-neutral-200 z-10 shadow-sm">
-                      <TableRow>
-                        <TableHead className="font-bold text-neutral-900 text-sm uppercase tracking-wider">
-                          Họ tên
-                        </TableHead>
-                        <TableHead className="font-bold text-neutral-900 text-sm uppercase tracking-wider">
-                          Email
-                        </TableHead>
-                        <TableHead className="font-bold text-neutral-900 text-sm uppercase tracking-wider text-center">
-                          Mã môn
-                        </TableHead>
-                        <TableHead className="font-bold text-neutral-900 text-sm uppercase tracking-wider text-center">
-                          Tên môn
-                        </TableHead>
-                        <TableHead className="text-right font-bold text-neutral-900 text-sm uppercase tracking-wider pr-5">
-                          Thao tác
-                        </TableHead>
-                      </TableRow>
-                    </TableHeader>
-                    <TableBody>
-                      {subscriptions.map((s) => (
-                        <TableRow
-                          key={s.id}
-                          className="hover:bg-neutral-50/60 border-b border-neutral-100 transition-colors"
-                        >
-                          <TableCell className="font-semibold text-neutral-950 text-sm">
-                            {s.full_name}
-                          </TableCell>
-                          <TableCell className="text-neutral-600 font-mono text-sm">
-                            {s.email}
-                          </TableCell>
-                          <TableCell className="text-center">
-                            {s.subject_code ? (
-                              <span className="inline-flex items-center px-2 py-0.5 rounded text-sm font-semibold bg-neutral-100 text-neutral-800 border border-neutral-200">
-                                {s.subject_code}
-                              </span>
-                            ) : (
-                              <span className="text-neutral-400 text-sm">
-                                -
-                              </span>
-                            )}
-                          </TableCell>
-                          <TableCell className="text-center text-sm text-neutral-600">
-                            {s.subject_name || "-"}
-                          </TableCell>
-                          <TableCell className="text-right pr-5">
-                            <div className="flex gap-1.5 justify-end">
-                              <Button
-                                onClick={() => openViewModal(s.id)}
-                                size="sm"
-                                variant="outline"
-                                className="h-9 text-sm font-medium border-neutral-200 text-neutral-700 hover:bg-neutral-100 rounded"
-                              >
-                                📝 Sửa
-                              </Button>
-                            </div>
-                          </TableCell>
+                  <div className="overflow-x-auto">
+                    <Table className="w-full min-w-[600px]">
+                      <TableHeader className="bg-neutral-50 sticky top-0 border-b border-neutral-200 z-10 shadow-sm">
+                        <TableRow>
+                          <TableHead className="font-bold text-neutral-900 text-sm uppercase tracking-wider">
+                            Họ tên
+                          </TableHead>
+                          <TableHead className="font-bold text-neutral-900 text-sm uppercase tracking-wider">
+                            Email
+                          </TableHead>
+                          <TableHead className="font-bold text-neutral-900 text-sm uppercase tracking-wider text-center">
+                            Mã môn
+                          </TableHead>
+                          <TableHead className="font-bold text-neutral-900 text-sm uppercase tracking-wider text-center">
+                            Tên môn
+                          </TableHead>
+                          <TableHead className="text-right font-bold text-neutral-900 text-sm uppercase tracking-wider pr-5">
+                            Thao tác
+                          </TableHead>
                         </TableRow>
-                      ))}
-                    </TableBody>
-                  </Table>
+                      </TableHeader>
+                      <TableBody>
+                        {subscriptions.map((s) => (
+                          <TableRow
+                            key={s.id}
+                            className="hover:bg-neutral-50/60 border-b border-neutral-100 transition-colors"
+                          >
+                            <TableCell className="font-semibold text-neutral-950 text-sm">
+                              {s.full_name}
+                            </TableCell>
+                            <TableCell className="text-neutral-600 font-mono text-sm">
+                              {s.email}
+                            </TableCell>
+                            <TableCell className="text-center">
+                              {s.subject_code ? (
+                                <span className="inline-flex items-center px-2 py-0.5 rounded text-sm font-semibold bg-neutral-100 text-neutral-800 border border-neutral-200">
+                                  {s.subject_code}
+                                </span>
+                              ) : (
+                                <span className="text-neutral-400 text-sm">
+                                  -
+                                </span>
+                              )}
+                            </TableCell>
+                            <TableCell className="text-center text-sm text-neutral-600">
+                              {s.subject_name || "-"}
+                            </TableCell>
+                            <TableCell className="text-right pr-5">
+                              <div className="flex gap-1.5 justify-end">
+                                <Button
+                                  onClick={() => openViewModal(s.id)}
+                                  size="sm"
+                                  variant="outline"
+                                  className="h-9 text-sm font-medium border-neutral-200 text-neutral-700 hover:bg-neutral-100 rounded"
+                                >
+                                  📝 Sửa
+                                </Button>
+                              </div>
+                            </TableCell>
+                          </TableRow>
+                        ))}
+                      </TableBody>
+                    </Table>
+                  </div>
                 )}
               </CardContent>
             </Card>
@@ -347,7 +341,6 @@ const Register = () => {
         </div>
       </main>
 
-      {/* Modal Chỉnh Sửa Phối màu Tối - Xanh Đồng bộ */}
       <Modal
         isOpen={modalOpen}
         onClose={() => setModalOpen(false)}
@@ -419,8 +412,7 @@ const Register = () => {
               </Button>
               <Button
                 variant="destructive"
-                onClick={handleDelete}
-                isLoading={loadingAction}
+                onClick={() => setDeleteModalOpen(true)}
                 className="bg-rose-500 hover:bg-rose-600 text-white rounded-md text-xs font-medium px-4"
               >
                 Xóa đăng ký
@@ -435,6 +427,30 @@ const Register = () => {
             </div>
           </div>
         )}
+      </Modal>
+
+      <Modal
+        isOpen={deleteModalOpen}
+        onClose={() => setDeleteModalOpen(false)}
+        title="Xác nhận xóa"
+      >
+        <div className="space-y-4">
+          <p className="text-gray-600">
+            Bạn có chắc chắn muốn xóa đăng ký này?
+          </p>
+          <div className="flex justify-end space-x-3">
+            <Button variant="ghost" onClick={() => setDeleteModalOpen(false)}>
+              Hủy
+            </Button>
+            <Button
+              className="bg-red-600 hover:bg-red-700 text-white"
+              onClick={handleDelete}
+              isLoading={loadingAction}
+            >
+              Xác nhận xóa
+            </Button>
+          </div>
+        </div>
       </Modal>
     </div>
   );

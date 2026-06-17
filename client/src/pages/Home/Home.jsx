@@ -18,7 +18,7 @@ const Home = () => {
           Hệ thống tự động theo dõi và thông báo{" "}
           <span className="text-blue-600">danh sách thi DTU</span>
         </h1>
-        <p className="text-xl text-gray-600 dark:text-gray-300 mb-8 max-w-2xl mx-auto">
+        <p className="text-xl text-gray-600  mb-8 max-w-2xl mx-auto">
           Nhận thông báo ngay khi có danh sách thi mới từ Đại học Duy Tân. Tự
           động cào dữ liệu và gửi email thông báo.
         </p>

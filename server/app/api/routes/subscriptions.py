@@ -3,6 +3,8 @@ from sqlalchemy.orm import Session
 from typing import List, Optional
 from app.core.database import get_db
 from app.models.subscription import Subscription
+from app.models.user import User
+from app.api.deps import get_current_user
 from app.services.subscription_service import SubscriptionService
 from app.schemas.subscription import (
     SubscriptionCreate,
@@ -19,21 +21,25 @@ def create_subscription(
     subscription: SubscriptionCreate,
     background_tasks: BackgroundTasks,
     db: Session = Depends(get_db),
+    current_user: User = Depends(get_current_user),
 ):
     """
     Create a new subscription and send email notification with exam information.
     The system will search for exam files matching the provided subject code/name
     and send an email containing the user's exam information extracted from Excel files.
     """
-    log.info(f"New subscription request: {subscription.email}, subject_code={subscription.subject_code}")
+    log.info(f"New subscription request: {subscription.email}, subject_code={subscription.subject_code} by user={current_user.username}")
 
     try:
         service = SubscriptionService(db)
+        # Note: Need to update SubscriptionService.create_subscription to accept user_id
+        # For now, I will modify it here or assume I need to update it
         subscription_obj = service.create_subscription(
             full_name=subscription.full_name,
             email=subscription.email,
             subject_code=subscription.subject_code,
             subject_name=subscription.subject_name,
+            user_id=current_user.id
         )
         
         # Trigger background processing
@@ -54,14 +60,15 @@ def get_subscriptions(
     skip: int = 0,
     limit: int = 100,
     db: Session = Depends(get_db),
+    current_user: User = Depends(get_current_user),
 ):
     """
-    Retrieve all subscriptions (for admin purposes).
+    Retrieve all subscriptions for current user.
     """
-    log.info(f"Fetching subscriptions: skip={skip}, limit={limit}")
+    log.info(f"Fetching subscriptions for user={current_user.username}: skip={skip}, limit={limit}")
 
     try:
-        subscriptions = db.query(Subscription).offset(skip).limit(limit).all()
+        subscriptions = db.query(Subscription).filter(Subscription.user_id == current_user.id).offset(skip).limit(limit).all()
         return subscriptions
     except Exception as e:
         log.error(f"Error fetching subscriptions: {e}")
@@ -90,13 +97,17 @@ def get_subscription_by_email(
 def get_subscription_by_id(
     subscription_id: int,
     db: Session = Depends(get_db),
+    current_user: User = Depends(get_current_user),
 ):
     """
     Retrieve a single subscription by ID.
     """
-    log.info(f"Fetching subscription id={subscription_id}")
+    log.info(f"Fetching subscription id={subscription_id} for user={current_user.username}")
     try:
-        subscription = db.query(Subscription).filter(Subscription.id == subscription_id).first()
+        subscription = db.query(Subscription).filter(
+            Subscription.id == subscription_id,
+            Subscription.user_id == current_user.id
+        ).first()
         if not subscription:
             raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Subscription not found")
         return subscription
@@ -112,13 +123,17 @@ def update_subscription(
     subscription_id: int,
     payload: SubscriptionCreate,
     db: Session = Depends(get_db),
+    current_user: User = Depends(get_current_user),
 ):
     """
     Update an existing subscription.
     """
-    log.info(f"Updating subscription id={subscription_id}")
+    log.info(f"Updating subscription id={subscription_id} for user={current_user.username}")
     try:
-        subscription = db.query(Subscription).filter(Subscription.id == subscription_id).first()
+        subscription = db.query(Subscription).filter(
+            Subscription.id == subscription_id,
+            Subscription.user_id == current_user.id
+        ).first()
         if not subscription:
             raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Subscription not found")
 
@@ -152,13 +167,17 @@ def update_subscription(
 def delete_subscription(
     subscription_id: int,
     db: Session = Depends(get_db),
+    current_user: User = Depends(get_current_user),
 ):
     """
     Delete a subscription by ID.
     """
-    log.info(f"Deleting subscription id={subscription_id}")
+    log.info(f"Deleting subscription id={subscription_id} for user={current_user.username}")
     try:
-        subscription = db.query(Subscription).filter(Subscription.id == subscription_id).first()
+        subscription = db.query(Subscription).filter(
+            Subscription.id == subscription_id,
+            Subscription.user_id == current_user.id
+        ).first()
         if not subscription:
             raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Subscription not found")
 

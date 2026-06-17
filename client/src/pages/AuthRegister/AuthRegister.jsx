@@ -10,6 +10,7 @@ const AuthRegister = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
 
   const handleRegister = async (e) => {
@@ -18,6 +19,7 @@ const AuthRegister = () => {
       toast.error("Mật khẩu không khớp!");
       return;
     }
+    setIsLoading(true);
     try {
       await apiClient.post("/auth/register", {
         username,
@@ -29,6 +31,8 @@ const AuthRegister = () => {
     } catch (error) {
       console.error("Registration failed:", error);
       toast.error(error.response?.data?.detail || "Đăng ký thất bại.");
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -75,8 +79,8 @@ const AuthRegister = () => {
               required
             />
           </div>
-          <Button type="submit" className="w-full">
-            Đăng Ký
+          <Button type="submit" className="w-full" disabled={isLoading}>
+            {isLoading ? "Đang xử lý..." : "Đăng Ký"}
           </Button>
         </form>
         <p className="mt-4 text-center text-sm">

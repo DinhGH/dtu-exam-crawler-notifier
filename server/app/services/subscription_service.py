@@ -927,6 +927,7 @@ class SubscriptionService:
         self,
         full_name: str,
         email: str,
+        user_id: int,
         subject_code: Optional[str] = None,
         subject_name: Optional[str] = None
     ) -> Subscription:
@@ -936,6 +937,7 @@ class SubscriptionService:
         subscription = Subscription(
             full_name=full_name,
             email=email,
+            user_id=user_id,
             subject_code=subject_code,
             subject_name=subject_name
         )

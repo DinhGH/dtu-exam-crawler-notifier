@@ -94,10 +94,12 @@ const Files = () => {
 
   const totalPages = Math.ceil(total / pageSize);
   return (
-    <div className="container mx-auto px-12 py-4">
-      <div className="flex justify-between items-center mb-4">
-        <h1 className="text-3xl font-bold text-gray-900">Danh sách tệp</h1>
-        <div className="flex items-center gap-2">
+    <div className="container mx-auto px-4 md:px-12 py-4">
+      <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-4 gap-4">
+        <h1 className="text-2xl md:text-3xl font-bold text-gray-900">
+          Danh sách tệp
+        </h1>
+        <div className="flex flex-wrap items-center gap-2 w-full md:w-auto">
           <SearchBox
             placeholder="Tìm theo tên tệp hoặc mã môn học..."
             value={searchQuery}
@@ -107,24 +109,26 @@ const Files = () => {
                 handleSearchClick();
               }
             }}
-            className="w-80"
+            className="w-full md:w-80"
           />
-          <Button
-            onClick={handleSearchClick}
-            className="inline-flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-colors"
-          >
-            <Search className="h-4 w-4" /> Tìm
-          </Button>
-          <Button
-            onClick={handleCrawlLatest}
-            disabled={crawling}
-            className="inline-flex items-center gap-2 px-4 py-2 bg-[#1447E6] text-white rounded-md hover:bg-[#1442ce] transition-colors disabled:opacity-50"
-          >
-            <RefreshCw
-              className={`h-4 w-4 ${crawling ? "animate-spin" : ""}`}
-            />
-            {crawling ? "Đang cào..." : "Cào dữ liệu mới"}
-          </Button>
+          <div className="flex gap-2 w-full md:w-auto">
+            <Button
+              onClick={handleSearchClick}
+              className="flex-1 md:flex-none inline-flex items-center justify-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-colors"
+            >
+              <Search className="h-4 w-4" /> Tìm
+            </Button>
+            <Button
+              onClick={handleCrawlLatest}
+              disabled={crawling}
+              className="flex-1 md:flex-none inline-flex items-center justify-center gap-2 px-4 py-2 bg-[#1447E6] text-white rounded-md hover:bg-[#1442ce] transition-colors disabled:opacity-50"
+            >
+              <RefreshCw
+                className={`h-4 w-4 ${crawling ? "animate-spin" : ""}`}
+              />
+              {crawling ? "Đang cào..." : "Cào"}
+            </Button>
+          </div>
         </div>
       </div>
 
@@ -198,8 +202,8 @@ const Files = () => {
             </Table>
           </div>
 
-          <div className="flex items-center justify-between px-4 py-2 border-t">
-            <div className="text-sm text-gray-600">
+          <div className="flex flex-col sm:flex-row items-center justify-between px-4 py-3 border-t gap-3 text-sm">
+            <div className="text-gray-600">
               Hiển thị {(page - 1) * pageSize + 1} -{" "}
               {Math.min(page * pageSize, total)} trên {total} tệp
             </div>
@@ -208,19 +212,19 @@ const Files = () => {
               <button
                 disabled={page === 1}
                 onClick={() => setPage((p) => p - 1)}
-                className="px-3 py-1 border rounded disabled:opacity-50 hover:bg-gray-50"
+                className="px-3 py-1 border rounded disabled:opacity-50 hover:bg-gray-50 bg-white"
               >
                 Trước
               </button>
 
-              <span className="px-2">
+              <span className="px-2 whitespace-nowrap">
                 Trang {page} / {totalPages || 1}
               </span>
 
               <button
                 disabled={page >= totalPages}
                 onClick={() => setPage((p) => p + 1)}
-                className="px-3 py-1 border rounded disabled:opacity-50 hover:bg-gray-50"
+                className="px-3 py-1 border rounded disabled:opacity-50 hover:bg-gray-50 bg-white"
               >
                 Sau
               </button>

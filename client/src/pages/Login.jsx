@@ -8,24 +8,29 @@ import { toast } from "sonner";
 const Login = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
 
   const handleLogin = async (e) => {
     e.preventDefault();
+    setIsLoading(true);
     try {
       const response = await apiClient.post("/auth/login", {
         username: username,
         password: password,
       });
       localStorage.setItem("token", response.data.access_token);
+      localStorage.setItem("username", username);
       toast.success("Đăng nhập thành công!");
-      navigate("/dashboard"); // Redirect to dashboard or appropriate page
+      navigate("/home");
     } catch (error) {
       console.error("Login failed:", error);
       toast.error(
         error.response?.data?.detail ||
           "Tên đăng nhập hoặc mật khẩu không chính xác.",
       );
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -52,8 +57,8 @@ const Login = () => {
               required
             />
           </div>
-          <Button type="submit" className="w-full">
-            Đăng Nhập
+          <Button type="submit" className="w-full" disabled={isLoading}>
+            {isLoading ? "Đang xử lý..." : "Đăng Nhập"}
           </Button>
         </form>
         <p className="mt-4 text-center text-sm">
