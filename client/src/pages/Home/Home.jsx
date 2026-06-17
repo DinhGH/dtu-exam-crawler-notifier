@@ -26,7 +26,7 @@ const Home = () => {
           <Link to="/register">
             <Button size="lg">Đăng ký theo dõi</Button>
           </Link>
-          <Link to="/search">
+          <Link to="/files">
             <Button variant="outline" size="lg">
               Tra cứu danh sách thi
             </Button>
