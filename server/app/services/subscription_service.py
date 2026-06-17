@@ -835,6 +835,7 @@ class SubscriptionService:
         """
         import time
 
+        log.info(f"Connecting to SMTP server: {self.email_config['smtp_host']}:{self.email_config['smtp_port']} as {self.email_config['smtp_user']}")
         for attempt in range(retries):
             try:
                 server = smtplib.SMTP(
