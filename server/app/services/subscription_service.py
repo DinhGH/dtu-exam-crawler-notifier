@@ -828,36 +828,44 @@ class SubscriptionService:
 
         return html
 
-    def _send_email(self, msg: MIMEMultipart, to_email: str) -> bool:
+    def _send_email(self, msg: MIMEMultipart, to_email: str, retries: int = 3) -> bool:
         """
-        Send the email using SMTP.
+        Send the email using SMTP with retries.
         Returns True if successful, False otherwise.
         """
-        try:
-            server = smtplib.SMTP(
-                self.email_config['smtp_host'],
-                self.email_config['smtp_port']
-            )
-            server.starttls()
-            server.login(
-                self.email_config['smtp_user'],
-                self.email_config['smtp_password']
-            )
+        import time
 
-            text = msg.as_string()
-            server.sendmail(
-                self.email_config['from_email'],
-                to_email,
-                text
-            )
-            server.quit()
+        for attempt in range(retries):
+            try:
+                server = smtplib.SMTP(
+                    self.email_config['smtp_host'],
+                    self.email_config['smtp_port'],
+                    timeout=30
+                )
+                server.starttls()
+                server.login(
+                    self.email_config['smtp_user'],
+                    self.email_config['smtp_password']
+                )
 
-            log.info(f"Email sent successfully to {to_email}")
-            return True
+                text = msg.as_string()
+                server.sendmail(
+                    self.email_config['from_email'],
+                    to_email,
+                    text
+                )
+                server.quit()
 
-        except Exception as e:
-            log.error(f"Failed to send email to {to_email}: {e}")
-            return False
+                log.info(f"Email sent successfully to {to_email} (attempt {attempt + 1})")
+                return True
+
+            except Exception as e:
+                log.error(f"Failed to send email to {to_email} (attempt {attempt + 1}/{retries}): {e}")
+                if attempt < retries - 1:
+                    time.sleep(2)  # Wait before retrying
+                else:
+                    return False
+        return False
 
     def _log_email(self, subscription_id: int, exam_info: Dict[str, Any], status: str):
         """Log the email sending status to database."""
