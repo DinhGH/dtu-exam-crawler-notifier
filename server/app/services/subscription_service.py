@@ -836,14 +836,18 @@ class SubscriptionService:
         import time
 
         log.info(f"Connecting to SMTP server: {self.email_config['smtp_host']}:{self.email_config['smtp_port']} as {self.email_config['smtp_user']}")
+        ports = [587, 2525, 465]
         for attempt in range(retries):
             try:
-                server = smtplib.SMTP(
-                    self.email_config['smtp_host'],
-                    self.email_config['smtp_port'],
-                    timeout=30
-                )
-                server.starttls()
+                port = self.email_config['smtp_port'] if attempt == 0 else ports[attempt % len(ports)]
+                log.info(f"Connecting to SMTP server {self.email_config['smtp_host']} on port {port} (attempt {attempt + 1})")
+                
+                if port == 465:
+                    server = smtplib.SMTP_SSL(self.email_config['smtp_host'], port, timeout=60)
+                else:
+                    server = smtplib.SMTP(self.email_config['smtp_host'], port, timeout=60)
+                    server.starttls()
+                
                 server.login(
                     self.email_config['smtp_user'],
                     self.email_config['smtp_password']
