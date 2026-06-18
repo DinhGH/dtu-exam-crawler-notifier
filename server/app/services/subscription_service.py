@@ -836,16 +836,19 @@ class SubscriptionService:
         import time
 
         log.info(f"Connecting to SMTP server: {self.email_config['smtp_host']}:{self.email_config['smtp_port']} as {self.email_config['smtp_user']}")
-        ports = [587, 2525, 465]
+        # Prioritize 2525 to avoid timeout on 587
+        ports = [2525, 587, 465]
         for attempt in range(retries):
             try:
+                # Use configured port for first attempt, then rotate
                 port = self.email_config['smtp_port'] if attempt == 0 else ports[attempt % len(ports)]
                 log.info(f"Connecting to SMTP server {self.email_config['smtp_host']} on port {port} (attempt {attempt + 1})")
                 
+                # Shorter timeout (10s) to prevent blocking the background task
                 if port == 465:
-                    server = smtplib.SMTP_SSL(self.email_config['smtp_host'], port, timeout=60)
+                    server = smtplib.SMTP_SSL(self.email_config['smtp_host'], port, timeout=10)
                 else:
-                    server = smtplib.SMTP(self.email_config['smtp_host'], port, timeout=60)
+                    server = smtplib.SMTP(self.email_config['smtp_host'], port, timeout=10)
                     server.starttls()
                 
                 server.login(
