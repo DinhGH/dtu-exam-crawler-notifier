@@ -122,6 +122,7 @@ def get_subscription_by_id(
 def update_subscription(
     subscription_id: int,
     payload: SubscriptionCreate,
+    background_tasks: BackgroundTasks,
     db: Session = Depends(get_db),
     current_user: User = Depends(get_current_user),
 ):
@@ -146,13 +147,8 @@ def update_subscription(
         db.commit()
         db.refresh(subscription)
 
-        # Trigger notification check after update
-        # Use a new session or ensure the current session is clean to prevent transaction issues
-        try:
-            service = SubscriptionService(db)
-            service._process_subscription(subscription)
-        except Exception as e:
-            log.error(f"Error triggering process for updated subscription: {e}")
+        # Trigger notification check after update using background task
+        background_tasks.add_task(SubscriptionService(db).process_subscription_async, subscription.id)
 
         return subscription
     except HTTPException:
