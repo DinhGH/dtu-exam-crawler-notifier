@@ -8,6 +8,7 @@ class Settings(BaseSettings):
 
     # SMTP Configuration
     SMTP_HOST: str = "smtp.gmail.com"
+    SENDGRID_API_KEY: str | None = None
     SMTP_PORT: int = 587
     SMTP_EMAIL: str | None = None
     SMTP_PASSWORD: str | None = None

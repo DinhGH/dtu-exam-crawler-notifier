@@ -19,6 +19,8 @@ from app.models.email_log import EmailLog
 from app.utils.logger import log
 from email.header import Header
 import logging
+from sendgrid import SendGridAPIClient
+from sendgrid.helpers.mail import Mail, Attachment, FileContent, FileName, FileType, Disposition, From, To
 
 # Import pypdf for PDF processing
 try:
@@ -738,7 +740,7 @@ class SubscriptionService:
                     <div class="greeting">
                         <div class="greeting-name">Xin chào, {user_full_name}!</div>
                         <p>Hệ thống đã quét thành công file dữ liệu công bố mới nhất.<br>
-                        Dưới đây là thông tin phòng thi &amp; lịch thi tìm thấy theo đăng ký của bạn.</p>
+                        Dưới đây là thông tin phòng thi & lịch thi tìm thấy theo đăng ký của bạn.</p>
                     </div>
 
         """
@@ -830,50 +832,62 @@ class SubscriptionService:
 
     def _send_email(self, msg: MIMEMultipart, to_email: str, retries: int = 3) -> bool:
         """
-        Send the email using SMTP with retries.
+        Send the email using SendGrid Web API.
         Returns True if successful, False otherwise.
         """
-        import time
+        try:
+            # Extract content from MIMEMultipart
+            subject = msg['Subject']
+            html_content = ""
+            attachments = []
+            
+            for part in msg.walk():
+                if part.get_content_type() == 'text/html':
+                    html_content = part.get_payload(decode=True).decode('utf-8')
+                elif part.get_content_maintype() == 'application':
+                    filename = part.get_filename()
+                    file_data = part.get_payload(decode=True)
+                    encoded_file = base64.b64encode(file_data).decode()
+                    
+                    # Sanitize filename to remove any CRLF characters
+                    clean_filename = filename.replace('\r', '').replace('\n', '').strip()
+                    attached_file = Attachment(
+                        FileContent(encoded_file),
+                        FileName(clean_filename),
+                        FileType(part.get_content_type()),
+                        Disposition('attachment')
+                    )
+            from_addr = self.email_config['from_email']
+            log.info(f"Sending email from {from_addr} to {to_email} with subject {subject}")
+            
+            message = Mail(
+                from_email=from_addr,
+                to_emails=to_email,
+                subject=subject,
+                html_content=html_content if html_content else " "
+            )
+            
+            for att in attachments:
+                message.attachment = att
 
-        log.info(f"Connecting to SMTP server: {self.email_config['smtp_host']}:{self.email_config['smtp_port']} as {self.email_config['smtp_user']}")
-        # Prioritize 2525 to avoid timeout on 587
-        ports = [2525, 587, 465]
-        for attempt in range(retries):
+            sg = SendGridAPIClient(os.environ.get('SENDGRID_API_KEY'))
             try:
-                # Use configured port for first attempt, then rotate
-                port = self.email_config['smtp_port'] if attempt == 0 else ports[attempt % len(ports)]
-                log.info(f"Connecting to SMTP server {self.email_config['smtp_host']} on port {port} (attempt {attempt + 1})")
-                
-                # Shorter timeout (10s) to prevent blocking the background task
-                if port == 465:
-                    server = smtplib.SMTP_SSL(self.email_config['smtp_host'], port, timeout=10)
+                response = sg.send(message)
+                if response.status_code in [200, 201, 202]:
+                    log.info(f"Email sent successfully via SendGrid API to {to_email}")
+                    return True
                 else:
-                    server = smtplib.SMTP(self.email_config['smtp_host'], port, timeout=10)
-                    server.starttls()
-                
-                server.login(
-                    self.email_config['smtp_user'],
-                    self.email_config['smtp_password']
-                )
-
-                text = msg.as_string()
-                server.sendmail(
-                    self.email_config['from_email'],
-                    to_email,
-                    text
-                )
-                server.quit()
-
-                log.info(f"Email sent successfully to {to_email} (attempt {attempt + 1})")
-                return True
-
-            except Exception as e:
-                log.error(f"Failed to send email to {to_email} (attempt {attempt + 1}/{retries}): {e}")
-                if attempt < retries - 1:
-                    time.sleep(2)  # Wait before retrying
-                else:
+                    log.error(f"SendGrid API failed with status {response.status_code}: {response.body}")
                     return False
-        return False
+            except Exception as e:
+                if hasattr(e, 'body'):
+                    log.error(f"SendGrid SDK Error Details: {e.body}")
+                log.error(f"SendGrid SDK Exception: {e}")
+                return False
+
+        except Exception as e:
+            log.error(f"SendGrid API Error: {e}")
+            return False
 
     def _log_email(self, subscription_id: int, exam_info: Dict[str, Any], status: str):
         """Log the email sending status to database."""
