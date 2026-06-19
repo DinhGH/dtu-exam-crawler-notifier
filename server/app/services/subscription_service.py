@@ -857,6 +857,7 @@ class SubscriptionService:
                         FileType(part.get_content_type()),
                         Disposition('attachment')
                     )
+                    attachments.append(attached_file)
             from_addr = self.email_config['from_email']
             log.info(f"Sending email from {from_addr} to {to_email} with subject {subject}")
             
