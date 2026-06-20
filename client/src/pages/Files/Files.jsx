@@ -79,13 +79,14 @@ const Files = () => {
     if (!iso) return "-";
     try {
       return new Intl.DateTimeFormat("vi-VN", {
+        timeZone: "Asia/Ho_Chi_Minh",
         day: "2-digit",
         month: "2-digit",
         year: "numeric",
-        hour: "2-digit", // Thêm giờ (2 chữ số)
-        minute: "2-digit", // Thêm phút (2 chữ số)
-        second: "2-digit", // Thêm giây (2 chữ số)
-        hour12: false, // Sử dụng định dạng 24h thay vì AM/PM
+        hour: "2-digit",
+        minute: "2-digit",
+        second: "2-digit",
+        hour12: false,
       }).format(new Date(iso));
     } catch {
       return iso;

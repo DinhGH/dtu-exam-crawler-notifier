@@ -13,6 +13,9 @@ class ExamFileResponse(BaseModel):
 
     class Config:
         from_attributes = True
+        json_encoders = {
+            datetime: lambda v: v.isoformat()
+        }
 
 class ExamScheduleResponse(BaseModel):
     id: int

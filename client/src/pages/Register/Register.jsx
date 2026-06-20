@@ -13,6 +13,7 @@ import {
 } from "../../components/ui/Card";
 import { toast } from "sonner";
 import { subscriptionService } from "../../services/subscriptionService";
+import { userService } from "../../services/userService";
 import { Modal } from "../../components/ui/Modal";
 import {
   Table,
@@ -55,6 +56,20 @@ const Register = () => {
   });
 
   const hasLoaded = useRef(false);
+
+  useEffect(() => {
+    const fetchUser = async () => {
+      try {
+        const userData = await userService.getMe();
+        if (userData && userData.email) {
+          form.setValue("email", userData.email);
+        }
+      } catch (e) {
+        console.error("Failed to fetch user:", e);
+      }
+    };
+    fetchUser();
+  }, [form]);
 
   const fetchSubscriptions = async () => {
     try {

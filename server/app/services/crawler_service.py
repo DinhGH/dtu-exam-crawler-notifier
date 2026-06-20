@@ -107,10 +107,12 @@ class CrawlerService:
                     # Save to database
                     # Use GMT+7 for the crawled time
                     gmt7 = timezone(timedelta(hours=7))
+                    now_gmt7 = datetime.now(gmt7).replace(tzinfo=None)
                     new_exam_file = ExamFile(
                         file_name=file_name,
                         download_link=file_url,
-                        crawl_time=datetime.now(gmt7),
+                        crawl_time=now_gmt7,
+                        created_at=now_gmt7,
                     )
                     self.db.add(new_exam_file)
                     self.db.commit()

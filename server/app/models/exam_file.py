@@ -8,4 +8,4 @@ class ExamFile(Base):
     file_name = Column(String(500), nullable=False)  # Exact filename from website, e.g., "Tổng quan Hành vi Tổ chức trong Du lịch OB 253 (B-D-F) (17:18 29/05/2026)"
     download_link = Column(Text, nullable=False)  # Direct link to Excel file
     crawl_time = Column(DateTime, nullable=False)
-    created_at = Column(DateTime, default=func.now())
+    created_at = Column(DateTime, nullable=False)
