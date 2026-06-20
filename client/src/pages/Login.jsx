@@ -20,6 +20,7 @@ const Login = () => {
         password: password,
       });
       localStorage.setItem("token", response.data.access_token);
+      localStorage.setItem("refresh_token", response.data.refresh_token);
       localStorage.setItem("username", username);
       toast.success("Đăng nhập thành công!");
       navigate("/home");
