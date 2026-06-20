@@ -65,7 +65,7 @@ const Navbar = () => {
                 );
               })}
             {isAuthenticated && username && (
-              <span className="text-sm font-medium text-blue-600">
+              <span className="text-sm font-medium text-[#000000]">
                 Xin chào, {username}
               </span>
             )}

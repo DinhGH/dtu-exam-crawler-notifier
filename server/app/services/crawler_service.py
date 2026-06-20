@@ -1,6 +1,6 @@
 import requests
 import re
-from datetime import datetime
+from datetime import datetime, timezone, timedelta
 from urllib.parse import urljoin
 from bs4 import BeautifulSoup
 from sqlalchemy.orm import Session
@@ -105,10 +105,12 @@ class CrawlerService:
                     file_name = title.strip()
 
                     # Save to database
+                    # Use GMT+7 for the crawled time
+                    gmt7 = timezone(timedelta(hours=7))
                     new_exam_file = ExamFile(
                         file_name=file_name,
                         download_link=file_url,
-                        crawl_time=datetime.now(),
+                        crawl_time=datetime.now(gmt7),
                     )
                     self.db.add(new_exam_file)
                     self.db.commit()

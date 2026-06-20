@@ -13,7 +13,7 @@ def start_scheduler():
         scheduler.add_job(
             crawl_and_process_job,
             "interval",
-            minutes=60,
+            minutes=4,
             id="crawl_and_process_job",
             replace_existing=True,
         )
