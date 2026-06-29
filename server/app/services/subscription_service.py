@@ -161,27 +161,16 @@ class SubscriptionService:
                     empty_row_counter = 0  # Reset bộ đếm nếu dòng có dữ liệu
 
                 # CHUYỂN ĐỔI NGỮ CẢNH: Tìm thấy dòng chứa cấu trúc Phòng thi / Thời gian
+                # Quét toàn bộ row_combined bằng regex để lấy trọn bộ thông tin bất chấp merge cell
                 if 'thời gian:' in row_combined or 'thoi gian:' in row_combined:
+                    # Regex cải tiến: sử dụng lookahead để dừng trước cụm "lần thi" mà không lấy nó vào kết quả
+                    pattern = r'(?:thời\s*gian:?)\s*(?P<time>.*?)(?:-?\s*ngày\s*)(?P<date>.*?)(?:-?\s*phòng:?)\s*(?P<room>.*?)(?:-?\s*(?:cơ\s*sở|cs):?)\s*(?P<location>.*?)(?=\s*-?\s*lần\s*thi|$)'
+                    match = re.search(pattern, row_combined)
                     
-                    # Dùng regex để trích xuất nhanh hơn
-                    time_match = re.search(r'(thời\s*gian:?\s*)([\d\s\w/:-]+?)(phòng|p\.|địa\s*điểm|$)', row_combined)
-                    if time_match:
-                        current_time = time_match.group(2).strip()
-                    
-                    # Process room/location info
-                    if len(clean_cells) > 7:
-                        room_val = clean_cells[6].strip()
-                        location_val = clean_cells[7].strip()
-                        
-                        if room_val and '/' in room_val:
-                            current_room_number = room_val
-                        
-                        if location_val:
-                            if location_val.startswith('- '):
-                                location_val = location_val[2:].strip()
-                            elif location_val.startswith('-'):
-                                location_val = location_val[1:].strip()
-                            current_location = location_val
+                    if match:
+                        current_time = f"{match.group('time').strip()} - Ngày {match.group('date').strip()}"
+                        current_room_number = match.group('room').strip()
+                        current_location = match.group('location').strip()
                     
                 # SO KHỚP TÊN SINH VIÊN: Sử dụng index cột linh hoạt hơn
                 log.info(f"DEBUG: Checking row {idx} for student name")

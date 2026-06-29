@@ -165,12 +165,25 @@ class FileService:
         """
         schedules = []
         
-        # Pattern to match "Thời gian: ... Phòng: ..."
-        time_room_pattern = re.compile(r'Thời\s+gian:\s*(.+?)\s*Phòng:\s*(.+)', re.IGNORECASE)
-        
-        # Track current time and room info
-        current_time_info = ""
-        current_room_info = ""
+        # Try to extract time
+        time_match = re.search(r'Thời\s+gian\s*:\s*(.+?)(?=\s*-|\s*Phòng\s*:|$)', text, re.IGNORECASE | re.DOTALL)
+        current_time_info = re.sub(r'\s+', ' ', time_match.group(1)).strip() if time_match else ""
+
+        # Try to extract room - search for "Phòng:" then take everything until the end of the line
+        room_start = re.search(r'Phòng(?: thi)?\s*:', text, re.IGNORECASE)
+        if room_start:
+            # Get text from "Phòng:" until the end of that line
+            remaining_text = text[room_start.end():]
+            end_of_line = remaining_text.find('\n')
+            if end_of_line == -1:
+                end_of_line = len(remaining_text)
+            room_part = remaining_text[:end_of_line].strip()
+            # Clean up: remove "nan", extra spaces
+            current_room_info = re.sub(r'\bnan\b', '', room_part, flags=re.IGNORECASE).strip()
+            current_room_info = re.sub(r'\s+', ' ', current_room_info).strip()
+        else:
+            current_room_info = ""
+
         blank_line_count = 0
         
         # Split text into lines
@@ -193,18 +206,6 @@ class FileService:
             
             # Reset blank line counter when we find non-blank data
             blank_line_count = 0
-            
-            # Check for time and room info
-            time_room_match = time_room_pattern.search(line_stripped)
-            
-            if time_room_match:
-                current_time_info = time_room_match.group(1).strip()
-                # Clean up room info
-                room_part = time_room_match.group(2).strip()
-                current_room_info = re.sub(r'\bnan\b', '', room_part, flags=re.IGNORECASE).strip()
-                current_room_info = re.sub(r'\s+', ' ', current_room_info).strip()
-                log.debug(f"Found time/room: {current_time_info} - {current_room_info}")
-                continue
             
             # Look for student data in PDF
             # PDF format: "STT MÃ SINH VIÊN HỌ VÀ TÊN LỚP MÔN..."
