@@ -35,10 +35,9 @@ def create_subscription(
         # Note: Need to update SubscriptionService.create_subscription to accept user_id
         # For now, I will modify it here or assume I need to update it
         subscription_obj = service.create_subscription(
-            full_name=subscription.full_name,
+            student_id=subscription.student_id,
             email=subscription.email,
             subject_code=subscription.subject_code,
-            subject_name=subscription.subject_name,
             user_id=current_user.id
         )
         
@@ -138,10 +137,9 @@ def update_subscription(
         if not subscription:
             raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Subscription not found")
 
-        subscription.full_name = payload.full_name
+        subscription.student_id = payload.student_id
         subscription.email = payload.email
         subscription.subject_code = payload.subject_code
-        subscription.subject_name = payload.subject_name
 
         db.add(subscription)
         db.commit()

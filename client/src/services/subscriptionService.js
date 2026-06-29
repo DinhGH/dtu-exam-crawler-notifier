@@ -3,10 +3,9 @@ import apiClient from "./apiClient";
 export const subscriptionService = {
   async subscribe(data) {
     const dataToSend = {
-      full_name: data.fullName,
+      student_id: data.student_id,
       email: data.email,
-      subject_code: data.subjectCode,
-      subject_name: data.subjectName,
+      subject_code: data.subject_code,
     };
 
     const response = await apiClient.post("/subscriptions", dataToSend);
@@ -32,10 +31,9 @@ export const subscriptionService = {
 
   async updateSubscription(id, data) {
     const payload = {
-      full_name: data.fullName,
+      student_id: data.student_id,
       email: data.email,
-      subject_code: data.subjectCode,
-      subject_name: data.subjectName,
+      subject_code: data.subject_code,
     };
     const response = await apiClient.put(`/subscriptions/${id}`, payload);
     return response.data;

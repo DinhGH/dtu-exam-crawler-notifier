@@ -61,11 +61,15 @@ apiClient.interceptors.response.use(
       }
     }
 
-    const message =
+    let message =
       error.response?.data?.message ||
       error.response?.data?.detail ||
       error.message ||
       "Đã có lỗi xảy ra";
+
+    if (typeof message === "object") {
+      message = JSON.stringify(message);
+    }
 
     toast.error(message);
     return Promise.reject(error);

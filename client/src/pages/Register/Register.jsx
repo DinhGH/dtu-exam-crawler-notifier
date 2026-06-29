@@ -25,20 +25,20 @@ import {
 } from "../../components/ui/Table";
 
 const subscriptionSchema = z.object({
-  fullName: z.string().min(2, { message: "Họ tên phải có ít nhất 2 ký tự" }),
+  studentId: z
+    .string()
+    .regex(/^\d{11}$/, { message: "Mã số sinh viên phải là 11 chữ số" }),
   email: z.string().email({ message: "Email không hợp lệ" }),
   subjectCode: z.string().optional(),
-  subjectName: z.string().optional(),
 });
 
 const Register = () => {
   const form = useForm({
     resolver: zodResolver(subscriptionSchema),
     defaultValues: {
-      fullName: "",
+      studentId: "",
       email: "",
       subjectCode: "",
-      subjectName: "",
     },
   });
 
@@ -49,10 +49,9 @@ const Register = () => {
   const [modalOpen, setModalOpen] = useState(false);
   const [deleteModalOpen, setDeleteModalOpen] = useState(false);
   const [editData, setEditData] = useState({
-    fullName: "",
+    studentId: "",
     email: "",
     subjectCode: "",
-    subjectName: "",
   });
 
   const hasLoaded = useRef(false);
@@ -103,7 +102,12 @@ const Register = () => {
   const onSubmit = async (data) => {
     setLoadingAction(true);
     try {
-      await subscriptionService.subscribe(data);
+      const payload = {
+        student_id: data.studentId,
+        email: data.email,
+        subject_code: data.subjectCode,
+      };
+      await subscriptionService.subscribe(payload);
       toast.success("Đăng ký thành công!", {
         duration: 3000,
       });
@@ -122,10 +126,9 @@ const Register = () => {
       const sub = await subscriptionService.getSubscriptionById(id);
       setSelected(sub);
       setEditData({
-        fullName: sub.full_name || sub.fullName || "",
+        studentId: sub.student_id || sub.studentId || "",
         email: sub.email || "",
         subjectCode: sub.subject_code || "",
-        subjectName: sub.subject_name || "",
       });
       setModalOpen(true);
     } catch (e) {
@@ -139,10 +142,9 @@ const Register = () => {
     setLoadingAction(true);
     try {
       await subscriptionService.updateSubscription(selected.id, {
-        fullName: editData.fullName,
+        student_id: editData.studentId,
         email: editData.email,
-        subjectCode: editData.subjectCode,
-        subjectName: editData.subjectName,
+        subject_code: editData.subjectCode,
       });
       toast.success("Cập nhật thành công");
       setModalOpen(false);
@@ -190,13 +192,13 @@ const Register = () => {
                 >
                   <div className="space-y-1">
                     <label className="text-sm font-bold text-neutral-700 uppercase tracking-wider">
-                      Họ và tên - Mã số sinh viên*
+                      Mã số sinh viên (11 số) *
                     </label>
                     <Input
-                      {...form.register("fullName")}
-                      placeholder="Nguyễn Văn A - 29299999999"
+                      {...form.register("studentId")}
+                      placeholder="29299999999"
                       className="border-neutral-300 focus:border-blue-600 focus:ring-blue-600/10 rounded-md text-sm placeholder-neutral-400 text-neutral-950 bg-white"
-                      error={form.formState.errors?.fullName?.message}
+                      error={form.formState.errors?.studentId?.message?.toString()}
                     />
                   </div>
 
@@ -209,7 +211,7 @@ const Register = () => {
                       {...form.register("email")}
                       placeholder="example@gmail.com"
                       className="border-neutral-300 focus:border-blue-600 focus:ring-blue-600/10 rounded-md text-sm placeholder-neutral-400 text-neutral-950 bg-white"
-                      error={form.formState.errors?.email?.message}
+                      error={form.formState.errors?.email?.message?.toString()}
                     />
                   </div>
 
@@ -220,17 +222,6 @@ const Register = () => {
                     <Input
                       {...form.register("subjectCode")}
                       placeholder="Ví dụ: CS 466 SA"
-                      className="border-neutral-300 focus:border-blue-600 focus:ring-blue-600/10 rounded-md text-sm placeholder-neutral-400 text-neutral-950 bg-white"
-                    />
-                  </div>
-
-                  <div className="space-y-1">
-                    <label className="text-sm font-bold text-neutral-700 uppercase tracking-wider">
-                      Tên môn học (Tùy chọn)
-                    </label>
-                    <Input
-                      {...form.register("subjectName")}
-                      placeholder="Ví dụ: Perl & Python"
                       className="border-neutral-300 focus:border-blue-600 focus:ring-blue-600/10 rounded-md text-sm placeholder-neutral-400 text-neutral-950 bg-white"
                     />
                   </div>
@@ -290,16 +281,13 @@ const Register = () => {
                       <TableHeader className="bg-neutral-50 sticky top-0 border-b border-neutral-200 z-10 shadow-sm">
                         <TableRow>
                           <TableHead className="font-bold text-neutral-900 text-sm uppercase tracking-wider">
-                            Họ tên
+                            MSSV
                           </TableHead>
                           <TableHead className="font-bold text-neutral-900 text-sm uppercase tracking-wider">
                             Email
                           </TableHead>
                           <TableHead className="font-bold text-neutral-900 text-sm uppercase tracking-wider text-center">
                             Mã môn
-                          </TableHead>
-                          <TableHead className="font-bold text-neutral-900 text-sm uppercase tracking-wider text-center">
-                            Tên môn
                           </TableHead>
                           <TableHead className="text-right font-bold text-neutral-900 text-sm uppercase tracking-wider pr-5">
                             Thao tác
@@ -312,8 +300,8 @@ const Register = () => {
                             key={s.id}
                             className="hover:bg-neutral-50/60 border-b border-neutral-100 transition-colors"
                           >
-                            <TableCell className="font-semibold text-neutral-950 text-sm">
-                              {s.full_name}
+                            <TableCell className="text-neutral-600 font-mono text-sm">
+                              {s.student_id}
                             </TableCell>
                             <TableCell className="text-neutral-600 font-mono text-sm">
                               {s.email}
@@ -328,9 +316,6 @@ const Register = () => {
                                   -
                                 </span>
                               )}
-                            </TableCell>
-                            <TableCell className="text-center text-sm text-neutral-600">
-                              {s.subject_name || "-"}
                             </TableCell>
                             <TableCell className="text-right pr-5">
                               <div className="flex gap-1.5 justify-end">
@@ -365,13 +350,13 @@ const Register = () => {
           <div className="space-y-4 pt-1 text-gray-100">
             <div className="space-y-1">
               <label className="text-xs font-bold text-gray-900 uppercase tracking-wider">
-                Họ và tên sinh viên
+                Mã số sinh viên
               </label>
               <Input
-                value={editData.fullName}
+                value={editData.studentId}
                 className="rounded-md border-neutral-300 focus:border-blue-600 focus:ring-blue-600/10 text-neutral-950"
                 onChange={(e) =>
-                  setEditData((p) => ({ ...p, fullName: e.target.value }))
+                  setEditData((p) => ({ ...p, studentId: e.target.value }))
                 }
               />
             </div>
@@ -389,32 +374,17 @@ const Register = () => {
               />
             </div>
 
-            <div className="grid grid-cols-2 gap-4">
-              <div className="space-y-1">
-                <label className="text-xs font-bold text-gray-900 uppercase tracking-wider">
-                  Mã học phần
-                </label>
-                <Input
-                  value={editData.subjectCode}
-                  className="rounded-md border-neutral-300 focus:border-blue-600 focus:ring-blue-600/10 text-neutral-950"
-                  onChange={(e) =>
-                    setEditData((p) => ({ ...p, subjectCode: e.target.value }))
-                  }
-                />
-              </div>
-
-              <div className="space-y-1">
-                <label className="text-xs font-bold text-gray-900 uppercase tracking-wider">
-                  Tên môn học
-                </label>
-                <Input
-                  value={editData.subjectName}
-                  className="rounded-md border-neutral-300 focus:border-blue-600 focus:ring-blue-600/10 text-neutral-950"
-                  onChange={(e) =>
-                    setEditData((p) => ({ ...p, subjectName: e.target.value }))
-                  }
-                />
-              </div>
+            <div className="space-y-1">
+              <label className="text-xs font-bold text-gray-900 uppercase tracking-wider">
+                Mã học phần
+              </label>
+              <Input
+                value={editData.subjectCode}
+                className="rounded-md border-neutral-300 focus:border-blue-600 focus:ring-blue-600/10 text-neutral-950"
+                onChange={(e) =>
+                  setEditData((p) => ({ ...p, subjectCode: e.target.value }))
+                }
+              />
             </div>
 
             <div className="flex justify-end gap-2.5 border-t border-slate-800 pt-4 mt-6">

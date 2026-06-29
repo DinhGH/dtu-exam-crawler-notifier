@@ -1,5 +1,5 @@
 import os
-import smtplib
+import smtplib 
 import base64
 import re
 import pandas as pd
@@ -108,19 +108,19 @@ class SubscriptionService:
 
         return query.order_by(ExamFile.crawl_time.desc()).all()
 
-    def _extract_user_exam_info(self, file_content: bytes, file_name: str, user_full_name: str) -> list:
+    def _extract_user_exam_info(self, file_content: bytes, file_name: str, student_id_target: str) -> list:
         """
         Quét file Excel từ trên xuống theo logic cuốn chiếu (Scanner):
         - Tự động nhận diện và cập nhật thông tin Phòng/Thời gian thi khi bắt gặp.
         - Khắc phục triệt để lỗi ghi đè ô thông tin giữa phòng và thời gian.
-        - Tìm kiếm sinh viên chính xác từ đầu, giữa đến cuối danh sách.
+        - Tìm kiếm sinh viên chính xác bằng mã số sinh viên.
         - Tự động dừng khi gặp 15 dòng trống liên tiếp để tối ưu hiệu năng.
         """
         import io
         
         # Check if it is actually a PDF
         if file_content.startswith(b'%PDF-') or file_name.lower().endswith('.pdf'):
-            return self._extract_user_exam_info_from_pdf(file_content, user_full_name)
+            return self._extract_user_exam_info_from_pdf(file_content, student_id_target)
         
         try:
             # 1. Đọc toàn bộ file Excel dưới dạng bảng thô (Matrix) để tránh cơ chế ngầm của Pandas
@@ -136,8 +136,6 @@ class SubscriptionService:
             # Đọc thông tin môn học cố định (thường ở dòng 2 hoặc 3 đầu file)
             subject_info = str(df_raw.iloc[1, 2]) if df_raw.shape[0] > 2 else ""
 
-            # Chuẩn hóa tên tìm kiếm: viết thường, xóa khoảng trắng thừa
-            search_name = " ".join(user_full_name.lower().split())
             result = []
             
             # Biến đếm dòng trống liên tiếp để ngắt vòng lặp thông minh
@@ -217,19 +215,10 @@ class SubscriptionService:
                 if not student_id or not full_name_in_file or 'họ' in full_name_in_file.lower() or 'tên' in full_name_in_file.lower():
                     continue
                 
-                full_name_clean = " ".join(full_name_in_file.lower().split())
-                
-                # Tiến hành so khớp chuỗi tên tìm kiếm
-                if search_name in full_name_clean:
-                    log.info(f"MATCH FOUND: Found student '{full_name_in_file}' at row {idx}")
+                # Tiến hành so khớp mã sinh viên (Ưu tiên)
+                if student_id == student_id_target:
+                    log.info(f"MATCH FOUND: Found student '{full_name_in_file}' (ID: {student_id}) at row {idx}")
                     
-                    # Lấy thông tin lớp sinh hoạt nằm ở các cột kế tiếp (thường từ index 4 đến 6)
-                    class_name = ""
-                    for c in clean_cells[4:7]:
-                        if c and ('k2' in c.lower() or 'k3' in c.lower()):
-                            class_name = c
-                            break
-
                     # Điền thông tin tìm thấy vào mảng kết quả
                     result.append({
                         'student_no': stt_val,
@@ -247,10 +236,9 @@ class SubscriptionService:
             log.error(f"Lỗi khi xử lý trích xuất file Excel {file_name}: {e}")
             return []
 
-    def _extract_user_exam_info_from_pdf(self, file_content: bytes, user_full_name: str) -> list:
+    def _extract_user_exam_info_from_pdf(self, file_content: bytes, student_id_target: str) -> list:
         """
         Extract user's exam information from a PDF file.
-        Similar logic to Excel extraction but adapted for PDF text extraction.
         """
         if not PDF_SUPPORTED:
             log.error("PDF support not available. Please install pypdf.")
@@ -264,94 +252,60 @@ class SubscriptionService:
             for page in reader.pages:
                 text += page.extract_text() + "\n"
             
-            # Normalize name for searching
-            search_name = " ".join(user_full_name.lower().split())
             result = []
-            
-            # Track current time and room info
             current_room_number = ""
             current_location = ""
             current_time = ""
             blank_line_count = 0
             
-            # Split text into lines
             lines = text.split('\n')
             
             for line in lines:
-                # Clean up the line
                 line_stripped = line.strip()
-                
-                # Check if this is a blank line
-                is_blank = len(line_stripped) == 0
-                
-                if is_blank:
+                if not line_stripped:
                     blank_line_count += 1
                     if blank_line_count >= 10:
                         break
                     continue
-                
-                # Reset blank line counter
                 blank_line_count = 0
                 
-                # Check for time and room info - updated regex to match "Thời gian : ... - Phòng thi ... - ..."
-                # Example: "Thời gian : 09h30 - 31/05/2026   -   Phòng thi 307/1  - K7/25 Quang Trung"
                 match = re.search(r'Thời\s+gian\s*:\s*(.+?)\s*-\s*Phòng\s+thi\s+(.+?)\s*-\s*(.+)', line_stripped, re.IGNORECASE)
-                
                 if match:
                     current_time = match.group(1).strip()
                     current_room_number = match.group(2).strip()
                     current_location = match.group(3).strip()
-                    log.debug(f"Found time/room/location: {current_time} - {current_room_number} - {current_location}")
                     continue
                 
-                # Split line into parts (by whitespace)
                 parts = re.split(r'\s+', line_stripped)
-                
-                # Check if it looks like a student row: index, ID, name parts...
-                # Example: ['1', '31206545536', 'Đỗ', 'Phương', 'Anh', 'KOR', ...]
-                if len(parts) >= 5 and re.match(r'^\d+$', parts[0]) and re.match(r'^\d{10,12}$', parts[1]):
+                if len(parts) >= 2 and re.match(r'^\d{10,12}$', parts[1]):
                     student_id = parts[1]
                     
-                    # Student name is typically parts 2, 3, ... until class info
-                    # Class info usually starts with 'K' followed by numbers/letters
-                    student_name_parts = []
-                    for i in range(2, len(parts)):
-                        # If we see K... it's likely the start of class info
-                        if re.match(r'^K\d+[A-Z]*', parts[i].upper()):
-                            break
-                        # If we see a subject code pattern (e.g. KOR 206) it's also class info
-                        if i + 1 < len(parts) and re.match(r'^[A-Z]{3,4}$', parts[i].upper()) and re.match(r'^\d{3,4}$', parts[i+1]):
-                            break
-                        student_name_parts.append(parts[i])
-                    
-                    student_name = " ".join(student_name_parts)
-                    
-                    if student_name:
-                        # Check if this is the user
-                        full_name_clean = " ".join(student_name.lower().split())
+                    if student_id == student_id_target:
+                        student_name_parts = []
+                        for i in range(2, len(parts)):
+                            if re.match(r'^K\d+[A-Z]*', parts[i].upper()) or (i + 1 < len(parts) and re.match(r'^[A-Z]{3,4}$', parts[i].upper()) and re.match(r'^\d{3,4}$', parts[i+1])):
+                                break
+                            student_name_parts.append(parts[i])
                         
-                        if search_name in full_name_clean:
-                                result.append({
-                                    'student_no': parts[0].strip() if parts else "",
-                                    'student_name': student_name.strip(),
-                                    'student_id': student_id,
-                                    'exam_date_time': current_time if current_time else "Xem trong file",
-                                    'exam_room': current_room_number if current_room_number else "Xem trong file",
-                                    'exam_location': current_location if current_location else "Xem trong file",
-                                    'subject_meta': ""
-                                })
-            
-            log.info(f"Found {len(result)} exam entries for {user_full_name} in PDF")
+                        result.append({
+                            'student_no': parts[0].strip() if re.match(r'^\d+$', parts[0]) else "",
+                            'student_name': " ".join(student_name_parts),
+                            'student_id': student_id,
+                            'exam_date_time': current_time,
+                            'exam_room': current_room_number,
+                            'exam_location': current_location,
+                            'subject_meta': ""
+                        })
             return result
             
         except Exception as e:
-            log.error(f"Lỗi khi xử lý trích xuất file PDF {pdf_file_path}: {e}")
+            log.error(f"Lỗi khi xử lý trích xuất file PDF: {e}")
             return []
     
     def _create_email_message(
         self,
         to_email: str,
-        user_full_name: str,
+        student_id: str,
         exam_files_data: List[Dict[str, Any]]
     ) -> MIMEMultipart:
         """
@@ -362,10 +316,10 @@ class SubscriptionService:
         msg = MIMEMultipart()
         msg['From'] = f"{self.email_config['from_name']} <{self.email_config['from_email']}>"
         msg['To'] = to_email
-        msg['Subject'] = f"[Thông báo] Danh sách thi của {user_full_name}"
+        msg['Subject'] = f"[Thông báo] Danh sách thi của SV {student_id}"
 
         # Email body HTML
-        html_content = self._generate_email_html(user_full_name, exam_files_data)
+        html_content = self._generate_email_html(student_id, exam_files_data)
         msg.attach(MIMEText(html_content, 'html'))
 
         # Attach Excel files
@@ -405,7 +359,7 @@ class SubscriptionService:
 
     def _generate_email_html(
         self,
-        user_full_name: str,
+        student_id: str,
         exam_files_data: List[Dict[str, Any]]
     ) -> str:
         """
@@ -717,7 +671,7 @@ class SubscriptionService:
                 <div class="body">
 
                     <div class="greeting">
-                        <div class="greeting-name">Xin chào, {user_full_name}!</div>
+                        <div class="greeting-name">Xin chào, sinh viên {student_id}!</div>
                         <p>Hệ thống đã quét thành công file dữ liệu công bố mới nhất.<br>
                         Dưới đây là thông tin phòng thi & lịch thi tìm thấy theo đăng ký của bạn.</p>
                     </div>
@@ -889,7 +843,7 @@ class SubscriptionService:
         Process a single subscription: search for matching files, send email, and delete the subscription if successful.
         """
         # Find matching exam files
-        exam_files = self._find_matching_exam_files(sub.subject_code, sub.subject_name)
+        exam_files = self._find_matching_exam_files(sub.subject_code, None)
         
         exam_files_data = []
         for exam_file in exam_files:
@@ -898,7 +852,7 @@ class SubscriptionService:
             if not file_content:
                 continue
 
-            user_exam_info = self._extract_user_exam_info(file_content, exam_file.file_name, sub.full_name)
+            user_exam_info = self._extract_user_exam_info(file_content, exam_file.file_name, sub.student_id)
             
             if user_exam_info:
                 exam_files_data.append({
@@ -909,7 +863,7 @@ class SubscriptionService:
                 })
         
         if exam_files_data:
-            msg = self._create_email_message(sub.email, sub.full_name, exam_files_data)
+            msg = self._create_email_message(sub.email, sub.student_id, exam_files_data)
             success = self._send_email(msg, sub.email)
             
             if success:
@@ -935,21 +889,19 @@ class SubscriptionService:
 
     def create_subscription(
         self,
-        full_name: str,
+        student_id: str,
         email: str,
         user_id: int,
-        subject_code: Optional[str] = None,
-        subject_name: Optional[str] = None
+        subject_code: Optional[str] = None
     ) -> Subscription:
         """
         Create subscription and return the object.
         """
         subscription = Subscription(
-            full_name=full_name,
+            student_id=student_id,
             email=email,
             user_id=user_id,
-            subject_code=subject_code,
-            subject_name=subject_name
+            subject_code=subject_code
         )
         self.db.add(subscription)
         self.db.commit()

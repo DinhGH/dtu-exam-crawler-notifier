@@ -7,10 +7,9 @@ class Subscription(Base):
 
     id = Column(BigInteger, primary_key=True, autoincrement=True)
     user_id = Column(BigInteger, ForeignKey('users.id'), nullable=False, index=True)
-    full_name = Column(String(255), nullable=False)
+    student_id = Column(String(11), nullable=False, index=True)
     email = Column(String(255), nullable=False, index=True)
     subject_code = Column(String(50), index=True)
-    subject_name = Column(String(500))
     created_at = Column(DateTime, default=func.now())
 
     user = relationship("User", back_populates="subscriptions")

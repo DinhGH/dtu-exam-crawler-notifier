@@ -4,18 +4,16 @@ from datetime import datetime
 
 
 class SubscriptionCreate(BaseModel):
-    full_name: str = Field(..., min_length=2, max_length=255, description="Full name of the subscriber")
+    student_id: str = Field(..., pattern=r'^\d{11}$', description="11-digit student ID")
     email: str = Field(..., pattern=r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$', description="Email address")
     subject_code: Optional[str] = Field(None, max_length=50, description="Subject code (optional)")
-    subject_name: Optional[str] = Field(None, max_length=500, description="Subject name (optional)")
 
 
 class SubscriptionResponse(BaseModel):
     id: int
-    full_name: str
+    student_id: str
     email: str
     subject_code: Optional[str]
-    subject_name: Optional[str]
     created_at: datetime
 
     class Config:

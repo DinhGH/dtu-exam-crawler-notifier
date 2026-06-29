@@ -213,43 +213,43 @@ class FileService:
             # Split line into parts (by multiple spaces or tabs)
             parts = re.split(r'\s{2,}', line_stripped)
             
-            if len(parts) >= 5:
-                # Try to find student ID (10-12 digits)
-                student_id = None
-                for part in parts:
-                    part_stripped = part.strip()
-                    if re.match(r'^\d{10,12}$', part_stripped):
-                        student_id = part_stripped
-                        break
+            # Try to find student ID (10-12 digits)
+            student_id = None
+            student_col_idx = -1
+            for i, part in enumerate(parts):
+                part_stripped = part.strip()
+                if re.match(r'^\d{10,12}$', part_stripped):
+                    student_id = part_stripped
+                    student_col_idx = i
+                    break
+            
+            if student_id:
+                # Extract student name (usually in parts around student_id)
+                name_parts = []
+                for i in [student_col_idx + 1, student_col_idx + 2, student_col_idx - 1]:
+                    if 0 <= i < len(parts):
+                        val = parts[i].strip()
+                        if val and val.lower() != 'nan' and not re.match(r'^\d{10,12}$', val) and not re.match(r'^[A-Z]{2,4}\s+\d{3}$', val):
+                            name_parts.append(val)
                 
-                if student_id:
-                    # Extract student name (usually in parts[2] and parts[3])
-                    student_name = ""
-                    if len(parts) > 3:
-                        part3 = parts[3].strip() if parts[3] else ""
-                        part4 = parts[4].strip() if len(parts) > 4 and parts[4] else ""
-                        
-                        if part3 and part3.lower() != 'nan':
-                            student_name = part3
-                        if part4 and part4.lower() != 'nan':
-                            student_name = f"{student_name} {part4}" if student_name else part4
+                student_name = ' '.join(name_parts)
+                
+                if student_name and len(student_name.strip()) >= 2:
+                    # Extract subject code
+                    subject_code = self._extract_subject_code_from_parts(parts)
                     
-                    if student_name and len(student_name.strip()) >= 2:
-                        # Extract subject code
-                        subject_code = self._extract_subject_code_from_parts(parts)
-                        
-                        schedule = ExamSchedule(
-                            exam_file_id=exam_file_id,
-                            student_id=student_id,
-                            student_name=student_name.strip(),
-                            subject_code=subject_code,
-                            subject_name="",
-                            exam_date=None,
-                            exam_time=current_time_info,
-                            exam_room=current_room_info,
-                        )
-                        schedules.append(schedule)
-                        log.debug(f"Found student in PDF: {student_name} ({student_id}) - Room: {current_room_info}")
+                    schedule = ExamSchedule(
+                        exam_file_id=exam_file_id,
+                        student_id=student_id,
+                        student_name=student_name.strip(),
+                        subject_code=subject_code,
+                        subject_name="",
+                        exam_date=None,
+                        exam_time=current_time_info,
+                        exam_room=current_room_info,
+                    )
+                    schedules.append(schedule)
+                    log.debug(f"Found student in PDF: {student_name} ({student_id}) - Room: {current_room_info}")
         
         return schedules
     
