@@ -190,11 +190,11 @@ const Register = () => {
                 >
                   <div className="space-y-1">
                     <label className="text-sm font-bold text-neutral-700 uppercase tracking-wider">
-                      Họ và tên *
+                      Họ và tên - Mã số sinh viên*
                     </label>
                     <Input
                       {...form.register("fullName")}
-                      placeholder="Nguyễn Văn A"
+                      placeholder="Nguyễn Văn A - 29299999999"
                       className="border-neutral-300 focus:border-blue-600 focus:ring-blue-600/10 rounded-md text-sm placeholder-neutral-400 text-neutral-950 bg-white"
                       error={form.formState.errors?.fullName?.message}
                     />

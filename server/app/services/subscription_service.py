@@ -76,7 +76,6 @@ class SubscriptionService:
             response = requests.get(exam_file.download_link, timeout=30)
             response.raise_for_status()
             
-            log.info(f"Downloaded Excel file: {exam_file.file_name} into memory")
             return response.content
 
         except Exception as e:
@@ -125,7 +124,8 @@ class SubscriptionService:
         
         try:
             # 1. Đọc toàn bộ file Excel dưới dạng bảng thô (Matrix) để tránh cơ chế ngầm của Pandas
-            df_raw = pd.read_excel(io.BytesIO(file_content), header=None, engine='openpyxl')
+            # Engine=None để tự động phát hiện .xls hoặc .xlsx
+            df_raw = pd.read_excel(io.BytesIO(file_content), header=None)
             raw_matrix = df_raw.values.tolist()
             
             # Khởi tạo các biến trạng thái lưu tạm dữ liệu phòng và thời gian
@@ -144,14 +144,10 @@ class SubscriptionService:
             empty_row_counter = 0
 
             # 2. Duyệt từng dòng một từ trên xuống dưới
-            for row_list in raw_matrix:
+            for idx, row_list in enumerate(raw_matrix):
+
                 # Chuyển đổi toàn bộ ô trong dòng về chuỗi sạch (Xử lý an toàn cho cả float/nan)
-                clean_cells = []
-                for cell in row_list:
-                    if pd.isna(cell) or cell is None:
-                        clean_cells.append("")
-                    else:
-                        clean_cells.append(str(cell).strip())
+                clean_cells = [str(cell).strip() if pd.notna(cell) and cell is not None else "" for cell in row_list]
                 
                 # Gộp dòng thành một chuỗi duy nhất để nhận diện khối thông tin mục lớn
                 row_combined = " ".join([c.lower() for c in clean_cells if c])
@@ -160,6 +156,7 @@ class SubscriptionService:
                 if not row_combined:
                     empty_row_counter += 1
                     if empty_row_counter >= 15:  # Gặp 15 dòng trống liên tiếp thì dừng quét file
+                        log.info(f"DEBUG: Reached {empty_row_counter} empty rows, breaking at {idx}")
                         break
                     continue
                 else:
@@ -167,48 +164,20 @@ class SubscriptionService:
 
                 # CHUYỂN ĐỔI NGỮ CẢNH: Tìm thấy dòng chứa cấu trúc Phòng thi / Thời gian
                 if 'thời gian:' in row_combined or 'thoi gian:' in row_combined:
-                    # Process time info first
-                    for cell_val in clean_cells:
-                        val_lower = cell_val.lower()
-                        if not val_lower:
-                            continue
-                        
-                        # Ô chứa thời gian thi chuẩn (Có định dạng giờ 'h' và ngày thi '/')
-                        # Time format: "Thời gian:  15h30 - 31/05/2026                Phòng:"
-                        # We need to extract just the time portion
-                        if 'h' in val_lower and '/' in val_lower:
-                            # Extract time portion from the string
-                            # Example: "Thời gian:  15h30 - 31/05/2026                Phòng:"
-                            # We want to get "15h30 - 31/05/2026"
-                            if 'thời gian:' in val_lower:
-                                # Split by "Thời gian:" and take the second part
-                                parts = cell_val.split('Thời gian:', 1)
-                                if len(parts) > 1:
-                                    time_part = parts[1].strip()
-                                    # Now remove the "Phòng:" part if it exists
-                                    if 'Phòng:' in time_part:
-                                        time_part = time_part.split('Phòng:', 1)[0].strip()
-                                    elif 'phòng:' in time_part:
-                                        time_part = time_part.split('phòng:', 1)[0].strip()
-                                    current_time = time_part
-                                else:
-                                    current_time = cell_val
-                            else:
-                                current_time = cell_val
                     
-                    # Process room/location info - Column G (index 6) = Room, Column H (index 7) = Location
+                    # Dùng regex để trích xuất nhanh hơn
+                    time_match = re.search(r'(thời\s*gian:?\s*)([\d\s\w/:-]+?)(phòng|p\.|địa\s*điểm|$)', row_combined)
+                    if time_match:
+                        current_time = time_match.group(2).strip()
+                    
+                    # Process room/location info
                     if len(clean_cells) > 7:
                         room_val = clean_cells[6].strip()
                         location_val = clean_cells[7].strip()
                         
-                        log.debug(f"DEBUG: Room val='{room_val}', Location val='{location_val}'")
-                        
-                        # Room number is from column G (e.g., "304/1", "403")
                         if room_val and '/' in room_val:
                             current_room_number = room_val
                         
-                        # Location is from column H - always extract it (remove leading dash if present)
-                        # Examples: "- K7/25 Quang Trung", "-K7/25 Quang Trung", "K7/25 Quang Trung"
                         if location_val:
                             if location_val.startswith('- '):
                                 location_val = location_val[2:].strip()
@@ -216,56 +185,66 @@ class SubscriptionService:
                                 location_val = location_val[1:].strip()
                             current_location = location_val
                     
-                    continue  # Trích xuất xong dòng cấu trúc ngữ cảnh thì chuyển ngay sang dòng tiếp theo
+                # SO KHỚP TÊN SINH VIÊN: Sử dụng index cột linh hoạt hơn
+                log.info(f"DEBUG: Checking row {idx} for student name")
+                
+                # Tìm MSV (thường là chuỗi số có độ dài 10-12)
+                student_id = ""
+                ho = ""
+                ten = ""
+                stt_val = ""
+                
+                # Cố gắng tìm MSV trong dòng
+                for cell in clean_cells:
+                    if re.match(r'^\d{10,12}$', cell):
+                        student_id = cell
+                        break
+                
+                # Nếu tìm thấy MSV, tìm Họ và Tên ở các cột lân cận
+                if student_id:
+                    try:
+                        msv_idx = clean_cells.index(student_id)
+                        if msv_idx + 2 < len(clean_cells):
+                            ho = clean_cells[msv_idx + 1]
+                            ten = clean_cells[msv_idx + 2]
+                            stt_val = clean_cells[msv_idx - 1] if msv_idx > 0 else ""
+                    except ValueError:
+                        pass
+                
+                full_name_in_file = f"{ho} {ten}".strip()
 
-                # SO KHỚP TÊN SINH VIÊN: Sử dụng index cột cố định theo form danh sách thi Duy Tân
-                # Định vị: Cột 0 (STT), Cột 1 (STT duplicates), Cột 2 (Mã SV), Cột 3 (Họ và), Cột 4 (Tên)
-                if len(clean_cells) >= 5:
-                    ho_val = clean_cells[3]
-                    ten_val = clean_cells[4]
-                    stt_val = clean_cells[0]     # Số thứ tự thí sinh trong phòng đó
-                    student_id = clean_cells[2]  # Mã sinh viên (cột 2)
-
-                    # Loại bỏ các dòng tiêu đề lặp lại (STT, HỌ VÀ, TÊN) hoặc dòng rác cuối bảng
-                    if not ho_val or not ten_val or 'họ' in ho_val.lower() or 'tên' in ten_val.lower():
-                        continue
+                # Loại bỏ các dòng không hợp lệ
+                if not student_id or not full_name_in_file or 'họ' in full_name_in_file.lower() or 'tên' in full_name_in_file.lower():
+                    continue
+                
+                full_name_clean = " ".join(full_name_in_file.lower().split())
+                
+                # Tiến hành so khớp chuỗi tên tìm kiếm
+                if search_name in full_name_clean:
+                    log.info(f"MATCH FOUND: Found student '{full_name_in_file}' at row {idx}")
                     
-                    # Ghép Họ và Tên đầy đủ từ hai cột riêng biệt
-                    full_name_in_file = f"{ho_val} {ten_val}"
-                    full_name_clean = " ".join(full_name_in_file.lower().split())
-                    
-                    # Tiến hành so khớp chuỗi tên tìm kiếm
-                    if search_name in full_name_clean:
-                        # Lấy thông tin lớp sinh hoạt nằm ở các cột kế tiếp (thường từ index 4 đến 6)
-                        class_name = ""
-                        for c in clean_cells[4:7]:
-                            if c and ('k2' in c.lower() or 'k3' in c.lower()):
-                                class_name = c
-                                break
+                    # Lấy thông tin lớp sinh hoạt nằm ở các cột kế tiếp (thường từ index 4 đến 6)
+                    class_name = ""
+                    for c in clean_cells[4:7]:
+                        if c and ('k2' in c.lower() or 'k3' in c.lower()):
+                            class_name = c
+                            break
 
-                        # Điền thông tin tìm thấy vào mảng kết quả
-                        result.append({
-                            'student_no': stt_val,
-                            'student_name': full_name_in_file,
-                            'student_id': student_id,
-                            'exam_date_time': current_time if current_time else "Xem trong file",
-                            'exam_room': current_room_number if current_room_number else "Xem trong file",
-                            'exam_location': current_location if current_location else "Xem trong file",
-                            'subject_meta': subject_info
-                        })
-                        
-                        # GỢI Ý TỐI ƯU: Nếu một sinh viên chắc chắn chỉ xuất hiện 1 lần duy nhất trong cả file, 
-                        # bạn có thể mở comment lệnh dưới đây để hàm trả về kết quả luôn mà không cần quét tiếp:
-                        # return result
+                    # Điền thông tin tìm thấy vào mảng kết quả
+                    result.append({
+                        'student_no': stt_val,
+                        'student_name': full_name_in_file,
+                        'student_id': student_id,
+                        'exam_date_time': current_time if current_time else "Xem trong file",
+                        'exam_room': current_room_number if current_room_number else "Xem trong file",
+                        'exam_location': current_location if current_location else "Xem trong file",
+                        'subject_meta': subject_info
+                    })
 
             return result
 
         except Exception as e:
-            log.error(f"Lỗi khi xử lý trích xuất file Excel {excel_file_path}: {e}")
-            return []
-
-        except Exception as e:
-            log.error(f"Lỗi khi xử lý file Excel {excel_file_path}: {e}")
+            log.error(f"Lỗi khi xử lý trích xuất file Excel {file_name}: {e}")
             return []
 
     def _extract_user_exam_info_from_pdf(self, file_content: bytes, user_full_name: str) -> list:
